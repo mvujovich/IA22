@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
     
@@ -14,6 +15,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     
     override func viewDidLoad() {
+        if FirebaseApp.app() == nil {
+                FirebaseApp.configure()
+            }
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         // get screen size object.
