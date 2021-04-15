@@ -1,0 +1,6 @@
+framework module Pods_Arts_Explorer_Arts_ExplorerUITests {
+  umbrella header "Pods-Arts_Explorer-Arts_ExplorerUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
