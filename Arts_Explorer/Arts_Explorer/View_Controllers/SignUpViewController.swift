@@ -9,10 +9,31 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var signUpButton: UIButton!
+    
+    @IBOutlet weak var errorLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUpElements()
+    }
+    
+    func setUpElements() {
+        //Hide error label
+        errorLabel.alpha = 0
+        
+        //More to come (when I work on the UI)
+    }
+    
+    
+    @IBAction func signUpPressed(_ sender: Any?) {
+        
     }
     
 

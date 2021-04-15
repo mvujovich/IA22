@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="TUs-nM-VCz">
             <objects>
-                <viewController id="kRB-hE-piM" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="kRB-hE-piM" customClass="ViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zqo-qT-TXR">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,14 +26,14 @@
                                         </constraints>
                                         <state key="normal" title="Sign up"/>
                                         <connections>
-                                            <segue destination="2cJ-b1-aQn" kind="show" id="6zz-qC-Upz"/>
+                                            <segue destination="2cJ-b1-aQn" kind="show" id="5Ms-fa-NuM"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvQ-TD-4fW">
                                         <rect key="frame" x="0.0" y="64" width="150" height="32"/>
                                         <state key="normal" title="Log in"/>
                                         <connections>
-                                            <segue destination="a0i-VJ-fBb" kind="show" id="2L6-QJ-Siq"/>
+                                            <segue destination="a0i-VJ-fBb" kind="show" id="weg-mA-RPc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -52,6 +52,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eJe-6K-YwA"/>
+                    <connections>
+                        <outlet property="logInButton" destination="HvQ-TD-4fW" id="YnU-E7-hhf"/>
+                        <outlet property="signUpButton" destination="hwr-Fc-RF2" id="p5E-GF-d4P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gJV-3p-csf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -74,12 +78,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zej-De-3Nk">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zej-De-3Nk">
                                         <rect key="frame" x="0.0" y="44.333333333333314" width="294" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P80-k8-xhB">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P80-k8-xhB">
                                         <rect key="frame" x="0.0" y="102.33333333333331" width="294" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -91,7 +95,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzc-W2-06i">
                                         <rect key="frame" x="0.0" y="218.33333333333331" width="294" height="34"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Sign up"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error_msg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdI-mB-Gwo">
                                         <rect key="frame" x="0.0" y="276.33333333333337" width="294" height="34"/>
@@ -117,15 +121,22 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8MF-d5-ruh"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="P80-k8-xhB" id="DeJ-42-euO"/>
+                        <outlet property="errorLabel" destination="ZdI-mB-Gwo" id="XPv-0F-mdo"/>
+                        <outlet property="nameTextField" destination="Zej-De-3Nk" id="4Q6-Fr-bpD"/>
+                        <outlet property="passwordTextField" destination="nDk-Tq-a7k" id="QDt-mn-hmu"/>
+                        <outlet property="signUpButton" destination="Dzc-W2-06i" id="mcO-9F-pWm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UXj-Oq-pDY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1525" y="785"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Log In View Controller-->
         <scene sceneID="9om-an-BUU">
             <objects>
-                <viewController id="a0i-VJ-fBb" customClass="LoginViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="a0i-VJ-fBb" customClass="LogInViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="omd-D9-edy">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,7 +162,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A10-pM-Mzd">
                                         <rect key="frame" x="0.0" y="160.33333333333331" width="294" height="34"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Log in"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error_msg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxC-Tt-F3G">
                                         <rect key="frame" x="0.0" y="218.33333333333337" width="294" height="34"/>
@@ -176,6 +187,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xz2-c1-jBi"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="eTk-Mc-QgJ" id="0HZ-Br-NEH"/>
+                        <outlet property="errorLabel" destination="AxC-Tt-F3G" id="d3v-z2-FMc"/>
+                        <outlet property="logInButton" destination="A10-pM-Mzd" id="5w4-qu-2Bi"/>
+                        <outlet property="nameTextField" destination="66l-fQ-Tte" id="cNc-6c-y5W"/>
+                        <outlet property="passwordTextField" destination="GT0-Ps-9yN" id="QIo-F1-4UD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3MV-h8-A6x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
