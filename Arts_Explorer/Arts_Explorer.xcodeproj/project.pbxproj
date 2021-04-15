@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,21 @@
 		D37ECEFF2628473300F9EA90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D37ECEFE2628473300F9EA90 /* GoogleService-Info.plist */; };
 		D37ECF002628473400F9EA90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D37ECEFE2628473300F9EA90 /* GoogleService-Info.plist */; };
 		D37ECF012628473400F9EA90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D37ECEFE2628473300F9EA90 /* GoogleService-Info.plist */; };
+		D37ECF1926284CBE00F9EA90 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF1826284CBD00F9EA90 /* LogInViewController.swift */; };
+		D37ECF1A26284CBE00F9EA90 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF1826284CBD00F9EA90 /* LogInViewController.swift */; };
+		D37ECF1B26284CBE00F9EA90 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF1826284CBD00F9EA90 /* LogInViewController.swift */; };
+		D37ECF2026284CD700F9EA90 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF1F26284CD700F9EA90 /* SignUpViewController.swift */; };
+		D37ECF2126284CD700F9EA90 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF1F26284CD700F9EA90 /* SignUpViewController.swift */; };
+		D37ECF2226284CD700F9EA90 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF1F26284CD700F9EA90 /* SignUpViewController.swift */; };
+		D37ECF2826284E1500F9EA90 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF2726284E1500F9EA90 /* UploadViewController.swift */; };
+		D37ECF2926284E1500F9EA90 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF2726284E1500F9EA90 /* UploadViewController.swift */; };
+		D37ECF2A26284E1500F9EA90 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF2726284E1500F9EA90 /* UploadViewController.swift */; };
+		D37ECF3226284E2400F9EA90 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3126284E2400F9EA90 /* ProfileViewController.swift */; };
+		D37ECF3326284E2400F9EA90 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3126284E2400F9EA90 /* ProfileViewController.swift */; };
+		D37ECF3426284E2400F9EA90 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3126284E2400F9EA90 /* ProfileViewController.swift */; };
+		D37ECF3926284E3500F9EA90 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3826284E3500F9EA90 /* HomeViewController.swift */; };
+		D37ECF3A26284E3500F9EA90 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3826284E3500F9EA90 /* HomeViewController.swift */; };
+		D37ECF3B26284E3500F9EA90 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3826284E3500F9EA90 /* HomeViewController.swift */; };
 		F16E186DBFCE652388DED2B3 /* Pods_Arts_Explorer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B8EB50908B8390FD8C1C12 /* Pods_Arts_Explorer.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +78,11 @@
 		D37ECEED2627423B00F9EA90 /* Arts_ExplorerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arts_ExplorerUITests.swift; sourceTree = "<group>"; };
 		D37ECEEF2627423B00F9EA90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D37ECEFE2628473300F9EA90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D37ECF1826284CBD00F9EA90 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		D37ECF1F26284CD700F9EA90 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D37ECF2726284E1500F9EA90 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		D37ECF3126284E2400F9EA90 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D37ECF3826284E3500F9EA90 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D9A26F3260701A74664C212C /* Pods-Arts_Explorer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arts_Explorer.debug.xcconfig"; path = "Target Support Files/Pods-Arts_Explorer/Pods-Arts_Explorer.debug.xcconfig"; sourceTree = "<group>"; };
 		FBB738CB01F275387060AE58 /* Pods-Arts_ExplorerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arts_ExplorerTests.release.xcconfig"; path = "Target Support Files/Pods-Arts_ExplorerTests/Pods-Arts_ExplorerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,7 +125,6 @@
 				1D35103961BBA49F88C910D4 /* Pods-Arts_ExplorerTests.debug.xcconfig */,
 				FBB738CB01F275387060AE58 /* Pods-Arts_ExplorerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -146,12 +165,12 @@
 			children = (
 				D37ECECB2627423700F9EA90 /* AppDelegate.swift */,
 				D37ECECD2627423700F9EA90 /* SceneDelegate.swift */,
-				D37ECECF2627423700F9EA90 /* ViewController.swift */,
 				D37ECED12627423700F9EA90 /* Main.storyboard */,
 				D37ECED42627423B00F9EA90 /* Assets.xcassets */,
 				D37ECED62627423B00F9EA90 /* LaunchScreen.storyboard */,
 				D37ECED92627423B00F9EA90 /* Info.plist */,
 				D37ECEFE2628473300F9EA90 /* GoogleService-Info.plist */,
+				D37ECF2626284DFA00F9EA90 /* View_Controllers */,
 			);
 			path = Arts_Explorer;
 			sourceTree = "<group>";
@@ -172,6 +191,19 @@
 				D37ECEEF2627423B00F9EA90 /* Info.plist */,
 			);
 			path = Arts_ExplorerUITests;
+			sourceTree = "<group>";
+		};
+		D37ECF2626284DFA00F9EA90 /* View_Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D37ECECF2627423700F9EA90 /* ViewController.swift */,
+				D37ECF1826284CBD00F9EA90 /* LogInViewController.swift */,
+				D37ECF1F26284CD700F9EA90 /* SignUpViewController.swift */,
+				D37ECF2726284E1500F9EA90 /* UploadViewController.swift */,
+				D37ECF3126284E2400F9EA90 /* ProfileViewController.swift */,
+				D37ECF3826284E3500F9EA90 /* HomeViewController.swift */,
+			);
+			path = View_Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,9 +447,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D37ECF1926284CBE00F9EA90 /* LogInViewController.swift in Sources */,
+				D37ECF2826284E1500F9EA90 /* UploadViewController.swift in Sources */,
 				D37ECED02627423700F9EA90 /* ViewController.swift in Sources */,
+				D37ECF3926284E3500F9EA90 /* HomeViewController.swift in Sources */,
 				D37ECECC2627423700F9EA90 /* AppDelegate.swift in Sources */,
+				D37ECF3226284E2400F9EA90 /* ProfileViewController.swift in Sources */,
 				D37ECECE2627423700F9EA90 /* SceneDelegate.swift in Sources */,
+				D37ECF2026284CD700F9EA90 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,7 +462,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D37ECF2126284CD700F9EA90 /* SignUpViewController.swift in Sources */,
+				D37ECF2926284E1500F9EA90 /* UploadViewController.swift in Sources */,
+				D37ECF3326284E2400F9EA90 /* ProfileViewController.swift in Sources */,
+				D37ECF1A26284CBE00F9EA90 /* LogInViewController.swift in Sources */,
 				D37ECEE32627423B00F9EA90 /* Arts_ExplorerTests.swift in Sources */,
+				D37ECF3A26284E3500F9EA90 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +475,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D37ECF2226284CD700F9EA90 /* SignUpViewController.swift in Sources */,
+				D37ECF2A26284E1500F9EA90 /* UploadViewController.swift in Sources */,
+				D37ECF3426284E2400F9EA90 /* ProfileViewController.swift in Sources */,
+				D37ECF1B26284CBE00F9EA90 /* LogInViewController.swift in Sources */,
 				D37ECEEE2627423B00F9EA90 /* Arts_ExplorerUITests.swift in Sources */,
+				D37ECF3B26284E3500F9EA90 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
