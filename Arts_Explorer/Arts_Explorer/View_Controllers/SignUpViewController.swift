@@ -24,7 +24,6 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
-        print("HEY")
     }
     
     func setUpElements() {
@@ -66,7 +65,7 @@ class SignUpViewController: UIViewController {
                         [   //Data saved in Dictionary
                             "id": result!.user.uid,
                             "name": nameText,
-                            "mod": "false",
+                            "mod": false,
                             "posts": postArray,
                             "savedPosts": savedPostArray,
                             "avatarID": "",
@@ -133,7 +132,6 @@ class SignUpViewController: UIViewController {
         errorLabel.text = message
         errorLabel.alpha = 1 //Make error text visible
     }
-    
 
     /*
     // MARK: - Navigation
