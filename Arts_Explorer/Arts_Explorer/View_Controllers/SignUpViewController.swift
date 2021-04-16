@@ -96,7 +96,7 @@ class SignUpViewController: UIViewController {
         
         //Validate password, then email, fields
         if validatePassword(input: passwordText) == false {
-            return "Please make sure your password contains at least 1 letter, 1 number and 1 special character, and is at least 8 characters long."
+            return "Password should contain a letter, number and special character, and at least 8 characters."
         }
         
         if validateEmail(input: emailText) == false {
