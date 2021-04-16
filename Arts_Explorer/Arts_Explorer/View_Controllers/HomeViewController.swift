@@ -6,13 +6,50 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController {
-
+    
+    @IBOutlet weak var postListTableView: UITableView! {
+    didSet {
+        postListTableView.dataSource = self
+        }
+    }
+    
+    var postsToShow = [Post]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadPosts()
         // Do any additional setup after loading the view.
+    }
+    
+    func loadPosts() {
+        
+        let firestore = Firestore.firestore()
+        firestore.collection("posts").whereField("approved", isEqualTo: true)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let postID: String = document.get("id") as! String
+                        let postOP: String = document.get("op") as! String
+                        //Do comments and categories (proper) and media ID later
+                        let postCategory: String = document.get("category") as! String
+                        let postTitle: String = document.get("title") as! String
+                        let postDescription: String = document.get("description") as! String
+                        let commentsArray = [""] //Fix this later, obviously
+                        let post: Post = Post(id: postID, op: postOP, approved: true, comments: commentsArray, category: postCategory, mediaID: "", //lol oops
+                                              title: postTitle, description: postDescription)
+                        self.postsToShow.append(post)
+                        let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
+                        self.postListTableView.insertRows(at: [indexPath], with: .automatic)
+                            
+                        }
+                    }
+                }
+        }
     }
     
 
@@ -26,4 +63,20 @@ class HomeViewController: UIViewController {
     }
     */
 
+extension HomeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return postsToShow.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let post = postsToShow[indexPath.row]
+        let cell = postListTableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath)
+        
+        cell.textLabel?.text = post.title
+        
+        return cell
+    }
+    
+    
 }

@@ -372,14 +372,39 @@
                     <view key="view" contentMode="scaleToFill" id="D7p-0M-XfD">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jfm-VE-rkY">
+                                <rect key="frame" x="0.0" y="44" width="390" height="717"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" id="PnR-gR-wSS">
+                                        <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PnR-gR-wSS" id="ISF-IA-FyH">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Ovq-4L-tGN"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jfm-VE-rkY" firstAttribute="top" secondItem="Ovq-4L-tGN" secondAttribute="top" id="Euy-dE-7td"/>
+                            <constraint firstItem="Ovq-4L-tGN" firstAttribute="trailing" secondItem="jfm-VE-rkY" secondAttribute="trailing" id="nhb-kg-viQ"/>
+                            <constraint firstItem="Ovq-4L-tGN" firstAttribute="bottom" secondItem="jfm-VE-rkY" secondAttribute="bottom" id="ogs-tb-kxx"/>
+                            <constraint firstItem="jfm-VE-rkY" firstAttribute="leading" secondItem="Ovq-4L-tGN" secondAttribute="leading" id="xlg-xe-LxW"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="home" image="house" catalog="system" selectedImage="house" id="6o0-hZ-gjB"/>
+                    <connections>
+                        <outlet property="postListTableView" destination="jfm-VE-rkY" id="eRj-Ka-Zbw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHk-Ia-74R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1274" y="-618"/>
+            <point key="canvasLocation" x="-1275.3846153846152" y="-618.48341232227483"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="niF-Tn-Q4u">

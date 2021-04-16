@@ -13,17 +13,18 @@ class Post {
     var op: String //uid of OP
     var approved: Bool
     var comments: Array<String> //Comment IDs
-    var categories: Array<String>
+    //Use this -- var categories: Array<String> -- later
+    var category: String
     var mediaID: String //Media in Firebase Storage
     var title: String
     var description: String
     
-    init(id: String, op: String, approved: Bool, comments: Array<String>, categories: Array<String>, mediaID: String, title: String, description: String) {
+    init(id: String, op: String, approved: Bool, comments: Array<String>, category: String, mediaID: String, title: String, description: String) {
         self.id = id
         self.op = op
         self.approved = approved
         self.comments = comments
-        self.categories = categories
+        self.category = category
         self.mediaID = mediaID
         self.title = title
         self.description = description
