@@ -283,7 +283,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="skQ-au-bnt">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="skQ-au-bnt">
                                         <rect key="frame" x="0.0" y="30.333333333333329" width="358" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -294,7 +294,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hbA-X2-P7i">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hbA-X2-P7i">
                                         <rect key="frame" x="0.0" y="104.66666666666666" width="358" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -347,8 +347,10 @@
                         <viewLayoutGuide key="safeArea" id="E0v-wA-xe8"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="E0v-wA-xe8" firstAttribute="trailing" secondItem="2Rl-Kz-piX" secondAttribute="trailing" constant="16" id="0Da-KB-Vbp"/>
                             <constraint firstItem="2Rl-Kz-piX" firstAttribute="top" secondItem="E0v-wA-xe8" secondAttribute="top" constant="16" id="4nE-kY-pHS"/>
                             <constraint firstItem="2Rl-Kz-piX" firstAttribute="centerX" secondItem="CFa-AF-wWg" secondAttribute="centerX" id="WDQ-DN-jqs"/>
+                            <constraint firstItem="2Rl-Kz-piX" firstAttribute="leading" secondItem="E0v-wA-xe8" secondAttribute="leading" constant="16" id="Wax-Dn-lee"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="upload" image="square.and.arrow.up" catalog="system" selectedImage="square.and.arrow.up" id="QlF-n2-CIC"/>
