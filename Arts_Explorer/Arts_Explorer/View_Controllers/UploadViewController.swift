@@ -7,9 +7,11 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class UploadViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
+    //MARK: - Variables
     
     @IBOutlet weak var titleTextField: UITextField!
     
@@ -38,6 +40,8 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         //Add more later
     }
     
+    //MARK: - Upload post
+    
     @IBAction func uploadPressed(_ sender: Any) {
         
         //Validate fields
@@ -57,8 +61,10 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
             let selectedItemInt: Int = categorySelector.selectedSegmentIndex
             let postUUID = UUID().uuidString
             
-            let uploadRef = Storage.storage().reference()
-            
+            if (imageHolder.image != nil)
+            {
+                uploadImage(id: postUUID)
+            }
             var selectedCategory: String = "music"
             
             if selectedItemInt == 0 {
@@ -98,13 +104,15 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
                     }
     }
     
+    //MARK: - Validation
+    
     func validateFields() -> String? { //Method returns optional String
         
         let titleText: String = titleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let descriptionText: String = descriptionTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
         //Check all fields are filled in
-        if titleText == "" && descriptionText == "" //Fix this to be no media OR title OR desc
+        if titleText == "" && descriptionText == "" && imageHolder.image == nil //Fix this to be no media OR title OR desc
         {
             return "Please fill in at least one field."
         }
@@ -117,6 +125,8 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         errorLabel.text = message
         errorLabel.alpha = 1 //Make error text visible
     }
+    
+    //MARK: - Media
     
     @IBAction func pressedChooseMedia(_ sender: Any) {
         imagePickerType.sourceType = .photoLibrary
@@ -135,6 +145,22 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func uploadImage(id: String)
+    {
+        let uploadRef = Storage.storage().reference(withPath: "posts/\(id)")
+        guard let imageData = imageHolder.image?.jpegData(compressionQuality: 0.75) else
+        { return }
+        let uploadMetadata = StorageMetadata.init()
+        uploadMetadata.contentType = "image/jpeg"
+        uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
+            if let error = error {
+                print("Error uploading image: \(error.localizedDescription)")
+                return
+            }
+            print("Put complete, got: \(String(describing: downloadMetadata))")
+        }
     }
 }
  
