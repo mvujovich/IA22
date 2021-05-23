@@ -8,19 +8,19 @@
 import UIKit
 import Firebase
 
-class UploadViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class UploadViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
     
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var descriptionTextView: UITextView!
-        
-    @IBOutlet weak var imageHolder: UIImageView!
     
+    @IBOutlet weak var imageHolder: UIImageView!
     var imagePickerType = UIImagePickerController()
     
     @IBOutlet weak var chooseButton: UIButton!
     
-    @IBOutlet weak var categorySelecter: UISegmentedControl!
+    @IBOutlet weak var categorySelector: UISegmentedControl!
     
     @IBOutlet weak var uploadButton: UIButton!
     
@@ -54,7 +54,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
             //All fields have been validated; now force-unwrapped
             let titleText: String = titleTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let descriptionText: String = descriptionTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let selectedItemInt: Int = categorySelecter.selectedSegmentIndex
+            let selectedItemInt: Int = categorySelector.selectedSegmentIndex
             let postUUID = UUID().uuidString
             
             var selectedCategory: String = "music"
@@ -124,18 +124,23 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        //code
+        if let imageValue = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")]as? UIImage
+        {
+            imageHolder.image = imageValue
+        }
+        picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    /*
+}
+ 
+ /*
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
-
-}
+ */
