@@ -57,6 +57,8 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
             let selectedItemInt: Int = categorySelector.selectedSegmentIndex
             let postUUID = UUID().uuidString
             
+            let uploadRef = Storage.storage().reference()
+            
             var selectedCategory: String = "music"
             
             if selectedItemInt == 0 {
