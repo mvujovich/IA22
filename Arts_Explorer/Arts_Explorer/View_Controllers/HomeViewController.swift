@@ -8,18 +8,22 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var postListTableView: UITableView! {
     didSet {
+        postListTableView.delegate = self
         postListTableView.dataSource = self
         }
     }
     
-    var postsToShow = [Post]()
+    //MARK: - Loading posts
+    
+    var postsToShow = [AEPost]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        postListTableView.register(PostTableViewCell.nib(), forCellReuseIdentifier: PostTableViewCell.identifier)
         loadPosts()
         // Do any additional setup after loading the view.
     }
@@ -40,7 +44,7 @@ class HomeViewController: UIViewController {
                         let postTitle: String = document.get("title") as! String
                         let postDescription: String = document.get("description") as! String
                         let commentsArray = [""] //Fix this later, obviously
-                        let post: Post = Post(id: postID, op: postOP, approved: true, comments: commentsArray, category: postCategory, mediaID: "", //lol oops
+                        let post: AEPost = AEPost(id: postID, op: postOP, approved: true, comments: commentsArray, category: postCategory, mediaID: "", //lol oops
                                               title: postTitle, description: postDescription)
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
@@ -50,9 +54,28 @@ class HomeViewController: UIViewController {
                     }
                 }
         }
+    
+    //MARK: - Table View specifics
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
-
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return postsToShow.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //code
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+        cell.configure(with: postsToShow[indexPath.row])
+        return cell
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -62,21 +85,4 @@ class HomeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-extension HomeViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postsToShow.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let post = postsToShow[indexPath.row]
-        let cell = postListTableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath)
-        
-        cell.textLabel?.text = post.title
-        
-        return cell
-    }
-    
-    
 }
