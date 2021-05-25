@@ -46,7 +46,6 @@ class PostTableViewCell: UITableViewCell {
 }
 
 struct AEPost {
-    
     var id: String
     var op: String //uid of OP
     var approved: Bool

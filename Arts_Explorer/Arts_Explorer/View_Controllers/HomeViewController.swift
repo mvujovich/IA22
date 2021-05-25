@@ -44,8 +44,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let postTitle: String = document.get("title") as! String
                         let postDescription: String = document.get("description") as! String
                         let commentsArray = [""] //Fix this later, obviously
-                        let post: AEPost = AEPost(id: postID, op: postOP, approved: true, comments: commentsArray, category: postCategory, mediaID: "", //lol oops
-                                              title: postTitle, description: postDescription)
+                        let post: AEPost = AEPost(id: postID, op: postOP, approved: true, comments: commentsArray, category: postCategory, mediaID: "", title: postTitle, description: postDescription)
+                        print(post)
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)
