@@ -41,11 +41,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let postOP: String = document.get("op") as! String
                         //Do comments and categories (proper) and media ID later
                         let postCategory: String = document.get("category") as! String
+                        let mediaID: String = document.get("mediaID") as! String
                         let postTitle: String = document.get("title") as! String
                         let postDescription: String = document.get("description") as! String
                         let commentsArray = [""] //Fix this later, obviously
-                        let post: AEPost = AEPost(id: postID, op: postOP, approved: true, comments: commentsArray, category: postCategory, mediaID: "", title: postTitle, description: postDescription)
-                        print(post)
+                        let post: AEPost = AEPost(id: postID, op: postOP, approved: true, comments: commentsArray, category: postCategory, mediaID: mediaID, title: postTitle, description: postDescription)
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)
@@ -67,6 +67,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //code
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        //let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as! PostTableViewCell
+        //cell.configure(with: postsToShow[indexPath.row])
+        //let textViewHeight = cell.descriptionText.frame.size.height
+        //return textViewHeight+80+view.frame.size.width
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

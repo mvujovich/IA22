@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseStorage
 
 class PostTableViewCell: UITableViewCell {
+    
+    //MARK: - Declare variables, etc.
     
     @IBOutlet var userImageView: UIImageView!
     
@@ -35,15 +39,38 @@ class PostTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+//MARK: - Configure
+     
     func configure(with model: AEPost) {
+        print("id is \(model.id)")
+        print("media id is \(model.mediaID)")
+        if (model.mediaID != "" && model.mediaID != "figure_this_out")
+        {
+            print("MEDIA ID EXISTS")
+            let storageRef = Storage.storage().reference(withPath: "posts/\(model.id)")
+            storageRef.getData(maxSize: 4 * 1024 * 1024) { [weak self](data, error) in
+                if let error = error {
+                    print("Error fetching data: \(error.localizedDescription)")
+                    return
+                }
+                if let data = data {
+                    self?.postImageView.image = UIImage(data: data)
+                }
+            }
+        }
+        else
+        {
+            self.postImageView.image = nil
+        }
         self.userTopLabel.text = "\(model.op)"
         self.titleText.text = "\(model.title)"
         self.descriptionText.text = "\(model.description)"
         self.userImageView.image = UIImage(named: "selfie")
-        self.postImageView.image = UIImage(named: "23")
     }
-    
+
 }
+
+//MARK: - AEPost struct
 
 struct AEPost {
     var id: String

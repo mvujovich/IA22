@@ -60,10 +60,12 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
             let descriptionText: String = descriptionTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let selectedItemInt: Int = categorySelector.selectedSegmentIndex
             let postUUID = UUID().uuidString
+            var mediaID: String = ""
             
             if (imageHolder.image != nil)
             {
                 uploadImage(id: postUUID)
+                mediaID = postUUID
             }
             var selectedCategory: String = "music"
             
@@ -81,14 +83,14 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
             let commentArray = [String]()
             //Do an array for categories later... fix it!
         
-            firestore.collection("posts").addDocument(data:
+            firestore.collection("posts").document(postUUID).setData(
                         [   //Data saved in Dictionary
                             "id": postUUID,
                             "op": "figure_out_later",
-                            "approved": false,
+                            "approved": true, //MARK: - FIX 'APPROVED'
                             "comments": commentArray,
                             "category": selectedCategory,
-                            "mediaID": "figure_out_later",
+                            "mediaID": mediaID,
                             "title": titleText,
                             "description": descriptionText
                         ]) { (error) in
