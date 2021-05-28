@@ -38,14 +38,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 } else {
                     for document in querySnapshot!.documents {
                         let postID: String = document.get("id") as! String
-                        let postOP: String = document.get("op") as! String
+                        let postOPID: String = document.get("opID") as! String
+                        let postOPName: String = document.get("opName") as! String
                         //Do comments and categories (proper) and media ID later
                         let postCategory: String = document.get("category") as! String
                         let mediaID: String = document.get("mediaID") as! String
                         let postTitle: String = document.get("title") as! String
                         let postDescription: String = document.get("description") as! String
                         let commentsArray = [""] //Fix this later, obviously
-                        let post: AEPost = AEPost(id: postID, op: postOP, approved: true, comments: commentsArray, category: postCategory, mediaID: mediaID, title: postTitle, description: postDescription)
+                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, category: postCategory, mediaID: mediaID, title: postTitle, description: postDescription)
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)

@@ -44,6 +44,8 @@ class PostTableViewCell: UITableViewCell {
     func configure(with model: AEPost) {
         print("id is \(model.id)")
         print("media id is \(model.mediaID)")
+        print("user id is \(model.opID)")
+        print("user name is \(model.opName)")
         if (model.mediaID != "" && model.mediaID != "figure_this_out")
         {
             print("MEDIA ID EXISTS")
@@ -62,7 +64,7 @@ class PostTableViewCell: UITableViewCell {
         {
             self.postImageView.image = nil
         }
-        self.userTopLabel.text = "\(model.op)"
+        self.userTopLabel.text = "\(model.opName)"
         self.titleText.text = "\(model.title)"
         self.descriptionText.text = "\(model.description)"
         self.userImageView.image = UIImage(named: "selfie")
@@ -74,7 +76,8 @@ class PostTableViewCell: UITableViewCell {
 
 struct AEPost {
     var id: String
-    var op: String //uid of OP
+    var opID: String //uid of OP
+    var opName: String
     var approved: Bool
     var comments: Array<String> //Comment IDs
     //Use this -- var categories: Array<String> -- later

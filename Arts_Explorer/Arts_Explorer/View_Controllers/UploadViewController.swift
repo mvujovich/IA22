@@ -54,19 +54,11 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
             //Exclamation point to force unwrap
         }
         else {
-            
-            //All fields have been validated; now force-unwrapped
             let titleText: String = titleTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let descriptionText: String = descriptionTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let selectedItemInt: Int = categorySelector.selectedSegmentIndex
-            let postUUID = UUID().uuidString
-            var mediaID: String = ""
+            let commentArray = [String]()
             
-            if (imageHolder.image != nil)
-            {
-                uploadImage(id: postUUID)
-                mediaID = postUUID
-            }
             var selectedCategory: String = "music"
             
             if selectedItemInt == 0 {
@@ -79,31 +71,50 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
                 selectedCategory = "film"
             }
             
+            //FIX THIS LATER ^
+            
+            let postUUID = UUID().uuidString
+            var mediaID: String = ""
+            if (imageHolder.image != nil)
+            {
+                uploadImage(id: postUUID)
+                mediaID = postUUID
+            }
+            
             let firestore = Firestore.firestore()
-            let commentArray = [String]()
-            //Do an array for categories later... fix it!
-        
-            firestore.collection("posts").document(postUUID).setData(
-                        [   //Data saved in Dictionary
-                            "id": postUUID,
-                            "op": "figure_out_later",
-                            "approved": true, //MARK: - FIX 'APPROVED'
-                            "comments": commentArray,
-                            "category": selectedCategory,
-                            "mediaID": mediaID,
-                            "title": titleText,
-                            "description": descriptionText
-                        ]) { (error) in
-                            if error != nil { //User object not saved to Firebase
-                                self.showError(message: "Post could not be added.")
-                                self.errorLabel.textColor = UIColor.systemRed
-                            }
-                            else {
-                                self.showError(message: "Post added successfully.")
-                                self.errorLabel.textColor = UIColor.systemGreen
-                            }
-                        }
-                    }
+            let opID = Auth.auth().currentUser!.uid as String
+            print("user id is \(opID)")
+            var opName: String = ""
+            let docRef = firestore.collection("users").document(opID)
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    opName = document.get("name") as! String
+                    firestore.collection("posts").document(postUUID).setData(
+                                [   //Data saved in Dictionary
+                                    "id": postUUID,
+                                    "opID": opID,
+                                    "opName": opName,
+                                    "approved": true, //MARK: - FIX 'APPROVED'
+                                    "comments": commentArray,
+                                    "category": selectedCategory,
+                                    "mediaID": mediaID,
+                                    "title": titleText,
+                                    "description": descriptionText
+                                ]) { (error) in
+                                    if error != nil { //User object not saved to Firebase
+                                        self.showError(message: "Post could not be added.")
+                                        self.errorLabel.textColor = UIColor.systemRed
+                                    }
+                                    else {
+                                        self.showError(message: "Post added successfully.")
+                                        self.errorLabel.textColor = UIColor.systemGreen
+                                    }
+                                }
+                } else {
+                    self.showError(message: "User does not exist.")
+                }
+            } //End larger async
+        }
     }
     
     //MARK: - Validation

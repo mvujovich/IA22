@@ -61,8 +61,8 @@ class SignUpViewController: UIViewController {
                         let savedPostArray = [String]()
                         
                         //Add document to Firebase
-                        firestore.collection("users").addDocument(data:
-                        [   //Data saved in Dictionary
+                        firestore.collection("users").document(result!.user.uid).setData([
+                            //Data saved in Dictionary
                             "id": result!.user.uid,
                             "name": nameText,
                             "mod": false,
