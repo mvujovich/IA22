@@ -24,6 +24,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         postListTableView.register(PostTableViewCell.nib(), forCellReuseIdentifier: PostTableViewCell.identifier)
+        postListTableView.rowHeight = UITableView.automaticDimension
+        //TODO: Add support for posts without images
+        postListTableView.estimatedRowHeight = 300.0
         loadPosts()
         // Do any additional setup after loading the view.
     }
@@ -70,13 +73,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //code
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as! PostTableViewCell
-        //cell.configure(with: postsToShow[indexPath.row])
-        //let textViewHeight = cell.descriptionText.frame.size.height
-        //return textViewHeight+80+view.frame.size.width
-        return UITableView.automaticDimension
-    }
+    //func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as! PostTableViewCell
+//        cell.configure(with: postsToShow[indexPath.row])
+//        let textViewHeight = cell.descriptionText.frame.size.height
+//        return textViewHeight+129+view.frame.size.width
+        
+    //}
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
