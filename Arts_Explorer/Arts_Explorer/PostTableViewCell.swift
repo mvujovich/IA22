@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class PostTableViewCell: UITableViewCell {
+class PostTableViewCell: UITableViewCell, UITextViewDelegate {
     
     //MARK: - Declare variables, etc.
     
@@ -21,7 +21,7 @@ class PostTableViewCell: UITableViewCell {
     
     @IBOutlet var titleText: UILabel!
     
-    @IBOutlet var descriptionText: UITextView!
+    @IBOutlet weak var descriptionText: UILabel!
     
     static let identifier = "PostTableViewCell"
     
@@ -46,11 +46,11 @@ class PostTableViewCell: UITableViewCell {
         print("media id is \(model.mediaID)")
         print("user id is \(model.opID)")
         print("user name is \(model.opName)")
-        if (model.mediaID != "" && model.mediaID != "figure_this_out")
+        if (model.mediaID != "")
         {
             print("MEDIA ID EXISTS")
             let storageRef = Storage.storage().reference(withPath: "posts/\(model.id)")
-            storageRef.getData(maxSize: 4 * 1024 * 1024) { [weak self](data, error) in
+            storageRef.getData(maxSize: 1024 * 1024) { [weak self](data, error) in
                 if let error = error {
                     print("Error fetching data: \(error.localizedDescription)")
                     return
