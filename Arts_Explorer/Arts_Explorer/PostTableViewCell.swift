@@ -50,7 +50,7 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         //print("user name is \(model.opName)")
         if (model.mediaID != "")
         {
-            print("MEDIA ID EXISTS")
+            //print("MEDIA ID EXISTS")
             let storageRef = Storage.storage().reference(withPath: "posts/\(model.id)")
             storageRef.getData(maxSize: 1024 * 1024) { [weak self](data, error) in
                 if let error = error {

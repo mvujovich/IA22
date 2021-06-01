@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: - Loading posts
     
     var postsToShow = [AEPost]()
+    
     var opID: String = ""
     
     override func viewDidLoad() {
@@ -75,13 +76,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         performSegue(withIdentifier: "showProfileFromPost", sender: self)
     }
     
-    //func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as! PostTableViewCell
 //        cell.configure(with: postsToShow[indexPath.row])
 //        let textViewHeight = cell.descriptionText.frame.size.height
-//        return textViewHeight+129+view.frame.size.width
-        
-    //}
+//        return textViewHeight+129+view.frame.size.width }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
@@ -90,6 +89,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //MARK: - Segue to profile
+    //Preparation before navigating to new views
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             //let indexPath = postListTableView.indexPathForSelectedRow!
@@ -97,16 +97,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Get in touch with the new VC
         let otherProfileViewController = segue.destination as! OtherProfileViewController
         // Pass on the data to the Detail ViewController by setting it's indexPathRow value
-        otherProfileViewController.userID = opID
+        otherProfileViewController.otherUserID = opID
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
