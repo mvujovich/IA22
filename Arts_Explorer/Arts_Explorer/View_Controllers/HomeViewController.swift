@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: - Loading posts
     
     var postsToShow = [AEPost]()
+    var opID: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +70,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postListTableView.deselectRow(at: indexPath, animated: true)
+        let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+        opID = cell.hiddenOPIDText.text!
         performSegue(withIdentifier: "showProfileFromPost", sender: self)
     }
     
@@ -81,7 +84,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     //}
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
         cell.configure(with: postsToShow[indexPath.row])
         return cell
@@ -90,11 +92,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: - Segue to profile
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            //let indexPath = postListTableView.indexPathForSelectedRow!
+            // Get the Row of the Index Path and set as index
         // Get in touch with the new VC
         let otherProfileViewController = segue.destination as! OtherProfileViewController
-            // Pass on the data to the Detail ViewController by setting it's indexPathRow value
-        let userIDString: String = "hi user!"
-        otherProfileViewController.userID = userIDString
+        // Pass on the data to the Detail ViewController by setting it's indexPathRow value
+        otherProfileViewController.userID = opID
     }
     
     /*

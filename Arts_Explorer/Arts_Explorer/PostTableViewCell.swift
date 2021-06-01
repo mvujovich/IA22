@@ -23,6 +23,8 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var descriptionText: UILabel!
     
+    @IBOutlet weak var hiddenOPIDText: UILabel!
+    
     static let identifier = "PostTableViewCell"
     
     //Helps register cell with table view
@@ -42,10 +44,10 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
 //MARK: - Configure
      
     func configure(with model: AEPost) {
-        print("id is \(model.id)")
-        print("media id is \(model.mediaID)")
-        print("user id is \(model.opID)")
-        print("user name is \(model.opName)")
+        //print("id is \(model.id)")
+        //print("media id is \(model.mediaID)")
+        //print("user id is \(model.opID)")
+        //print("user name is \(model.opName)")
         if (model.mediaID != "")
         {
             print("MEDIA ID EXISTS")
@@ -68,6 +70,8 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         self.titleText.text = "\(model.title)"
         self.descriptionText.text = "\(model.description)"
         self.userImageView.image = UIImage(named: "selfie")
+        self.hiddenOPIDText.text = "\(model.opID)"
+        self.hiddenOPIDText.alpha = 0
     }
 
 }
