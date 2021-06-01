@@ -29,12 +29,11 @@
 		D37ECF2826284E1500F9EA90 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF2726284E1500F9EA90 /* UploadViewController.swift */; };
 		D37ECF2926284E1500F9EA90 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF2726284E1500F9EA90 /* UploadViewController.swift */; };
 		D37ECF2A26284E1500F9EA90 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF2726284E1500F9EA90 /* UploadViewController.swift */; };
-		D37ECF3226284E2400F9EA90 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3126284E2400F9EA90 /* ProfileViewController.swift */; };
-		D37ECF3326284E2400F9EA90 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3126284E2400F9EA90 /* ProfileViewController.swift */; };
-		D37ECF3426284E2400F9EA90 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3126284E2400F9EA90 /* ProfileViewController.swift */; };
 		D37ECF3926284E3500F9EA90 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3826284E3500F9EA90 /* HomeViewController.swift */; };
 		D37ECF3A26284E3500F9EA90 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3826284E3500F9EA90 /* HomeViewController.swift */; };
 		D37ECF3B26284E3500F9EA90 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECF3826284E3500F9EA90 /* HomeViewController.swift */; };
+		D39B2807266643FA003C0974 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B2806266643F9003C0974 /* UserProfileViewController.swift */; };
+		D39B280C2666440D003C0974 /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B280B2666440D003C0974 /* OtherProfileViewController.swift */; };
 		D3AD367B265B2EAA006602EC /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AD3679265B2EAA006602EC /* PostTableViewCell.swift */; };
 		D3AD367C265B2EAA006602EC /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3AD367A265B2EAA006602EC /* PostTableViewCell.xib */; };
 		D3F8629D26289BB8000D9286 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8629C26289BB8000D9286 /* Post.swift */; };
@@ -98,8 +97,9 @@
 		D37ECF1826284CBD00F9EA90 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D37ECF1F26284CD700F9EA90 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D37ECF2726284E1500F9EA90 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
-		D37ECF3126284E2400F9EA90 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D37ECF3826284E3500F9EA90 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D39B2806266643F9003C0974 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		D39B280B2666440D003C0974 /* OtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
 		D3AD3679265B2EAA006602EC /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		D3AD367A265B2EAA006602EC /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		D3F8629C26289BB8000D9286 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -227,10 +227,11 @@
 				D37ECECF2627423700F9EA90 /* ViewController.swift */,
 				D37ECF1826284CBD00F9EA90 /* LogInViewController.swift */,
 				D37ECF1F26284CD700F9EA90 /* SignUpViewController.swift */,
-				D37ECF3126284E2400F9EA90 /* ProfileViewController.swift */,
 				D37ECF2726284E1500F9EA90 /* UploadViewController.swift */,
 				D37ECF3826284E3500F9EA90 /* HomeViewController.swift */,
 				D3F862BE26290669000D9286 /* MainTabBarViewController.swift */,
+				D39B2806266643F9003C0974 /* UserProfileViewController.swift */,
+				D39B280B2666440D003C0974 /* OtherProfileViewController.swift */,
 			);
 			path = View_Controllers;
 			sourceTree = "<group>";
@@ -492,11 +493,12 @@
 				D37ECED02627423700F9EA90 /* ViewController.swift in Sources */,
 				D37ECF3926284E3500F9EA90 /* HomeViewController.swift in Sources */,
 				D37ECECC2627423700F9EA90 /* AppDelegate.swift in Sources */,
-				D37ECF3226284E2400F9EA90 /* ProfileViewController.swift in Sources */,
 				D3F8629D26289BB8000D9286 /* Post.swift in Sources */,
 				D3AD367B265B2EAA006602EC /* PostTableViewCell.swift in Sources */,
 				D3F862BF2629066A000D9286 /* MainTabBarViewController.swift in Sources */,
 				D37ECECE2627423700F9EA90 /* SceneDelegate.swift in Sources */,
+				D39B2807266643FA003C0974 /* UserProfileViewController.swift in Sources */,
+				D39B280C2666440D003C0974 /* OtherProfileViewController.swift in Sources */,
 				D3F862A726289C8E000D9286 /* User.swift in Sources */,
 				D3F862AE26289D2B000D9286 /* Comment.swift in Sources */,
 				D37ECF2026284CD700F9EA90 /* SignUpViewController.swift in Sources */,
@@ -510,7 +512,6 @@
 			files = (
 				D37ECF2126284CD700F9EA90 /* SignUpViewController.swift in Sources */,
 				D37ECF2926284E1500F9EA90 /* UploadViewController.swift in Sources */,
-				D37ECF3326284E2400F9EA90 /* ProfileViewController.swift in Sources */,
 				D3F862C02629066A000D9286 /* MainTabBarViewController.swift in Sources */,
 				D37ECF1A26284CBE00F9EA90 /* LogInViewController.swift in Sources */,
 				D3F862A826289C8E000D9286 /* User.swift in Sources */,
@@ -528,7 +529,6 @@
 			files = (
 				D37ECF2226284CD700F9EA90 /* SignUpViewController.swift in Sources */,
 				D37ECF2A26284E1500F9EA90 /* UploadViewController.swift in Sources */,
-				D37ECF3426284E2400F9EA90 /* ProfileViewController.swift in Sources */,
 				D3F862C12629066A000D9286 /* MainTabBarViewController.swift in Sources */,
 				D37ECF1B26284CBE00F9EA90 /* LogInViewController.swift in Sources */,
 				D3F862A926289C8E000D9286 /* User.swift in Sources */,

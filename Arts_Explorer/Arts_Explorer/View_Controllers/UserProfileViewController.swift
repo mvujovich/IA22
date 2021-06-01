@@ -1,13 +1,13 @@
 //
-//  ProfileViewController.swift
+//  UserProfileViewController.swift
 //  Arts_Explorer
 //
-//  Created by Mirjana Aleksandra Qi Vujovich on 15/4/2021.
+//  Created by Mirjana Aleksandra Qi Vujovich on 1/6/2021.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class UserProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

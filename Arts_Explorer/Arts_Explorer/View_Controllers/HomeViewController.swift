@@ -10,12 +10,7 @@ import Firebase
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var postListTableView: UITableView! {
-    didSet {
-        postListTableView.delegate = self
-        postListTableView.dataSource = self
-        }
-    }
+    @IBOutlet weak var postListTableView: UITableView!
     
     //MARK: - Loading posts
     
@@ -25,8 +20,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         postListTableView.register(PostTableViewCell.nib(), forCellReuseIdentifier: PostTableViewCell.identifier)
         postListTableView.rowHeight = UITableView.automaticDimension
+        postListTableView.delegate = self
+        postListTableView.dataSource = self
+        
         //TODO: Add support for posts without images
-        postListTableView.estimatedRowHeight = 300.0
+        //postListTableView.estimatedRowHeight = 300.0
         loadPosts()
         // Do any additional setup after loading the view.
     }
@@ -70,7 +68,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //code
+        postListTableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "showProfileFromPost", sender: self)
     }
     
     //func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

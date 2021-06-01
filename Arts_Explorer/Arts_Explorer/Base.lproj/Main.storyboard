@@ -61,6 +61,37 @@
             </objects>
             <point key="canvasLocation" x="-818.46153846153845" y="98.815165876777243"/>
         </scene>
+        <!--Other Profile View Controller-->
+        <scene sceneID="PG2-lK-92P">
+            <objects>
+                <viewController title="Other Profile View Controller" hidesBottomBarWhenPushed="YES" id="LHt-yS-ZJf" customClass="OtherProfileViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cMZ-86-ptV">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eL-g5-lWG">
+                                <rect key="frame" x="174" y="411.66666666666669" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wZA-lJ-lex"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2eL-g5-lWG" firstAttribute="centerY" secondItem="cMZ-86-ptV" secondAttribute="centerY" id="1dR-dC-rxf"/>
+                            <constraint firstItem="2eL-g5-lWG" firstAttribute="centerX" secondItem="cMZ-86-ptV" secondAttribute="centerX" id="FUL-df-dNJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="User Profile" id="aBO-ao-doR"/>
+                    <connections>
+                        <outlet property="tempLabel" destination="2eL-g5-lWG" id="4Rm-ie-yyb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jba-5T-hBh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="98" y="99"/>
+        </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="syG-Av-Jps">
             <objects>
@@ -253,7 +284,7 @@
         <!--profile-->
         <scene sceneID="lP7-w0-5PM">
             <objects>
-                <viewController id="tis-Aj-ALH" customClass="ProfileViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tis-Aj-ALH" customClass="UserProfileViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OWZ-QC-XKQ">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -386,7 +417,7 @@
             </objects>
             <point key="canvasLocation" x="389.23076923076923" y="-618.48341232227483"/>
         </scene>
-        <!--Arts Explorer-->
+        <!--Home-->
         <scene sceneID="lB7-es-BGd">
             <objects>
                 <viewController storyboardIdentifier="HomeVC" id="5Cb-fF-r8q" customClass="HomeViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
@@ -418,9 +449,10 @@
                             <constraint firstItem="jfm-VE-rkY" firstAttribute="leading" secondItem="Ovq-4L-tGN" secondAttribute="leading" id="xlg-xe-LxW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Arts Explorer" id="Lo0-8l-a8u"/>
+                    <navigationItem key="navigationItem" title="Home" id="Lo0-8l-a8u"/>
                     <connections>
                         <outlet property="postListTableView" destination="jfm-VE-rkY" id="eRj-Ka-Zbw"/>
+                        <segue destination="LHt-yS-ZJf" kind="show" identifier="showProfileFromPost" id="4rF-pi-OOE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHk-Ia-74R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
