@@ -9,14 +9,13 @@ import UIKit
 
 class OtherProfileViewController: UIViewController {
     
-    var userID: String!
+    var userID: String = ""
 
     @IBOutlet weak var tempLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tempLabel.text = "this user has an id of \(String(describing: userID))"
-
+        tempLabel.text = "this user has an id of \(userID)"
         // Do any additional setup after loading the view.
     }
     

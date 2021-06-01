@@ -87,6 +87,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    //MARK: - Segue to profile
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get in touch with the new VC
+        let otherProfileViewController = segue.destination as! OtherProfileViewController
+            // Pass on the data to the Detail ViewController by setting it's indexPathRow value
+        let userIDString: String = "hi user!"
+        otherProfileViewController.userID = userIDString
+    }
+    
     /*
     // MARK: - Navigation
 
