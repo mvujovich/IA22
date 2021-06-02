@@ -71,15 +71,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        postListTableView.deselectRow(at: indexPath, animated: true)
-        let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-        opID = cell.hiddenOPIDText.text!
-        print("opID upon selecting this row is \(opID)")
-        performSegue(withIdentifier: "showProfileFromPost", sender: self)
+        //postListTableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "showProfileFromPost", sender: indexPath)
     }
     
-//func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as! PostTableViewCell
+//  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let cell = postListTableView.dequeueReusableCell(withIdentifier:               PostTableViewCell.identifier) as! PostTableViewCell
 //        cell.configure(with: postsToShow[indexPath.row])
 //        let textViewHeight = cell.descriptionText.frame.size.height
 //        return textViewHeight+129+view.frame.size.width }
@@ -94,11 +91,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     //Preparation before navigating to new views
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            //let indexPath = postListTableView.indexPathForSelectedRow!
-            // Get the Row of the Index Path and set as index
+        //let indexPath = postListTableView.indexPathForSelectedRow!
+        // Get the Row of the Index Path and set as index
         // Get in touch with the new VC
-        let otherProfileViewController = segue.destination as! OtherProfileViewController
+        
+        //let cell = (sender as! PostTableViewCell)
+        //opID = cell.hiddenOPIDText.text!
         // Pass on the data to the Detail ViewController by setting it's indexPathRow value
-        otherProfileViewController.otherUserID = opID
+
+        
+        if segue.identifier == "showProfileFromPost" {
+                if let indexPath = self.postListTableView.indexPathForSelectedRow  {
+                    let otherProfileViewController = segue.destination as! OtherProfileViewController
+                    opID = postsToShow[indexPath.row].opID
+                    otherProfileViewController.otherUserID = opID
+                }
+        
+        }
     }
 }
