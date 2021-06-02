@@ -21,6 +21,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     var postsToShow = [AEPost]()
     var opID = ""
+    let firestore = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +31,11 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         selfPostListTableView.delegate = self
         selfPostListTableView.dataSource = self
         loadPosts()
+        loadInfo()
         // Do any additional setup after loading the view.
     }
     
     func loadPosts() {
-        let firestore = Firestore.firestore()
         firestore.collection("posts").whereField("opID", isEqualTo: opID)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -74,7 +75,20 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    func loadInfo()
+    {
+        let docRef = firestore.collection("users").document(opID)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let opName = document.get("name") as! String
+                self.selfName.text = opName
+            } else {
+                print("Document does not exist")
+            }
+        }
 
+        
+    }
     /*
     // MARK: - Navigation
 
