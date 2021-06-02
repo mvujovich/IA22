@@ -27,6 +27,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //TODO: Add support for posts without images
         //postListTableView.estimatedRowHeight = 300.0
+        
         loadPosts()
         // Do any additional setup after loading the view.
     }
