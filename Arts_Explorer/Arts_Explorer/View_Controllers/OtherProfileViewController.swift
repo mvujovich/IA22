@@ -50,7 +50,7 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
     func loadPosts() {
         
         let firestore = Firestore.firestore()
-        firestore.collection("posts").whereField("approved", isEqualTo: true)
+        firestore.collection("posts").whereField("opID", isEqualTo: otherUserID)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -75,15 +75,9 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
                 }
         }
     
+    // MARK: - Instructions
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //  In a storyboard-based application, you will often want to do a little preparation before navigation override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-    }
-    */
-
 }

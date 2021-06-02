@@ -73,6 +73,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         postListTableView.deselectRow(at: indexPath, animated: true)
         let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
         opID = cell.hiddenOPIDText.text!
+        print("opID upon selecting this row is \(opID)")
         performSegue(withIdentifier: "showProfileFromPost", sender: self)
     }
     
