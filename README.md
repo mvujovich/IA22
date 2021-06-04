@@ -6,7 +6,6 @@ Created for IB CS 2020-22
 
 ### TODOs (ordered):
 - Add profile photo functionality and fix profile views accordingly
-- Add ability to update/edit profile information (with Firebase)
 - Add sidebar to main home page that opens smoothly
 - Sort posts chronologically for all table views of posts
 - Add checkboxes for categories in the upload view
@@ -18,17 +17,21 @@ Created for IB CS 2020-22
 - Add moderation screen with basic approval/rejection
 - Add ability to save posts from table views
 - Add view for saved posts (from self profile view)
+- Display all errors in popups or text views to the user
+- Show progress bars/success messages (database calls)
 
 ### Completed TODOs:
 - Integrate Firebase storage (image support; for uploading posts)
 - Fix and update upload interface (relatively okay for now)
 - Replicate home feed for profile view (still basic at the moment)
 - Fix bug where photos keep refreshing in the home view
+- Add ability to update/edit profile information (with Firebase)
 
 ### Dependencies:
 - Firebase Auth
 - Firebase Firestore
 - Firebase Storage
+- FirebaseUI
 
 ### How to run:
 - Project created in XCode 12.4 using Storyboards and the AppDelegate lifecycle

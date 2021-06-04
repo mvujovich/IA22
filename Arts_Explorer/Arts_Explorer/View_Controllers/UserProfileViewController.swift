@@ -15,12 +15,20 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var selfProfilePicture: UIImageView!
     
-    @IBOutlet weak var selfName: UILabel!
+    @IBOutlet weak var selfName: UITextField!
     
-    @IBOutlet weak var selfBio: UILabel!
+    @IBOutlet weak var selfBio: UITextField!
     
+    @IBOutlet weak var editButton: UIBarButtonItem!
+    
+    var editingMode: Bool = false
     var postsToShow = [AEPost]()
+    
     var opID = ""
+    
+    var originalNameText: String = ""
+    var originalBioText: String = ""
+    
     let firestore = Firestore.firestore()
     
     override func viewDidLoad() {
@@ -34,6 +42,8 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         loadInfo()
         // Do any additional setup after loading the view.
     }
+    
+    //MARK: - Loading posts
     
     func loadPosts() {
         firestore.collection("posts").whereField("opID", isEqualTo: opID)
@@ -82,6 +92,8 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             if let document = document, document.exists {
                 let opName = document.get("name") as! String
                 self.selfName.text = opName
+                let opBio = document.get("bio") as! String
+                self.selfBio.text = opBio
             } else {
                 print("Document does not exist")
             }
@@ -90,12 +102,47 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     //MARK: - Navbar buttons
     
-    @IBAction func savedTapped(_ sender: Any) {
-        print("saved tapped")
-    }
-    
+    //Mr. Lagos is this an algorithm :( my brain hurts a bit so I hope so
     @IBAction func editTapped(_ sender: Any) {
-        print("edit tapped")
+        if editingMode
+        {
+            //Revert to non-editing mode
+            editingMode = false
+            editButton.image = UIImage(systemName: "pencil")
+            selfName.isUserInteractionEnabled = false
+            selfBio.isUserInteractionEnabled = false
+            
+            //Send data to Firebase
+            let newNameText: String = selfName.text!
+            let newBioText: String = selfBio.text!
+            
+            if (newBioText != originalBioText) && (newNameText != originalNameText) //Both have changed
+            {
+                firestore.collection("users").document(opID).updateData(["name": newNameText, "bio": newBioText])
+            }
+            else if (newNameText != originalNameText) //Only one has changed --> name changed
+            {
+                firestore.collection("users").document(opID).updateData(["name": newNameText])
+            }
+            else if (newBioText != originalBioText) //Only one has changed --> bio changed
+            {
+                firestore.collection("users").document(opID).updateData(["bio": newBioText])
+            }
+            //No else condition, as nothing happens if nothing has changed
+            //This might get more complicated if/when I add profile pictures :'(
+        }
+        else
+        {
+            //Change to editing mode
+            editingMode = true
+            editButton.image = UIImage(systemName: "checkmark")
+            selfName.isUserInteractionEnabled = true
+            selfBio.isUserInteractionEnabled = true
+            
+            //Get original values of name and bio
+            originalNameText = selfName.text!
+            originalBioText = selfBio.text!
+        }
     }
     
     /*
