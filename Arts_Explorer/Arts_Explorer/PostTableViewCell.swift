@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import FirebaseStorage
+import FirebaseUI
+import SDWebImage
 
 class PostTableViewCell: UITableViewCell, UITextViewDelegate {
     
@@ -38,8 +40,7 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+        super.setSelected(selected, animated: animated) }
     
 //MARK: - Configure
      
@@ -50,21 +51,27 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         //print("user name is \(model.opName)")
         if (model.mediaID != "")
         {
-            //print("MEDIA ID EXISTS")
             let storageRef = Storage.storage().reference(withPath: "posts/\(model.id)")
+            // Load the image using SDWebImage and FirebaseUI stuff
+            self.postImageView.sd_setImage(with: storageRef, placeholderImage: nil)
+            
+            /*
+            Backup for plain Firebase Storage code
             storageRef.getData(maxSize: 1024 * 1024) { [weak self](data, error) in
                 if let error = error {
                     print("Error fetching data: \(error.localizedDescription)")
                     return
                 }
                 if let data = data {
+                    let image = UIImage(data: data)
                     self?.postImageView.image = UIImage(data: data)
                 }
             }
+            */
         }
         else
         {
-            self.postImageView.image = nil
+            self.postImageView.image = nil //Replace this with a placeholder
         }
         self.userTopLabel.text = "\(model.opName)"
         self.titleText.text = "\(model.title)"

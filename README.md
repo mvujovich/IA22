@@ -5,7 +5,6 @@ Author: Mirjana Vujovich
 Created for IB CS 2020-22
 
 ### TODOs (ordered):
-- Fix bug where photos keep refreshing in the home view
 - Add profile photo functionality and fix profile views accordingly
 - Add ability to update/edit profile information (with Firebase)
 - Add sidebar to main home page that opens smoothly
@@ -24,6 +23,7 @@ Created for IB CS 2020-22
 - Integrate Firebase storage (image support; for uploading posts)
 - Fix and update upload interface (relatively okay for now)
 - Replicate home feed for profile view (still basic at the moment)
+- Fix bug where photos keep refreshing in the home view
 
 ### Dependencies:
 - Firebase Auth
