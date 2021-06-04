@@ -12,6 +12,8 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
     
     var otherUserID: String = ""
     
+    var otherUserName: String = ""
+    
     var postsToShow = [AEPost]()
     
     @IBOutlet weak var othProfPostListTableView: UITableView!
@@ -28,7 +30,8 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         othProfPostListTableView.rowHeight = UITableView.automaticDimension
         othProfPostListTableView.delegate = self
         othProfPostListTableView.dataSource = self
-        nameLabel.text = "\(otherUserID)"
+        nameLabel.text = "\(otherUserName)"
+        bioLabel.text = "bio"
         loadPosts()
         // Do any additional setup after loading the view.
     }

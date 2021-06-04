@@ -86,9 +86,18 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 print("Document does not exist")
             }
         }
-
-        
     }
+    
+    //MARK: - Navbar buttons
+    
+    @IBAction func savedTapped(_ sender: Any) {
+        print("saved tapped")
+    }
+    
+    @IBAction func editTapped(_ sender: Any) {
+        print("edit tapped")
+    }
+    
     /*
     // MARK: - Navigation
 
