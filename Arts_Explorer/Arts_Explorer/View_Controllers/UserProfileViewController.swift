@@ -100,10 +100,11 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    //MARK: - Navbar buttons
+    //MARK: - Editing profile info
     
     //Mr. Lagos is this an algorithm :( my brain hurts a bit so I hope so
-    @IBAction func editTapped(_ sender: Any) {
+    @IBAction func editTapped(_ sender: Any)
+    {
         if editingMode
         {
             //Revert to non-editing mode
@@ -144,15 +145,4 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             originalBioText = selfBio.text!
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

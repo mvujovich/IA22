@@ -26,6 +26,7 @@ Created for IB CS 2020-22
 - Replicate home feed for profile view (still basic at the moment)
 - Fix bug where photos keep refreshing in the home view
 - Add ability to update/edit profile information (with Firebase)
+- Add "clear" button to the upload view (for image chosen)
 
 ### Dependencies:
 - Firebase Auth

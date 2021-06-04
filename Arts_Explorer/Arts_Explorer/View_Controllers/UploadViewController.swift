@@ -37,6 +37,8 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     func setUpElements() {
         errorLabel.alpha = 0
         uploadButton.layer.cornerRadius = 5
+        imageHolder.image = UIImage(named: "placeholder-post")
+        imageHolder.contentMode = UIView.ContentMode.scaleAspectFill
         //Add more later
     }
     
@@ -75,12 +77,11 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
             
             let postUUID = UUID().uuidString
             var mediaID: String = ""
-            if (imageHolder.image != nil)
+            if (imageHolder.image != UIImage(named: "placeholder-post"))
             {
                 uploadImage(id: postUUID)
                 mediaID = postUUID
             }
-            
             let firestore = Firestore.firestore()
             let opID = Auth.auth().currentUser!.uid as String
             print("user id is \(opID)")
@@ -141,6 +142,11 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     
     //MARK: - Media
     
+    @IBAction func pressedClearMedia(_ sender: Any) {
+        imageHolder.image = UIImage(named: "placeholder-post")
+        imageHolder.contentMode = UIView.ContentMode.scaleAspectFill
+    }
+    
     @IBAction func pressedChooseMedia(_ sender: Any) {
         imagePickerType.sourceType = .photoLibrary
         imagePickerType.delegate = self
@@ -152,6 +158,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         if let imageValue = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")]as? UIImage
         {
             imageHolder.image = imageValue
+            imageHolder.contentMode = UIView.ContentMode.scaleAspectFit
         }
         picker.dismiss(animated: true, completion: nil)
     }
