@@ -31,8 +31,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //TODO: Add support for posts without images
         //postListTableView.estimatedRowHeight = 300.0
         
-        menu = SideMenuNavigationController(rootViewController: UIViewController())
+        //Setting up left side menu
+        menu = SideMenuNavigationController(rootViewController: MenuListController())
         menu?.leftSide = true
+        SideMenuManager.default.leftMenuNavigationController = menu
+        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
+        
         loadPosts()
         // Do any additional setup after loading the view.
     }
@@ -123,3 +127,43 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 }
+
+class MenuListController: UITableViewController //Class needed for inheritance stuff
+{
+    var menuListItems = ["Home", "Art", "Drama", "Film", "Theatre", "Log out"]
+    
+    var userIsMod: Bool = false
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        let firestore = Firestore.firestore()
+        let opID = Auth.auth().currentUser!.uid as String
+        
+        let docRef = firestore.collection("users").document("\(opID)")
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                self.userIsMod = document.get("mod") as! Bool
+                self.menuListItems.insert("Moderation", at: 4)
+            } else {
+                print("Document does not exist")
+            }
+        }
+        print("count of mli is \(menuListItems.count)")
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.menuItemIdentifier)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return menuListItems.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.menuItemIdentifier, for: indexPath)
+        cell.textLabel?.text = menuListItems[indexPath.row]
+        return cell
+    }
+
+}
+ 

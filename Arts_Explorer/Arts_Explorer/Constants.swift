@@ -13,6 +13,8 @@ struct Constants {
         
         static let homeViewController = "HomeVC"
         static let homeBarController = "MainTabBarVC"
-        
     }
+    
+    
+    static let menuItemIdentifier = "menuItemCell"
 }
