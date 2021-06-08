@@ -33,6 +33,7 @@ Created for IB CS 2020-22
 - Firebase Firestore
 - Firebase Storage
 - FirebaseUI
+- SideMenuSwift
 
 ### How to run:
 - Project created in XCode 12.4 using Storyboards and the AppDelegate lifecycle
