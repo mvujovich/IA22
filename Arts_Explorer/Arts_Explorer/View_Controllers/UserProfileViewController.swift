@@ -9,11 +9,12 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class UserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
+class UserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var selfPostListTableView: UITableView!
     
     @IBOutlet weak var selfProfilePicture: UIImageView!
+    var avatarPicker = UIImagePickerController()
     
     @IBOutlet weak var selfName: UITextField!
     
@@ -167,7 +168,23 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     @objc func tappedAvatar(_ sender: UITapGestureRecognizer)
     {
-        print("avatar tapped")
+        avatarPicker.sourceType = .photoLibrary
+        avatarPicker.delegate = self
+        avatarPicker.allowsEditing = true
+        present(avatarPicker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let imageValue = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")]as? UIImage
+        {
+            selfProfilePicture.image = imageValue
+            selfProfilePicture.contentMode = UIView.ContentMode.scaleAspectFill
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
     
 }
