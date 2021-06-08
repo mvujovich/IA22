@@ -5,7 +5,6 @@ Author: Mirjana Vujovich
 Created for IB CS 2020-22
 
 ### TODOs (ordered):
-- Add profile photo functionality and fix profile views accordingly
 - Add sidebar to main home page that opens smoothly
 - Sort posts chronologically for all table views of posts
 - Add checkboxes for categories in the upload view
@@ -13,7 +12,7 @@ Created for IB CS 2020-22
 - Add navigation bar at the top of the whole app
 - Add the ability to comment within the table views
     - Add these comments to Firebase in an array
-    - Display comments in table view cells
+    - Display comments in table view cells (may change this)
 - Add moderation screen with basic approval/rejection
 - Add ability to save posts from table views
 - Add view for saved posts (from self profile view)
@@ -27,6 +26,7 @@ Created for IB CS 2020-22
 - Fix bug where photos keep refreshing in the home view
 - Add ability to update/edit profile information (with Firebase)
 - Add "clear" button to the upload view (for image chosen)
+- Add profile photo functionality and fix profile views accordingly
 
 ### Dependencies:
 - Firebase Auth
