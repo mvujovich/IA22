@@ -97,7 +97,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //let cell = (sender as! PostTableViewCell)
         //opID = cell.hiddenOPIDText.text!
-        // Pass on the data to the Detail ViewController by setting it's indexPathRow value
+        // Pass on the data to the Detail ViewController by setting its indexPathRow value
         
         if segue.identifier == "showProfileFromPost" {
                 if let indexPath = self.postListTableView.indexPathForSelectedRow  {

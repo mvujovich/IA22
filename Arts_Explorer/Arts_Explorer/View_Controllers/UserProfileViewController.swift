@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import FirebaseStorage
+import FirebaseUI
+import SDWebImage
 
 class UserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -29,6 +31,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     var originalNameText: String = ""
     var originalBioText: String = ""
+    var originalAvatar: UIImage?
     
     let firestore = Firestore.firestore()
     
@@ -104,7 +107,8 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 opAvatarID = document.get("avatarID") as! String
                 if (opAvatarID != "")
                 {
-                    print("u have an id")
+                    let storageRef = Storage.storage().reference(withPath: "avatars/\(opAvatarID)")
+                    self.selfProfilePicture.sd_setImage(with: storageRef, placeholderImage: UIImage(named: "placeholder-profile"))
                 }
                 else
                 {
@@ -134,6 +138,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             //Send data to Firebase
             let newNameText: String = selfName.text!
             let newBioText: String = selfBio.text!
+            let newAvatar: UIImage = selfProfilePicture.image!
             
             if (newBioText != originalBioText) && (newNameText != originalNameText) //Both have changed
             {
@@ -146,6 +151,24 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             else if (newBioText != originalBioText) //Only one has changed --> bio changed
             {
                 firestore.collection("users").document(opID).updateData(["bio": newBioText])
+            }
+            
+            if (newAvatar != originalAvatar) //Image upload
+            {
+                let avatarUUID = UUID().uuidString
+                let uploadRef = Storage.storage().reference(withPath: "avatars/\(avatarUUID)")
+                guard let imageData = selfProfilePicture.image?.jpegData(compressionQuality: 0.75) else
+                { return }
+                let uploadMetadata = StorageMetadata.init()
+                uploadMetadata.contentType = "image/jpeg"
+                uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
+                    if let error = error {
+                        print("Error uploading image: \(error.localizedDescription)")
+                        return
+                    }
+                    print("Put complete, got: \(String(describing: downloadMetadata))")
+                }
+                firestore.collection("users").document(opID).updateData(["avatarID": avatarUUID])
             }
             //No else condition, as nothing happens if nothing has changed
             //This might get more complicated if/when I add profile pictures :'(
@@ -163,6 +186,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             //Get original values of name and bio
             originalNameText = selfName.text!
             originalBioText = selfBio.text!
+            originalAvatar = selfProfilePicture.image!
         }
     }
     
@@ -178,7 +202,6 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         if let imageValue = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")]as? UIImage
         {
             selfProfilePicture.image = imageValue
-            selfProfilePicture.contentMode = UIView.ContentMode.scaleAspectFill
         }
         picker.dismiss(animated: true, completion: nil)
     }
