@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class UserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class UserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var selfPostListTableView: UITableView!
     
@@ -38,6 +38,11 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         selfPostListTableView.rowHeight = UITableView.automaticDimension
         selfPostListTableView.delegate = self
         selfPostListTableView.dataSource = self
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tappedAvatar(_:)))
+        tapRecognizer.delegate = self
+        self.selfProfilePicture.addGestureRecognizer(tapRecognizer)
+        
         loadPosts()
         loadInfo()
         // Do any additional setup after loading the view.
@@ -87,6 +92,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     func loadInfo()
     {
+        var opAvatarID = ""
         let docRef = firestore.collection("users").document(opID)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -94,6 +100,15 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 self.selfName.text = opName
                 let opBio = document.get("bio") as! String
                 self.selfBio.text = opBio
+                opAvatarID = document.get("avatarID") as! String
+                if (opAvatarID != "")
+                {
+                    print("u have an id")
+                }
+                else
+                {
+                    self.selfProfilePicture.image = UIImage(named: "placeholder-profile")
+                }
             } else {
                 print("Document does not exist")
             }
@@ -109,9 +124,11 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         {
             //Revert to non-editing mode
             editingMode = false
-            editButton.image = UIImage(systemName: "pencil")
+            self.title = "Profile"
+            editButton.image = UIImage(systemName: "square.and.pencil")
             selfName.isUserInteractionEnabled = false
             selfBio.isUserInteractionEnabled = false
+            selfProfilePicture.isUserInteractionEnabled = false
             
             //Send data to Firebase
             let newNameText: String = selfName.text!
@@ -136,13 +153,21 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         {
             //Change to editing mode
             editingMode = true
+            self.title = "Edit Profile"
             editButton.image = UIImage(systemName: "checkmark")
             selfName.isUserInteractionEnabled = true
             selfBio.isUserInteractionEnabled = true
+            selfProfilePicture.isUserInteractionEnabled = true
             
             //Get original values of name and bio
             originalNameText = selfName.text!
             originalBioText = selfBio.text!
         }
     }
+    
+    @objc func tappedAvatar(_ sender: UITapGestureRecognizer)
+    {
+        print("avatar tapped")
+    }
+    
 }
