@@ -7,10 +7,13 @@
 
 import UIKit
 import Firebase
+import SideMenu
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var postListTableView: UITableView!
+    
+    var menu: SideMenuNavigationController?
     
     //MARK: - Loading posts
     
@@ -28,6 +31,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //TODO: Add support for posts without images
         //postListTableView.estimatedRowHeight = 300.0
         
+        menu = SideMenuNavigationController(rootViewController: UIViewController())
+        menu?.leftSide = true
         loadPosts()
         // Do any additional setup after loading the view.
     }
@@ -85,6 +90,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
         cell.configure(with: postsToShow[indexPath.row])
         return cell
+    }
+    
+    //MARK: - Side menu
+    
+    @IBAction func tappedMenu()
+    {
+        present(menu!, animated: true)
     }
     
     //MARK: - Segue to profile

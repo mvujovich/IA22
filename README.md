@@ -6,6 +6,7 @@ Created for IB CS 2020-22
 
 ### TODOs (ordered):
 - Add sidebar to main home page that opens smoothly
+- Add some sort of cancel button while editing profile
 - Sort posts chronologically for all table views of posts
 - Add checkboxes for categories in the upload view
 - Convert "categories" to an array data type accordingly
