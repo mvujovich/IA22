@@ -5,7 +5,6 @@
 <p>Created for IB CS 2020-22</p>
 
 ### TODOs (ordered, with date):
-- WED: Allow users to log out from the side menu
 - WED: Sort posts chronologically for all table views of posts 
 - WED: Update posts/post list in real time (table view)
 - THURS: Add checkboxes for categories in the upload view
@@ -31,6 +30,7 @@
 - Add profile photo functionality and fix profile views accordingly
 - Add sidebar to main home page that opens smoothly
 - Add cancel button while editing profile (switches with saved)
+- Allow users to log out from the side menu and return to initial view
 
 ### Dependencies:
 - Firebase Auth

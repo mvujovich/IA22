@@ -129,7 +129,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         else if (chosen == "log out")
         {
-            print("logging out") //Fix this later
+            print("hihihi")
+            do
+            {
+                try Auth.auth().signOut()
+            }
+            catch let signOutError as NSError
+            {
+              print ("Error signing out: %@", signOutError)
+            }
+            if let storyboard = self.storyboard {
+                let initialNC = storyboard.instantiateViewController(withIdentifier: "initialNavigationController") as! UINavigationController
+                initialNC.modalPresentationStyle = .fullScreen
+                self.present(initialNC, animated: false, completion: nil)
+                }
         }
         else if (chosen == "home")
         {

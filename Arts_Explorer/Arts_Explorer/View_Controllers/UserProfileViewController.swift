@@ -195,6 +195,8 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    //MARK: - Page buttons pressed
+    
     @objc func tappedAvatar(_ sender: UITapGestureRecognizer)
     {
         avatarPicker.sourceType = .photoLibrary
@@ -240,7 +242,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         
         if segue.identifier == "showSavedFromProfile"
         {
-            let savedViewController = segue.destination as! SavedViewController
+            _ = segue.destination as! SavedViewController
         }
     }
     

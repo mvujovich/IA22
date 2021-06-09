@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="TUs-nM-VCz">
             <objects>
-                <viewController id="kRB-hE-piM" customClass="ViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="initialViewController" id="kRB-hE-piM" customClass="ViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zqo-qT-TXR">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -612,7 +612,7 @@
         <!--Navigation Controller-->
         <scene sceneID="niF-Tn-Q4u">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w0g-Mp-Vz1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="initialNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="w0g-Mp-Vz1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="chevron.left" catalog="system" id="4O7-wk-G2g">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
