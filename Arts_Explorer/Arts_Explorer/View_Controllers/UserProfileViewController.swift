@@ -56,7 +56,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     func loadPosts() {
         let firestore = Firestore.firestore()
-        firestore.collection("posts").whereField("opID", isEqualTo: opID)
+        firestore.collection("posts").whereField("opID", isEqualTo: opID).order(by: "time", descending: true)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -98,7 +98,6 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     func loadInfo()
     {
-        var opAvatarID = ""
         let firestore = Firestore.firestore()
         let docRef = firestore.collection("users").document(opID)
         docRef.getDocument { (document, error) in
@@ -107,7 +106,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 self.selfName.text = opName
                 let opBio = document.get("bio") as! String
                 self.selfBio.text = opBio
-                opAvatarID = document.get("avatarID") as! String
+                let opAvatarID = document.get("avatarID") as! String
                 if (opAvatarID != "")
                 {
                     let storageRef = Storage.storage().reference(withPath: "avatars/\(opAvatarID)")
@@ -193,6 +192,8 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             originalNameText = selfName.text!
             originalBioText = selfBio.text!
             originalAvatar = selfProfilePicture.image!
+            
+            selfBio.text = Constants.temporaryBio
         }
     }
     
@@ -229,6 +230,9 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             selfName.isUserInteractionEnabled = false
             selfBio.isUserInteractionEnabled = false
             selfProfilePicture.isUserInteractionEnabled = false
+            selfName.text = originalNameText
+            selfBio.text = originalBioText
+            selfProfilePicture.image = originalAvatar
         }
         else
         {

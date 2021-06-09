@@ -5,8 +5,8 @@
 <p>Created for IB CS 2020-22</p>
 
 ### TODOs (ordered, with date):
-- WED: Sort posts chronologically for all table views of posts 
 - WED: Update posts/post list in real time (table view)
+- THURS: Fill "other user profile view" with correct information
 - THURS: Add checkboxes for categories in the upload view
 - THURS: Convert "categories" to an array data type accordingly
 - THURS: Add navigation bar at the top of the whole app
@@ -31,6 +31,7 @@
 - Add sidebar to main home page that opens smoothly
 - Add cancel button while editing profile (switches with saved)
 - Allow users to log out from the side menu and return to initial view
+- Sort posts chronologically for all table views of posts 
 
 ### Dependencies:
 - Firebase Auth

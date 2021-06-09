@@ -91,7 +91,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         postsToShow.removeAll()
         postListTableView.reloadData()
         
-        firestore.collection("posts").whereField("approved", isEqualTo: true).whereField("category", isEqualTo: categoryChosen)
+        firestore.collection("posts").whereField("approved", isEqualTo: true).whereField("category", isEqualTo: categoryChosen).order(by: "time", descending: true)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")

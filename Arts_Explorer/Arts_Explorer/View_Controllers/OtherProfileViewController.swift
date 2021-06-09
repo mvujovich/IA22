@@ -7,6 +7,9 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
+import FirebaseUI
+import SDWebImage
 
 class OtherProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -30,8 +33,7 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         othProfPostListTableView.rowHeight = UITableView.automaticDimension
         othProfPostListTableView.delegate = self
         othProfPostListTableView.dataSource = self
-        nameLabel.text = "\(otherUserName)"
-        bioLabel.text = "bio"
+        loadInfo()
         loadPosts()
         // Do any additional setup after loading the view.
     }
@@ -50,9 +52,36 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
+    func loadInfo()
+    {
+        let firestore = Firestore.firestore()
+        
+        let docRef = firestore.collection("users").document(otherUserID)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let opName = document.get("name") as! String
+                self.nameLabel.text = opName
+                let opBio = document.get("bio") as! String
+                self.bioLabel.text = opBio
+                let opAvatarID = document.get("avatarID") as! String
+                if (opAvatarID != "")
+                {
+                    let storageRef = Storage.storage().reference(withPath: "avatars/\(opAvatarID)")
+                    self.profilePictureImageView.sd_setImage(with: storageRef, placeholderImage: UIImage(named: "placeholder-profile"))
+                }
+                else
+                {
+                    self.profilePictureImageView.image = UIImage(named: "placeholder-profile")
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
     func loadPosts() {
         let firestore = Firestore.firestore()
-        firestore.collection("posts").whereField("opID", isEqualTo: otherUserID)
+        firestore.collection("posts").whereField("opID", isEqualTo: otherUserID).order(by: "time", descending: true)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
