@@ -1,8 +1,8 @@
 # Arts Explorer
 ## CS IA 2022
 
-Author: Mirjana Vujovich
-Created for IB CS 2020-22
+<p> Author: Mirjana Vujovich </p>
+<p> Created for IB CS 2020-22 </p>
 
 ### TODOs (ordered):
 - Allow users to log out from the side menu
