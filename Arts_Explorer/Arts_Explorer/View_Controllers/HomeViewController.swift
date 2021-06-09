@@ -247,7 +247,6 @@ class MenuListController: UITableViewController //Class needed for inheritance s
                 print("Document does not exist")
             }
         }
-        print("count of mli is \(menuListItems.count)")
         self.tableView.backgroundColor = self.darkColor
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.menuItemIdentifier)
         

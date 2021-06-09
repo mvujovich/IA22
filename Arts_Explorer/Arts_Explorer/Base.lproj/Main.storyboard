@@ -385,7 +385,7 @@
                     <navigationItem key="navigationItem" title="Profile" id="fr1-2Z-TRy">
                         <barButtonItem key="leftBarButtonItem" image="folder" catalog="system" id="cO6-2O-okp">
                             <connections>
-                                <segue destination="kCH-qa-fUf" kind="show" id="qsh-PN-kZA"/>
+                                <action selector="saveAndCancelTapped:" destination="tis-Aj-ALH" id="g3N-Qc-pN3"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.pencil" catalog="system" id="L19-nG-Vka">
@@ -396,27 +396,29 @@
                     </navigationItem>
                     <connections>
                         <outlet property="editButton" destination="L19-nG-Vka" id="wcD-ae-oJX"/>
+                        <outlet property="saveAndCancelButton" destination="cO6-2O-okp" id="eMw-M3-11O"/>
                         <outlet property="selfBio" destination="hhQ-tH-QcJ" id="4Wm-ol-pX1"/>
                         <outlet property="selfName" destination="k6L-n1-p1w" id="EUk-yB-xz6"/>
                         <outlet property="selfPostListTableView" destination="fXX-4D-QFU" id="LIh-qp-8tu"/>
                         <outlet property="selfProfilePicture" destination="GUS-oa-DA9" id="Nfy-Wb-GrA"/>
+                        <segue destination="kCH-qa-fUf" kind="show" identifier="showSavedFromProfile" id="h2m-JZ-x6t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FEB-oG-0Dl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1871" y="-618"/>
         </scene>
-        <!--View Controller-->
+        <!--Saved-->
         <scene sceneID="cH8-UK-21X">
             <objects>
-                <viewController id="kCH-qa-fUf" sceneMemberID="viewController">
+                <viewController id="kCH-qa-fUf" customClass="SavedViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L0n-fa-KN4">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="hWD-rT-ge8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bmi-tW-LKB"/>
+                    <navigationItem key="navigationItem" title="Saved" id="bmi-tW-LKB"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ikt-Ym-Wl5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

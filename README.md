@@ -5,7 +5,6 @@ Author: Mirjana Vujovich
 Created for IB CS 2020-22
 
 ### TODOs (ordered):
-- Add some sort of cancel button while editing profile
 - Allow users to log out from the side menu
 - Sort posts chronologically for all table views of posts
 - Update posts/post list in real time (table view)
@@ -30,6 +29,7 @@ Created for IB CS 2020-22
 - Add "clear" button to the upload view (for image chosen)
 - Add profile photo functionality and fix profile views accordingly
 - Add sidebar to main home page that opens smoothly
+- Add cancel button while editing profile (switches with saved)
 
 ### Dependencies:
 - Firebase Auth

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C1931711699E2AAE03FD178 /* Pods_Arts_Explorer_Arts_ExplorerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4EEEF3D8198CAA82397B0A9 /* Pods_Arts_Explorer_Arts_ExplorerUITests.framework */; };
 		89BE4F2A84075708A76A6559 /* Pods_Arts_ExplorerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A404F78C53E74E47D3BB802 /* Pods_Arts_ExplorerTests.framework */; };
+		D33963EE2670F8260047CA19 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33963ED2670F8260047CA19 /* SavedViewController.swift */; };
 		D37ECECC2627423700F9EA90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECECB2627423700F9EA90 /* AppDelegate.swift */; };
 		D37ECECE2627423700F9EA90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECECD2627423700F9EA90 /* SceneDelegate.swift */; };
 		D37ECED02627423700F9EA90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECECF2627423700F9EA90 /* ViewController.swift */; };
@@ -79,6 +80,7 @@
 		4A404F78C53E74E47D3BB802 /* Pods_Arts_ExplorerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arts_ExplorerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		608533B1E057F09B051826B7 /* Pods-Arts_Explorer-Arts_ExplorerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arts_Explorer-Arts_ExplorerUITests.debug.xcconfig"; path = "Target Support Files/Pods-Arts_Explorer-Arts_ExplorerUITests/Pods-Arts_Explorer-Arts_ExplorerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4EEEF3D8198CAA82397B0A9 /* Pods_Arts_Explorer_Arts_ExplorerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arts_Explorer_Arts_ExplorerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D33963ED2670F8260047CA19 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		D37ECEC82627423700F9EA90 /* Arts_Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arts_Explorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D37ECECB2627423700F9EA90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D37ECECD2627423700F9EA90 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				D3F862BE26290669000D9286 /* MainTabBarViewController.swift */,
 				D39B2806266643F9003C0974 /* UserProfileViewController.swift */,
 				D39B280B2666440D003C0974 /* OtherProfileViewController.swift */,
+				D33963ED2670F8260047CA19 /* SavedViewController.swift */,
 			);
 			path = View_Controllers;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				D37ECF3926284E3500F9EA90 /* HomeViewController.swift in Sources */,
 				D37ECECC2627423700F9EA90 /* AppDelegate.swift in Sources */,
 				D3F8629D26289BB8000D9286 /* Post.swift in Sources */,
+				D33963EE2670F8260047CA19 /* SavedViewController.swift in Sources */,
 				D3AD367B265B2EAA006602EC /* PostTableViewCell.swift in Sources */,
 				D3F862BF2629066A000D9286 /* MainTabBarViewController.swift in Sources */,
 				D37ECECE2627423700F9EA90 /* SceneDelegate.swift in Sources */,

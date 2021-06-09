@@ -24,6 +24,8 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     
+    @IBOutlet weak var saveAndCancelButton: UIBarButtonItem!
+    
     var editingMode: Bool = false
     var postsToShow = [AEPost]()
     
@@ -131,6 +133,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             editingMode = false
             self.title = "Profile"
             editButton.image = UIImage(systemName: "square.and.pencil")
+            saveAndCancelButton.image = UIImage(systemName: "folder")
             selfName.isUserInteractionEnabled = false
             selfBio.isUserInteractionEnabled = false
             selfProfilePicture.isUserInteractionEnabled = false
@@ -180,6 +183,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             editingMode = true
             self.title = "Edit Profile"
             editButton.image = UIImage(systemName: "checkmark")
+            saveAndCancelButton.image = UIImage(systemName: "xmark")
             selfName.isUserInteractionEnabled = true
             selfBio.isUserInteractionEnabled = true
             selfProfilePicture.isUserInteractionEnabled = true
@@ -209,6 +213,35 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func saveAndCancelTapped(_ sender: Any)
+    {
+        if (editingMode)
+        {
+            editingMode = false
+            self.title = "Profile"
+            editButton.image = UIImage(systemName: "square.and.pencil")
+            saveAndCancelButton.image = UIImage(systemName: "folder")
+            selfName.isUserInteractionEnabled = false
+            selfBio.isUserInteractionEnabled = false
+            selfProfilePicture.isUserInteractionEnabled = false
+        }
+        else
+        {
+            performSegue(withIdentifier: "showSavedFromProfile", sender: nil)
+        }
+    }
+    
+    
+    //MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showSavedFromProfile"
+        {
+            let savedViewController = segue.destination as! SavedViewController
+        }
     }
     
 }
