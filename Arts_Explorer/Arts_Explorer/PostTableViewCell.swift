@@ -108,4 +108,5 @@ struct AEPost {
     var mediaID: String //Media in Firebase Storage
     var title: String
     var description: String
+    var time: Timestamp
 }

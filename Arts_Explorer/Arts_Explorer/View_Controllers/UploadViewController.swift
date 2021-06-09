@@ -100,7 +100,8 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
                                     "category": selectedCategory,
                                     "mediaID": mediaID,
                                     "title": titleText,
-                                    "description": descriptionText
+                                    "description": descriptionText,
+                                    "time": Timestamp(date: Date())
                                 ]) { (error) in
                                     if error != nil { //User object not saved to Firebase
                                         self.showError(message: "Post could not be added.")

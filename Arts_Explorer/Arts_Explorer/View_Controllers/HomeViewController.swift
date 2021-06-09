@@ -52,7 +52,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         postsToShow.removeAll()
         postListTableView.reloadData()
         let firestore = Firestore.firestore()
-        firestore.collection("posts").whereField("approved", isEqualTo: true)
+        firestore.collection("posts").whereField("approved", isEqualTo: true).order(by: "time", descending: true)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -68,11 +68,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let postTitle: String = document.get("title") as! String
                         let postDescription: String = document.get("description") as! String
                         let commentsArray = [""] //Fix this later, obviously
-                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, category: postCategory, mediaID: mediaID, title: postTitle, description: postDescription)
+                        let postTime: Timestamp = document.get("time") as! Timestamp
+                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, category: postCategory, mediaID: mediaID, title: postTitle, description: postDescription, time: postTime)
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)
                     }
+                    print("size of array rn is \(self.postsToShow.count)")
                     if (self.postsToShow.isEmpty)
                     {
                         self.createAlert(title: "Error", message: "There are no posts here. Try somewhere else! :(")
@@ -104,7 +106,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let postTitle: String = document.get("title") as! String
                         let postDescription: String = document.get("description") as! String
                         let commentsArray = [""] //Fix this later, obviously
-                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, category: postCategory, mediaID: mediaID, title: postTitle, description: postDescription)
+                        let postTime: Timestamp = document.get("time") as! Timestamp
+                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, category: postCategory, mediaID: mediaID, title: postTitle, description: postDescription, time: postTime)
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)
@@ -231,11 +234,11 @@ protocol MenuControllerDelegate {
 
 class MenuListController: UITableViewController //Class needed for inheritance stuff
 {
-    var menuListItems = ["Home", "Art", "Drama", "Film", "Theatre", "Log out"]
+    var menuListItems = ["Home", "Art", "Drama", "Film", "Music", "Log out"]
     
     var userIsMod: Bool = false
     let darkColor: UIColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0)
-    let highlightColor: UIColor = UIColor(red: 1, green: 0.4176320933, blue: 0.3837106635, alpha: 1) //Red like the background of the launch screen
+    //let highlightColor: UIColor = UIColor(red: 1, green: 0.4176320933, blue: 0.3837106635, alpha: 1) --> Red like the background of the launch screen
     
     public var delegate: MenuControllerDelegate?
     
