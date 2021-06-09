@@ -125,11 +125,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if (chosen == "moderation")
         {
-            print("moderating")
+            print("moderating") //Fix this later
         }
         else if (chosen == "log out")
         {
-            print("logging out")
+            print("logging out") //Fix this later
         }
         else if (chosen == "home")
         {
@@ -177,7 +177,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //let indexPath = postListTableView.indexPathForSelectedRow!
         // Get the Row of the Index Path and set as index
         // Get in touch with the new VC
-        
         //let cell = (sender as! PostTableViewCell)
         //opID = cell.hiddenOPIDText.text!
         // Pass on the data to the Detail ViewController by setting its indexPathRow value
@@ -222,7 +221,8 @@ class MenuListController: UITableViewController //Class needed for inheritance s
     var menuListItems = ["Home", "Art", "Drama", "Film", "Theatre", "Log out"]
     
     var userIsMod: Bool = false
-    let darkColor: UIColor = UIColor(red: 0.24, green: 0.27, blue: 0.26, alpha: 1.0)
+    let darkColor: UIColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0)
+    let highlightColor: UIColor = UIColor(red: 1, green: 0.4176320933, blue: 0.3837106635, alpha: 1) //Red like the background of the launch screen
     
     public var delegate: MenuControllerDelegate?
     

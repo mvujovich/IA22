@@ -5,9 +5,10 @@ Author: Mirjana Vujovich
 Created for IB CS 2020-22
 
 ### TODOs (ordered):
-- Add sidebar to main home page that opens smoothly
 - Add some sort of cancel button while editing profile
+- Allow users to log out from the side menu
 - Sort posts chronologically for all table views of posts
+- Update posts/post list in real time (table view)
 - Add checkboxes for categories in the upload view
 - Convert "categories" to an array data type accordingly
 - Add navigation bar at the top of the whole app
@@ -20,7 +21,7 @@ Created for IB CS 2020-22
 - Display all errors in popups or text views to the user
 - Show progress bars/success messages (database calls)
 
-### Completed TODOs:
+### Completed TODOs (not really ordered):
 - Integrate Firebase storage (image support; for uploading posts)
 - Fix and update upload interface (relatively okay for now)
 - Replicate home feed for profile view (still basic at the moment)
@@ -28,6 +29,7 @@ Created for IB CS 2020-22
 - Add ability to update/edit profile information (with Firebase)
 - Add "clear" button to the upload view (for image chosen)
 - Add profile photo functionality and fix profile views accordingly
+- Add sidebar to main home page that opens smoothly
 
 ### Dependencies:
 - Firebase Auth
