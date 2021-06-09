@@ -57,7 +57,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
-                    for document in querySnapshot!.documents {
+                    for document in querySnapshot!.documents
+                    {
                         let postID: String = document.get("id") as! String
                         let postOPID: String = document.get("opID") as! String
                         let postOPName: String = document.get("opName") as! String
@@ -71,9 +72,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)
-                        }
+                    }
+                    if (self.postsToShow.isEmpty)
+                    {
+                        self.createAlert(title: "Error", message: "There are no posts here. Try somewhere else! :(")
                     }
                 }
+            }
         }
     
     //MARK: - Load specific posts
@@ -104,6 +109,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)
                         }
+                    if (self.postsToShow.isEmpty)
+                    {
+                        self.createAlert(title: "Error", message: "There are no posts here. Try somewhere else! :(")
+                    }
                     }
                 }
     }
@@ -161,13 +170,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    //MARK: - Side menu
-    
-    @IBAction func tappedMenu()
-    {
-        present(leftMenu!, animated: true)
-    }
-    
     //MARK: - Segue to profile
     //Preparation before navigating to new views
     
@@ -191,6 +193,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         }
     }
+    
+    //MARK: - Alert
+    
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    //MARK: - Side menu
+    
+    @IBAction func tappedMenu()
+    {
+        present(leftMenu!, animated: true)
+    }
+    
 }
 
 protocol MenuControllerDelegate {
@@ -217,16 +237,23 @@ class MenuListController: UITableViewController //Class needed for inheritance s
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 self.userIsMod = document.get("mod") as! Bool
-                self.menuListItems.insert("Moderation", at: 4)
+                if (self.userIsMod)
+                {
+                    self.menuListItems.insert("Moderation", at: 4)
+                    self.tableView.reloadData()
+                }
+                
             } else {
                 print("Document does not exist")
             }
         }
         print("count of mli is \(menuListItems.count)")
+        self.tableView.backgroundColor = self.darkColor
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.menuItemIdentifier)
         
-        tableView.backgroundColor = darkColor
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.menuItemIdentifier)
     }
+    
+    //MARK: - Menu table actions
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuListItems.count
