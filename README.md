@@ -1,24 +1,25 @@
 # Arts Explorer
 ## CS IA 2022
 
-Author: Mirjana Vujovich
-Created for IB CS 2020-22
+<p>Author: Mirjana Vujovich</p>
+<p>Created for IB CS 2020-22</p>
 
-### TODOs (ordered):
-- Allow users to log out from the side menu
-- Sort posts chronologically for all table views of posts
-- Update posts/post list in real time (table view)
-- Add checkboxes for categories in the upload view
-- Convert "categories" to an array data type accordingly
-- Add navigation bar at the top of the whole app
-- Add the ability to comment within the table views
+### TODOs (ordered, with date):
+- WED: Allow users to log out from the side menu
+- WED: Sort posts chronologically for all table views of posts 
+- WED: Update posts/post list in real time (table view)
+- THURS: Add checkboxes for categories in the upload view
+- THURS: Convert "categories" to an array data type accordingly
+- THURS: Add navigation bar at the top of the whole app
+- THURS: Add the ability to comment within the table views
     - Add these comments to Firebase in an array
     - Display comments in table view cells (may change this)
-- Add moderation screen with basic approval/rejection
-- Add ability to save posts from table views
-- Add view for saved posts (from self profile view)
-- Display all errors in popups or text views to the user
-- Show progress bars/success messages (database calls)
+- FRI: Add moderation screen with basic approval/rejection
+- FRI: Add ability to save posts from table views
+- FRI: Add view for saved posts (from self profile view)
+- SAT: Display all errors in popups or text views to the user
+- SAT: Show progress bars/success messages (database calls)
+<p>Note: the day listed is when I aim to finish this task.</p>
 
 ### Completed TODOs (not really ordered):
 - Integrate Firebase storage (image support; for uploading posts)
