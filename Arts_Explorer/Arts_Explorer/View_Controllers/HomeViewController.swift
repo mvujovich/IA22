@@ -9,11 +9,11 @@ import UIKit
 import Firebase
 import SideMenu
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MenuControllerDelegate {
     
     @IBOutlet weak var postListTableView: UITableView!
     
-    var menu: SideMenuNavigationController?
+    var leftMenu: SideMenuNavigationController?
     
     //MARK: - Loading posts
     
@@ -22,7 +22,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var opID: String = ""
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+
         postListTableView.register(PostTableViewCell.nib(), forCellReuseIdentifier: PostTableViewCell.identifier)
         postListTableView.rowHeight = UITableView.automaticDimension
         postListTableView.delegate = self
@@ -32,17 +34,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //postListTableView.estimatedRowHeight = 300.0
         
         //Setting up left side menu
-        menu = SideMenuNavigationController(rootViewController: MenuListController())
-        menu?.leftSide = true
-        SideMenuManager.default.leftMenuNavigationController = menu
+        let menu = MenuListController()
+        menu.delegate = self
+        leftMenu = SideMenuNavigationController(rootViewController: menu)
+        leftMenu?.leftSide = true
+        leftMenu?.setNavigationBarHidden(true, animated: false)
+        
+        SideMenuManager.default.leftMenuNavigationController = leftMenu
         SideMenuManager.default.addPanGestureToPresent(toView: self.view)
         
         loadPosts()
-        // Do any additional setup after loading the view.
     }
     
+    //MARK: - Load all posts
+    
     func loadPosts() {
-        
+        postsToShow.removeAll()
+        postListTableView.reloadData()
         let firestore = Firestore.firestore()
         firestore.collection("posts").whereField("approved", isEqualTo: true)
             .getDocuments() { (querySnapshot, err) in
@@ -63,11 +71,68 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)
-                            
                         }
                     }
                 }
         }
+    
+    //MARK: - Load specific posts
+    
+    func loadSpecificPosts(categoryChosen: String)
+    {
+        let firestore = Firestore.firestore()
+        postsToShow.removeAll()
+        postListTableView.reloadData()
+        
+        firestore.collection("posts").whereField("approved", isEqualTo: true).whereField("category", isEqualTo: categoryChosen)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let postID: String = document.get("id") as! String
+                        let postOPID: String = document.get("opID") as! String
+                        let postOPName: String = document.get("opName") as! String
+                        //Do comments and categories (proper) and media ID later
+                        let postCategory: String = document.get("category") as! String
+                        let mediaID: String = document.get("mediaID") as! String
+                        let postTitle: String = document.get("title") as! String
+                        let postDescription: String = document.get("description") as! String
+                        let commentsArray = [""] //Fix this later, obviously
+                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, category: postCategory, mediaID: mediaID, title: postTitle, description: postDescription)
+                        self.postsToShow.append(post)
+                        let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
+                        self.postListTableView.insertRows(at: [indexPath], with: .automatic)
+                        }
+                    }
+                }
+    }
+    
+    //MARK: - After choosing item
+    
+    func didSelectMenuItem(chosen: String)
+    {
+        leftMenu?.dismiss(animated: true, completion: nil)
+        
+        if (chosen == "moderation")
+        {
+            print("moderating")
+        }
+        else if (chosen == "log out")
+        {
+            print("logging out")
+        }
+        else if (chosen == "home")
+        {
+            loadPosts()
+        }
+        else
+        {
+            loadSpecificPosts(categoryChosen: chosen)
+        }
+        
+    }
+
     
     //MARK: - Table View specifics
     
@@ -100,7 +165,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func tappedMenu()
     {
-        present(menu!, animated: true)
+        present(leftMenu!, animated: true)
     }
     
     //MARK: - Segue to profile
@@ -128,11 +193,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 }
 
+protocol MenuControllerDelegate {
+    func didSelectMenuItem(chosen: String)
+}
+
 class MenuListController: UITableViewController //Class needed for inheritance stuff
 {
     var menuListItems = ["Home", "Art", "Drama", "Film", "Theatre", "Log out"]
     
     var userIsMod: Bool = false
+    let darkColor: UIColor = UIColor(red: 0.24, green: 0.27, blue: 0.26, alpha: 1.0)
+    
+    public var delegate: MenuControllerDelegate?
     
     override func viewDidLoad() {
         
@@ -152,6 +224,7 @@ class MenuListController: UITableViewController //Class needed for inheritance s
         }
         print("count of mli is \(menuListItems.count)")
         
+        tableView.backgroundColor = darkColor
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.menuItemIdentifier)
     }
     
@@ -162,7 +235,16 @@ class MenuListController: UITableViewController //Class needed for inheritance s
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.menuItemIdentifier, for: indexPath)
         cell.textLabel?.text = menuListItems[indexPath.row]
+        cell.textLabel?.textColor = .white
+        cell.backgroundColor = darkColor
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let selectedItem = menuListItems[indexPath.row]
+        delegate?.didSelectMenuItem(chosen: selectedItem.lowercased())
+        print(selectedItem)
     }
 
 }

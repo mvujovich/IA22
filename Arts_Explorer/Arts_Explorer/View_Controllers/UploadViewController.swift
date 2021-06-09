@@ -126,7 +126,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         let descriptionText: String = descriptionTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
         //Check all fields are filled in
-        if titleText == "" && descriptionText == "" && imageHolder.image == nil //Fix this to be no media OR title OR desc
+        if titleText == "" && descriptionText == "" && imageHolder.image == UIImage(named: "placeholder-post") //Fix this to be no media OR title OR desc
         {
             return "Please fill in at least one field."
         }

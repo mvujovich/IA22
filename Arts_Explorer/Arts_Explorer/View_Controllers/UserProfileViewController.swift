@@ -32,9 +32,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     var originalNameText: String = ""
     var originalBioText: String = ""
     var originalAvatar: UIImage?
-    
-    let firestore = Firestore.firestore()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         opID = Auth.auth().currentUser!.uid as String
@@ -55,6 +53,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     //MARK: - Loading posts
     
     func loadPosts() {
+        let firestore = Firestore.firestore()
         firestore.collection("posts").whereField("opID", isEqualTo: opID)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -97,6 +96,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     func loadInfo()
     {
         var opAvatarID = ""
+        let firestore = Firestore.firestore()
         let docRef = firestore.collection("users").document(opID)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -140,6 +140,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             let newBioText: String = selfBio.text!
             let newAvatar: UIImage = selfProfilePicture.image!
             
+            let firestore = Firestore.firestore()
             if (newBioText != originalBioText) && (newNameText != originalNameText) //Both have changed
             {
                 firestore.collection("users").document(opID).updateData(["name": newNameText, "bio": newBioText])

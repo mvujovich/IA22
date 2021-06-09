@@ -51,7 +51,6 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func loadPosts() {
-        
         let firestore = Firestore.firestore()
         firestore.collection("posts").whereField("opID", isEqualTo: otherUserID)
             .getDocuments() { (querySnapshot, err) in

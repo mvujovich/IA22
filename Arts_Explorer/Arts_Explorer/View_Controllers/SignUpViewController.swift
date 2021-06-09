@@ -49,7 +49,6 @@ class SignUpViewController: UIViewController {
             let passwordText: String = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let emailText: String = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            let firestore = Firestore.firestore()
             Auth.auth().createUser(withEmail: emailText, password: passwordText) { (result, err) in
                     if err != nil {
                         self.showError(message: "There was an error creating the account.")
@@ -61,6 +60,7 @@ class SignUpViewController: UIViewController {
                         let savedPostArray = [String]()
                         
                         //Add document to Firebase
+                        let firestore = Firestore.firestore()
                         firestore.collection("users").document(result!.user.uid).setData([
                             //Data saved in Dictionary
                             "id": result!.user.uid,
