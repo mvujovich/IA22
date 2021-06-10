@@ -46,6 +46,7 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         if (model.mediaID != "")
         {
             let storageRef = Storage.storage().reference(withPath: "posts/\(model.id)")
+            print(storageRef.name)
             // Load the image using SDWebImage and FirebaseUI stuff
             self.postImageView.sd_setImage(with: storageRef, placeholderImage: nil)
             
@@ -90,7 +91,7 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         self.userTopLabel.text = "\(model.opName)"
         self.titleText.text = "\(model.title)"
         self.descriptionText.text = "\(model.description)"
-        self.userImageView.image = UIImage(named: "selfie")
+        self.userImageView.image = UIImage(named: "placeholder-profile")
     }
 
 }

@@ -49,14 +49,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: - Load all posts
     
     func loadPosts() {
-        postsToShow.removeAll()
-        postListTableView.reloadData()
         let firestore = Firestore.firestore()
-        firestore.collection("posts").whereField("approved", isEqualTo: true).order(by: "time", descending: true)
-            .getDocuments() { (querySnapshot, err) in
+        firestore.collection("posts").whereField("approved", isEqualTo: true).order(by: "time", descending: true).getDocuments()
+        { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
+                    self.postsToShow.removeAll()
+                    self.postListTableView.reloadData()
                     for document in querySnapshot!.documents
                     {
                         let postID: String = document.get("id") as! String
@@ -88,14 +88,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func loadSpecificPosts(categoryChosen: String)
     {
         let firestore = Firestore.firestore()
-        postsToShow.removeAll()
-        postListTableView.reloadData()
         
-        firestore.collection("posts").whereField("approved", isEqualTo: true).whereField("category", isEqualTo: categoryChosen).order(by: "time", descending: true)
-            .getDocuments() { (querySnapshot, err) in
+        firestore.collection("posts").whereField("approved", isEqualTo: true).whereField("category", isEqualTo: categoryChosen).order(by: "time", descending: true).getDocuments()
+            { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
+                    self.postsToShow.removeAll()
+                    self.postListTableView.reloadData()
                     for document in querySnapshot!.documents {
                         let postID: String = document.get("id") as! String
                         let postOPID: String = document.get("opID") as! String
@@ -157,7 +157,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
     }
-
+    
+    
+    @IBAction func reloadPosts(_ sender: Any) {
+        self.loadPosts()
+    }
+    
     
     //MARK: - Table View specifics
     

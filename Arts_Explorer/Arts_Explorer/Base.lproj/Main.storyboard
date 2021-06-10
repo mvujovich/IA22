@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -582,11 +583,23 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8q-8q-IEG">
+                                <rect key="frame" x="173.66666666666666" y="407" width="43" height="30"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <state key="normal" title="reload">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="reloadPosts:" destination="5Cb-fF-r8q" eventType="touchUpInside" id="Pmm-2K-PRR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ovq-4L-tGN"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jfm-VE-rkY" firstAttribute="top" secondItem="Ovq-4L-tGN" secondAttribute="top" id="Euy-dE-7td"/>
+                            <constraint firstItem="S8q-8q-IEG" firstAttribute="centerX" secondItem="D7p-0M-XfD" secondAttribute="centerX" id="Q4W-II-cBW"/>
+                            <constraint firstItem="S8q-8q-IEG" firstAttribute="centerY" secondItem="D7p-0M-XfD" secondAttribute="centerY" id="Ssu-Cq-JHH"/>
                             <constraint firstItem="Ovq-4L-tGN" firstAttribute="trailing" secondItem="jfm-VE-rkY" secondAttribute="trailing" id="nhb-kg-viQ"/>
                             <constraint firstItem="Ovq-4L-tGN" firstAttribute="bottom" secondItem="jfm-VE-rkY" secondAttribute="bottom" id="ogs-tb-kxx"/>
                             <constraint firstItem="jfm-VE-rkY" firstAttribute="leading" secondItem="Ovq-4L-tGN" secondAttribute="leading" id="xlg-xe-LxW"/>
@@ -678,6 +691,9 @@
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
