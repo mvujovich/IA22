@@ -15,9 +15,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     
     override func viewDidLoad() {
-        if FirebaseApp.app() == nil {
+        if FirebaseApp.app() == nil
+        {
                 FirebaseApp.configure()
+        }
+        if Auth.auth().currentUser != nil
+        {
+            if let storyboard = self.storyboard
+            {
+                let homeVC = storyboard.instantiateViewController(withIdentifier: "mainTabBarViewController") as! UITabBarController
+                homeVC.modalPresentationStyle = .fullScreen
+                self.present(homeVC, animated: false, completion: nil)
             }
+        }
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         // get screen size object.

@@ -21,9 +21,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var opID: String = ""
     
+    private let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            postListTableView.refreshControl = refreshControl
+        } else {
+            postListTableView.addSubview(refreshControl)
+        }
+        
+        refreshControl.addTarget(self, action: #selector(reloadPosts(_:)), for: .valueChanged)
 
         postListTableView.register(PostTableViewCell.nib(), forCellReuseIdentifier: PostTableViewCell.identifier)
         postListTableView.rowHeight = UITableView.automaticDimension
@@ -50,7 +61,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func loadPosts() {
         let firestore = Firestore.firestore()
-        firestore.collection("posts").whereField("approved", isEqualTo: true).order(by: "time", descending: true).getDocuments()
+        firestore.collection("posts").whereField("approved", isEqualTo: true).order(by: "time", descending: true).limit(to: 15).getDocuments()
         { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -74,14 +85,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)
                     }
-                    print("size of array rn is \(self.postsToShow.count)")
                     if (self.postsToShow.isEmpty)
                     {
                         self.createAlert(title: "Error", message: "There are no posts here. Try somewhere else! :(")
                     }
                 }
             }
-        }
+        self.refreshControl.endRefreshing()
+    }
     
     //MARK: - Load specific posts
     
@@ -89,7 +100,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         let firestore = Firestore.firestore()
         
-        firestore.collection("posts").whereField("approved", isEqualTo: true).whereField("category", isEqualTo: categoryChosen).order(by: "time", descending: true).getDocuments()
+        firestore.collection("posts").whereField("approved", isEqualTo: true).whereField("category", isEqualTo: categoryChosen).order(by: "time", descending: true).limit(to: 15).getDocuments()
             { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -118,6 +129,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                     }
                 }
+        self.refreshControl.endRefreshing()
     }
     
     //MARK: - After choosing item
@@ -132,7 +144,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         else if (chosen == "log out")
         {
-            print("hihihi")
             do
             {
                 try Auth.auth().signOut()
@@ -141,11 +152,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
               print ("Error signing out: %@", signOutError)
             }
-            if let storyboard = self.storyboard {
+            if let storyboard = self.storyboard
+            {
                 let initialNC = storyboard.instantiateViewController(withIdentifier: "initialNavigationController") as! UINavigationController
                 initialNC.modalPresentationStyle = .fullScreen
                 self.present(initialNC, animated: false, completion: nil)
-                }
+            }
         }
         else if (chosen == "home")
         {
@@ -159,7 +171,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    @IBAction func reloadPosts(_ sender: Any) {
+    @objc func reloadPosts(_ sender: Any) {
         self.loadPosts()
     }
     
@@ -270,7 +282,6 @@ class MenuListController: UITableViewController //Class needed for inheritance s
         }
         self.tableView.backgroundColor = self.darkColor
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.menuItemIdentifier)
-        
     }
     
     //MARK: - Menu table actions

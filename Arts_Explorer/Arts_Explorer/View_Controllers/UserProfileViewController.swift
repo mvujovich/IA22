@@ -35,8 +35,21 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     var originalBioText: String = ""
     var originalAvatar: UIImage?
         
+    private let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            selfPostListTableView.refreshControl = refreshControl
+        } else {
+            selfPostListTableView.addSubview(refreshControl)
+        }
+        
+        refreshControl.addTarget(self, action: #selector(reloadPosts(_:)), for: .valueChanged)
+        
         opID = Auth.auth().currentUser!.uid as String
         selfPostListTableView.register(PostTableViewCell.nib(), forCellReuseIdentifier: PostTableViewCell.identifier)
         selfPostListTableView.rowHeight = UITableView.automaticDimension
@@ -56,8 +69,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     func loadPosts() {
         let firestore = Firestore.firestore()
-        firestore.collection("posts").whereField("opID", isEqualTo: opID).order(by: "time", descending: true)
-            .getDocuments() { (querySnapshot, err) in
+        firestore.collection("posts").whereField("opID", isEqualTo: opID).order(by: "time", descending: true).limit(to: 15).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
@@ -80,7 +92,14 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                         }
                     }
                 }
-        }
+        self.refreshControl.endRefreshing()
+    }
+    
+    @objc func reloadPosts(_ sender: Any) {
+        self.loadPosts()
+    }
+    
+    //MARK: - Other setup
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

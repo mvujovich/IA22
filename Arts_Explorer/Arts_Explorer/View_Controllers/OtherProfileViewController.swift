@@ -27,8 +27,19 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var profilePictureImageView: UIImageView!
     
+    private let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(iOS 10.0, *) {
+            othProfPostListTableView.refreshControl = refreshControl
+        } else {
+            othProfPostListTableView.addSubview(refreshControl)
+        }
+        
+        refreshControl.addTarget(self, action: #selector(reloadPosts(_:)), for: .valueChanged)
+        
         othProfPostListTableView.register(PostTableViewCell.nib(), forCellReuseIdentifier: PostTableViewCell.identifier)
         othProfPostListTableView.rowHeight = UITableView.automaticDimension
         othProfPostListTableView.delegate = self
@@ -37,6 +48,8 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         loadPosts()
         // Do any additional setup after loading the view.
     }
+    
+    //MARK: - General setup
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -79,10 +92,11 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    //MARK: - Loading posts
+    
     func loadPosts() {
         let firestore = Firestore.firestore()
-        firestore.collection("posts").whereField("opID", isEqualTo: otherUserID).order(by: "time", descending: true)
-            .getDocuments() { (querySnapshot, err) in
+        firestore.collection("posts").whereField("opID", isEqualTo: otherUserID).order(by: "time", descending: true).limit(to: 15).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
@@ -105,7 +119,12 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
                         }
                     }
                 }
-        }
+        self.refreshControl.endRefreshing()
+    }
+    
+    @objc func reloadPosts(_ sender: Any) {
+        self.loadPosts()
+    }
     
     // MARK: - Instructions
 

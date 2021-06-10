@@ -5,7 +5,6 @@
 <p>Created for IB CS 2020-22</p>
 
 ### TODOs (ordered, with date):
-- WED: Update posts/post list in real time (table view)
 - THURS: Add checkboxes for categories in the upload view
 - THURS: Convert "categories" to an array data type accordingly
 - THURS: Add navigation bar at the top of the whole app
@@ -32,6 +31,8 @@
 - Allow users to log out from the side menu and return to initial view
 - Sort posts chronologically for all table views of posts 
 - Fill "other user profile view" with correct information (fixed)
+- Update posts/post list in real time for all table views
+- Allow user to stay signed in with Firebase Authentication
 
 ### Dependencies:
 - Firebase Auth

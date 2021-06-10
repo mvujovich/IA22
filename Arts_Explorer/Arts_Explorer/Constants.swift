@@ -11,8 +11,8 @@ struct Constants {
     
     struct Storyboard {
         
-        static let homeViewController = "HomeVC"
-        static let homeBarController = "MainTabBarVC"
+        static let homeViewController = "homeViewController"
+        static let homeBarController = "mainTabBarViewController"
     }
     
     
