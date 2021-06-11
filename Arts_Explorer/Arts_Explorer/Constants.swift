@@ -29,4 +29,8 @@ struct Constants {
     static let filmCategory = "film"
     static let musicCategory = "music"
     
+    //MARK: - Error messages
+    static let allFieldsEmptyError = "Please fill in at least one field."
+    static let noCategoryError = "Please select at least one category."
+    
 }

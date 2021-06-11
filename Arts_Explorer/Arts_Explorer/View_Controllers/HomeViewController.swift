@@ -73,14 +73,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let postID: String = document.get("id") as! String
                         let postOPID: String = document.get("opID") as! String
                         let postOPName: String = document.get("opName") as! String
-                        //Do comments and categories (proper) and media ID later
-                        let postCategory: String = document.get("category") as! String
+                        //Do comments later
+                        let postCategories: Array<String> = document.get("categories") as! Array<String>
                         let mediaID: String = document.get("mediaID") as! String
                         let postTitle: String = document.get("title") as! String
                         let postDescription: String = document.get("description") as! String
                         let commentsArray = [""] //Fix this later, obviously
                         let postTime: Timestamp = document.get("time") as! Timestamp
-                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, category: postCategory, mediaID: mediaID, title: postTitle, description: postDescription, time: postTime)
+                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, categories: postCategories, mediaID: mediaID, title: postTitle, description: postDescription, time: postTime)
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)
@@ -100,7 +100,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         let firestore = Firestore.firestore()
         
-        firestore.collection("posts").whereField("approved", isEqualTo: true).whereField("category", isEqualTo: categoryChosen).order(by: "time", descending: true).limit(to: 15).getDocuments()
+        firestore.collection("posts").whereField("approved", isEqualTo: true).whereField("categories", arrayContains: categoryChosen).order(by: "time", descending: true).limit(to: 15).getDocuments()
             { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -112,13 +112,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let postOPID: String = document.get("opID") as! String
                         let postOPName: String = document.get("opName") as! String
                         //Do comments and categories (proper) and media ID later
-                        let postCategory: String = document.get("category") as! String
+                        let postCategories: Array<String> = document.get("categories") as! Array<String>
                         let mediaID: String = document.get("mediaID") as! String
                         let postTitle: String = document.get("title") as! String
                         let postDescription: String = document.get("description") as! String
                         let commentsArray = [""] //Fix this later, obviously
                         let postTime: Timestamp = document.get("time") as! Timestamp
-                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, category: postCategory, mediaID: mediaID, title: postTitle, description: postDescription, time: postTime)
+                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, categories: postCategories, mediaID: mediaID, title: postTitle, description: postDescription, time: postTime)
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)

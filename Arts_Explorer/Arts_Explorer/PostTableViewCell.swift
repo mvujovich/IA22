@@ -105,7 +105,7 @@ struct AEPost {
     var approved: Bool
     var comments: Array<String> //Comment IDs
     //Use this -- var categories: Array<String> -- later
-    var category: String
+    var categories: Array<String>
     var mediaID: String //Media in Firebase Storage
     var title: String
     var description: String

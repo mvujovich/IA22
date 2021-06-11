@@ -5,9 +5,6 @@
 <p>Created for IB CS 2020-22</p>
 
 ### TODOs (ordered, with date):
-- THURS: Add checkboxes for categories in the upload view
-- THURS: Convert "categories" to an array data type accordingly
-- THURS: Add navigation bar at the top of the whole app
 - THURS: Add the ability to comment within the table views
     - Add these comments to Firebase in an array
     - Display comments in table view cells (may change this)
@@ -33,6 +30,8 @@
 - Fill "other user profile view" with correct information (fixed)
 - Update posts/post list in real time for all table views
 - Allow user to stay signed in with Firebase Authentication
+- Add individual buttons for categories in the upload view
+- Convert "categories" to an array data type accordingly
 
 ### Dependencies:
 - Firebase Auth
