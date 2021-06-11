@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import Firebase
 
 class CommentsViewController: UIViewController {
+    
+    var postID: String = ""
+    
+    var opName: String = ""
 
+    @IBOutlet weak var titleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        titleLabel.text = "Comments on \(opName)'s post"
 
         // Do any additional setup after loading the view.
     }

@@ -415,10 +415,42 @@
                     <view key="view" contentMode="scaleToFill" id="YDP-JD-UnE">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments on []'s post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P49-VV-MEC">
+                                <rect key="frame" x="106.00000000000001" y="100" width="178.33333333333337" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WfL-Jm-NY5">
+                                <rect key="frame" x="16" y="766" width="358" height="34"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NI9-gt-53Y">
+                                        <rect key="frame" x="0.0" y="0.0" width="329" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrj-AP-2Vh">
+                                        <rect key="frame" x="337" y="0.0" width="21" height="34"/>
+                                        <state key="normal" image="paperplane" catalog="system"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="a5I-Ws-CDl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="P49-VV-MEC" firstAttribute="top" secondItem="a5I-Ws-CDl" secondAttribute="top" constant="12" id="9Ip-KS-dQP"/>
+                            <constraint firstItem="WfL-Jm-NY5" firstAttribute="leading" secondItem="a5I-Ws-CDl" secondAttribute="leading" constant="16" id="Edk-3A-1XE"/>
+                            <constraint firstItem="a5I-Ws-CDl" firstAttribute="trailing" secondItem="WfL-Jm-NY5" secondAttribute="trailing" constant="16" id="ZOo-cv-Obb"/>
+                            <constraint firstItem="a5I-Ws-CDl" firstAttribute="bottom" secondItem="WfL-Jm-NY5" secondAttribute="bottom" constant="10" id="o7X-R6-PFV"/>
+                            <constraint firstItem="P49-VV-MEC" firstAttribute="centerX" secondItem="YDP-JD-UnE" secondAttribute="centerX" id="xS8-9r-H9l"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Comments" id="HBW-ra-KLt"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="P49-VV-MEC" id="ExW-vx-ydy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jPn-y6-eI0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -787,6 +819,7 @@
         <image name="folder" catalog="system" width="128" height="97"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
+        <image name="paperplane" catalog="system" width="128" height="118"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>

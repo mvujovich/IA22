@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var postsToShow = [AEPost]()
     
     var opID: String = ""
+    var opName: String = ""
     
     var currentCategory: String = ""
     
@@ -212,9 +213,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.configure(with: postsToShow[indexPath.row])
         
         cell.callBackOnCommentButton = {
+            self.prepareInfo(indexPath: indexPath)
             self.performSegue(withIdentifier: "showCommentsFromPost", sender: nil)
         }
         return cell
+    }
+    
+    func prepareInfo(indexPath: IndexPath)
+    {
+        opID = postsToShow[indexPath.row].opID
+        opName = postsToShow[indexPath.row].opName
     }
     
     //MARK: - Segue to profile
@@ -231,8 +239,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if segue.identifier == "showProfileFromPost" {
                 if let indexPath = self.postListTableView.indexPathForSelectedRow  {
                     let otherProfileViewController = segue.destination as! OtherProfileViewController
-                    opID = postsToShow[indexPath.row].opID
-                    let opName = postsToShow[indexPath.row].opName
+                    prepareInfo(indexPath: indexPath)
                     otherProfileViewController.otherUserID = opID
                     otherProfileViewController.otherUserName = opName
                 }
@@ -241,7 +248,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if segue.identifier == "showCommentsFromPost"
         {
-            _ = segue.destination as! CommentsViewController
+            let commentsViewController = segue.destination as! CommentsViewController
+            commentsViewController.postID = opID
+            commentsViewController.opName = opName
         }
     }
     
@@ -283,9 +292,9 @@ class MenuListController: UITableViewController //Class needed for inheritance s
         super.viewDidLoad()
         
         let firestore = Firestore.firestore()
-        let opID = Auth.auth().currentUser!.uid as String
+        let currentUserID = Auth.auth().currentUser!.uid as String
         
-        let docRef = firestore.collection("users").document("\(opID)")
+        let docRef = firestore.collection("users").document("\(currentUserID)")
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 self.userIsMod = document.get("mod") as! Bool
