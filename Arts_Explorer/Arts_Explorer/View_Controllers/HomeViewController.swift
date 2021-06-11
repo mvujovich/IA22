@@ -21,6 +21,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var opID: String = ""
     
+    var currentCategory: String = ""
+    
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -166,13 +168,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         else
         {
             loadSpecificPosts(categoryChosen: chosen)
+            currentCategory = chosen
         }
         
     }
     
     
     @objc func reloadPosts(_ sender: Any) {
-        self.loadPosts()
+        if (currentCategory == "")
+        {
+            self.loadPosts()
+        }
+        else
+        {
+            self.loadSpecificPosts(categoryChosen: currentCategory)
+        }
     }
     
     
