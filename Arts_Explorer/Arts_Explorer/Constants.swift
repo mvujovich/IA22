@@ -15,8 +15,18 @@ struct Constants {
         static let homeBarController = "mainTabBarViewController"
     }
     
+    //MARK: - Identifiers
     
     static let menuItemIdentifier = "menuItemCell"
+    
+    //MARK: - Profile info
     static let temporaryBio = "Your bio here"
     static let temporaryName = "Your name here"
+    
+    //MARK: - Categories
+    static let artCategory = "art"
+    static let dramaCategory = "drama"
+    static let filmCategory = "film"
+    static let musicCategory = "music"
+    
 }

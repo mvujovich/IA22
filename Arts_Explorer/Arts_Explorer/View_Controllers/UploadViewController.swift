@@ -22,8 +22,6 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     
     @IBOutlet weak var chooseButton: UIButton!
     
-    @IBOutlet weak var categorySelector: UISegmentedControl!
-    
     @IBOutlet weak var uploadButton: UIButton!
     
     @IBOutlet weak var errorLabel: UILabel!
@@ -36,8 +34,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     
     @IBOutlet weak var musicButton: UIButton!
     
-    var chosenCategories: Array<String>?
-    
+    var chosenCategories: Array<String> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,20 +66,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         else {
             let titleText: String = titleTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let descriptionText: String = descriptionTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let selectedItemInt: Int = categorySelector.selectedSegmentIndex
             let commentArray = [String]()
-            
-            var selectedCategory: String = "music"
-            
-            if selectedItemInt == 0 {
-                selectedCategory = "art"
-            }
-            else if selectedItemInt == 1 {
-                selectedCategory = "drama"
-            }
-            else if selectedItemInt == 2 {
-                selectedCategory = "film"
-            }
             
             //FIX THIS LATER ^
             
@@ -108,7 +92,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
                                     "opName": opName,
                                     "approved": true, //MARK: - FIX 'APPROVED'
                                     "comments": commentArray,
-                                    "category": selectedCategory,
+                                    "categories": self.chosenCategories,
                                     "mediaID": mediaID,
                                     "title": titleText,
                                     "description": descriptionText,
@@ -225,13 +209,18 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
             button.backgroundColor = UIColor.systemGray5
             button.setTitleColor(UIColor.link, for: .normal)
             button.isSelected = false
+            while let index = chosenCategories.firstIndex(of: (button.currentTitle?.lowercased())!) {
+                chosenCategories.remove(at: index)
+            }
         }
         else
         {
             button.backgroundColor = UIColor.systemGray2
             button.setTitleColor(UIColor.white, for: .normal)
             button.isSelected = true
+            chosenCategories.append((button.currentTitle?.lowercased())!)
         }
+        print(chosenCategories)
     }
 }
 
