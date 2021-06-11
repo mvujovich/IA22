@@ -146,7 +146,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     //Mr. Lagos is this an algorithm :( my brain hurts a bit so I hope so
     @IBAction func editTapped(_ sender: Any)
     {
-        if editingMode
+        if (editingMode)
         {
             //Revert to non-editing mode
             editingMode = false
@@ -198,6 +198,11 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         }
         else
         {
+            //Save current values (original values)
+            originalNameText = selfName.text!
+            originalBioText = selfBio.text!
+            originalAvatar = selfProfilePicture.image!
+            
             //Change to editing mode
             editingMode = true
             self.title = "Edit Profile"
@@ -207,12 +212,14 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             selfBio.isUserInteractionEnabled = true
             selfProfilePicture.isUserInteractionEnabled = true
             
-            //Get original values of name and bio
-            originalNameText = selfName.text!
-            originalBioText = selfBio.text!
-            originalAvatar = selfProfilePicture.image!
-            
-            selfBio.text = Constants.temporaryBio
+            if (originalNameText == "")
+            {
+                selfName.placeholder = Constants.temporaryName
+            }
+            if (originalBioText == "")
+            {
+                selfBio.placeholder = Constants.temporaryBio
+            }
         }
     }
     

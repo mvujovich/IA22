@@ -18,4 +18,5 @@ struct Constants {
     
     static let menuItemIdentifier = "menuItemCell"
     static let temporaryBio = "Your bio here"
+    static let temporaryName = "Your name here"
 }

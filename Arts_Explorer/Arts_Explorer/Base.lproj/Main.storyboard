@@ -443,35 +443,35 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="skQ-au-bnt">
-                                        <rect key="frame" x="0.0" y="30.333333333333329" width="358" height="154"/>
+                                        <rect key="frame" x="0.0" y="30.333333333333329" width="358" height="155"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNH-Ve-c3S">
-                                        <rect key="frame" x="0.0" y="194.33333333333334" width="358" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="195.33333333333334" width="358" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" text="Your description goes here!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fz2-EN-jBl">
-                                        <rect key="frame" x="0.0" y="224.66666666666669" width="358" height="33"/>
+                                        <rect key="frame" x="0.0" y="225.66666666666669" width="358" height="33"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Media" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlx-Ic-u7I">
-                                        <rect key="frame" x="0.0" y="267.66666666666669" width="358" height="20.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="268.66666666666669" width="358" height="20.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" translatesAutoresizingMaskIntoConstraints="NO" id="gCj-qt-jZC">
-                                        <rect key="frame" x="0.0" y="298" width="358" height="203.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="299" width="358" height="203.66666666666663"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="QzH-l3-Ul7">
-                                        <rect key="frame" x="0.0" y="511.66666666666663" width="358" height="30"/>
+                                        <rect key="frame" x="0.0" y="512.66666666666663" width="358" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5XT-xj-QqY">
                                                 <rect key="frame" x="0.0" y="0.0" width="240.33333333333334" height="30"/>
@@ -479,6 +479,11 @@
                                                 <state key="normal" title="Choose image">
                                                     <color key="titleColor" systemColor="linkColor"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="pressedChooseMedia:" destination="sEo-oJ-f5e" eventType="touchUpInside" id="WRF-va-Y2w"/>
                                                 </connections>
@@ -489,6 +494,11 @@
                                                 <state key="normal" title="Clear">
                                                     <color key="titleColor" systemColor="systemRedColor"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="pressedClearMedia:" destination="sEo-oJ-f5e" eventType="touchUpInside" id="SbG-Aa-OOm"/>
                                                 </connections>
@@ -496,20 +506,76 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-ov-nTh">
-                                        <rect key="frame" x="0.0" y="551.66666666666663" width="358" height="20.333333333333371"/>
+                                        <rect key="frame" x="0.0" y="552.66666666666663" width="358" height="20.333333333333371"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ic4-rY-bUo">
-                                        <rect key="frame" x="0.0" y="582" width="358" height="32"/>
-                                        <segments>
-                                            <segment title="Art"/>
-                                            <segment title="Drama"/>
-                                            <segment title="Film"/>
-                                            <segment title="Music"/>
-                                        </segments>
-                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gBZ-mL-ZDn">
+                                        <rect key="frame" x="0.0" y="583" width="358" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bk-ds-2cL">
+                                                <rect key="frame" x="0.0" y="0.0" width="83.666666666666671" height="30"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <state key="normal" title="Art">
+                                                    <color key="titleColor" systemColor="linkColor"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="artPressed:" destination="sEo-oJ-f5e" eventType="touchUpInside" id="EJ2-rb-PKo"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4TM-Oc-EB3">
+                                                <rect key="frame" x="91.666666666666686" y="0.0" width="83.333333333333314" height="30"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <state key="normal" title="Drama">
+                                                    <color key="titleColor" systemColor="linkColor"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dramaPressed:" destination="sEo-oJ-f5e" eventType="touchUpInside" id="JXI-W8-Zf9"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGB-Pm-OJg">
+                                                <rect key="frame" x="183" y="0.0" width="83.666666666666686" height="30"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <state key="normal" title="Film">
+                                                    <color key="titleColor" systemColor="linkColor"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="filmPressed:" destination="sEo-oJ-f5e" eventType="touchUpInside" id="VyH-Vt-41C"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvg-v4-fb9">
+                                                <rect key="frame" x="274.66666666666669" y="0.0" width="83.333333333333314" height="30"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <state key="normal" title="Music">
+                                                    <color key="titleColor" systemColor="linkColor"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="musicPressed:" destination="sEo-oJ-f5e" eventType="touchUpInside" id="p2C-sx-218"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4H-a8-2uD">
                                         <rect key="frame" x="0.0" y="623" width="358" height="35"/>
                                         <color key="backgroundColor" red="0.94652384519999999" green="0.38871365790000001" blue="0.32326072449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -518,6 +584,11 @@
                                         <state key="normal" title="Upload post">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="uploadPressed:" destination="sEo-oJ-f5e" eventType="touchUpInside" id="vcA-ok-2lL"/>
                                         </connections>
@@ -547,11 +618,14 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="upload" image="square.and.arrow.up" catalog="system" selectedImage="square.and.arrow.up" id="QlF-n2-CIC"/>
                     <connections>
-                        <outlet property="categorySelector" destination="Ic4-rY-bUo" id="Hvf-4G-VzJ"/>
+                        <outlet property="artButton" destination="0Bk-ds-2cL" id="RJN-cw-waT"/>
                         <outlet property="chooseButton" destination="5XT-xj-QqY" id="VSH-41-aVI"/>
                         <outlet property="descriptionTextView" destination="fz2-EN-jBl" id="kA2-MC-y4Q"/>
+                        <outlet property="dramaButton" destination="4TM-Oc-EB3" id="gbp-dD-egL"/>
                         <outlet property="errorLabel" destination="s7d-Sv-LIc" id="peN-oM-32R"/>
+                        <outlet property="filmButton" destination="nGB-Pm-OJg" id="RHH-kw-0s8"/>
                         <outlet property="imageHolder" destination="gCj-qt-jZC" id="oAb-wc-LWi"/>
+                        <outlet property="musicButton" destination="bvg-v4-fb9" id="yms-zX-ach"/>
                         <outlet property="titleTextField" destination="skQ-au-bnt" id="Aeg-yy-hXJ"/>
                         <outlet property="uploadButton" destination="b4H-a8-2uD" id="C9o-ka-1XA"/>
                     </connections>

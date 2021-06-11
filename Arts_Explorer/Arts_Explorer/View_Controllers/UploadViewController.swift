@@ -28,6 +28,17 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     
     @IBOutlet weak var errorLabel: UILabel!
     
+    @IBOutlet weak var artButton: UIButton!
+    
+    @IBOutlet weak var dramaButton: UIButton!
+    
+    @IBOutlet weak var filmButton: UIButton!
+    
+    @IBOutlet weak var musicButton: UIButton!
+    
+    var chosenCategories: Array<String>?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
@@ -183,13 +194,44 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
             print("Put complete, got: \(String(describing: downloadMetadata))")
         }
     }
-}
- 
- /*
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func artPressed(_ sender: Any)
+    {
+        changeButton(button: artButton)
     }
- */
+    
+    @IBAction func dramaPressed(_ sender: Any)
+    {
+        changeButton(button: dramaButton)
+    }
+    
+    
+    @IBAction func filmPressed(_ sender: Any)
+    {
+        changeButton(button: filmButton)
+    }
+    
+    @IBAction func musicPressed(_ sender: Any)
+    {
+        changeButton(button: musicButton)
+    }
+    
+    func changeButton(button: UIButton)
+    {
+        button.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        
+        if (button.isSelected)
+        {
+            button.backgroundColor = UIColor.systemGray5
+            button.setTitleColor(UIColor.link, for: .normal)
+            button.isSelected = false
+        }
+        else
+        {
+            button.backgroundColor = UIColor.systemGray2
+            button.setTitleColor(UIColor.white, for: .normal)
+            button.isSelected = true
+        }
+    }
+}
+
