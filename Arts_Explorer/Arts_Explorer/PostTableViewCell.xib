@@ -86,6 +86,9 @@
                                 <integer key="value" value="5"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="pressedViewComments:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Gv8-za-rro"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -107,11 +110,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="descriptionText" destination="B97-F7-Kwh" id="6Fr-UG-pdX"/>
-                <outlet property="postImageView" destination="zRe-Z0-rni" id="HZM-7r-Rb9"/>
-                <outlet property="titleText" destination="OY1-6m-c46" id="Yc1-He-YSD"/>
-                <outlet property="userImageView" destination="oqb-b4-FeT" id="bXU-PR-MPw"/>
-                <outlet property="userTopLabel" destination="kAy-zl-iPi" id="T9f-Kz-5P3"/>
+                <outlet property="descriptionText" destination="B97-F7-Kwh" id="v4O-Rz-yEf"/>
+                <outlet property="postImageView" destination="zRe-Z0-rni" id="mb4-Q9-ebD"/>
+                <outlet property="titleText" destination="OY1-6m-c46" id="c1a-4t-IB3"/>
+                <outlet property="userImageView" destination="oqb-b4-FeT" id="grx-Xj-XlX"/>
+                <outlet property="userTopLabel" destination="kAy-zl-iPi" id="hIz-NF-f9S"/>
             </connections>
             <point key="canvasLocation" x="49.275362318840585" y="228.34821428571428"/>
         </tableViewCell>

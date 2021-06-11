@@ -24,7 +24,9 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet var titleText: UILabel!
     
     @IBOutlet weak var descriptionText: UILabel!
-        
+    
+    var callBackOnCommentButton: (()->())?
+
     static let identifier = "PostTableViewCell"
     
     //Helps register cell with table view
@@ -93,6 +95,12 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         self.descriptionText.text = "\(model.description)"
         self.userImageView.image = UIImage(named: "placeholder-profile")
     }
+    
+    @IBAction func pressedViewComments(_ sender: Any)
+    {
+        self.callBackOnCommentButton?()
+    }
+    
 
 }
 

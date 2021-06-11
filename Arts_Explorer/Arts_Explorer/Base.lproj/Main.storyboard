@@ -408,6 +408,22 @@
             </objects>
             <point key="canvasLocation" x="1871" y="-618"/>
         </scene>
+        <!--Comments-->
+        <scene sceneID="o6T-fE-QbB">
+            <objects>
+                <viewController id="ziF-oC-qMn" customClass="CommentsViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YDP-JD-UnE">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="a5I-Ws-CDl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Comments" id="HBW-ra-KLt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jPn-y6-eI0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1117" y="-1356"/>
+        </scene>
         <!--Saved-->
         <scene sceneID="cH8-UK-21X">
             <objects>
@@ -677,6 +693,7 @@
                     <connections>
                         <outlet property="postListTableView" destination="jfm-VE-rkY" id="eRj-Ka-Zbw"/>
                         <segue destination="LHt-yS-ZJf" kind="show" identifier="showProfileFromPost" id="4rF-pi-OOE"/>
+                        <segue destination="ziF-oC-qMn" kind="presentation" identifier="showCommentsFromPost" id="1Xx-bg-GkY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHk-Ia-74R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -743,7 +760,28 @@
             </objects>
             <point key="canvasLocation" x="1116.9230769230769" y="-618.48341232227483"/>
         </scene>
+        <!--Comment-->
+        <scene sceneID="uUZ-2V-RuI">
+            <objects>
+                <navigationController storyboardIdentifier="commentsNavigationController" title="Comment" automaticallyAdjustsScrollViewInsets="NO" id="js2-SZ-Uz0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pny-3I-Fzs">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ziF-oC-qMn" kind="relationship" relationship="rootViewController" id="jZh-j6-Oye"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xxo-Eg-gfb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="389" y="-1356"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="jZh-j6-Oye"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="folder" catalog="system" width="128" height="97"/>

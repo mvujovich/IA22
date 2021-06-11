@@ -210,6 +210,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
         cell.configure(with: postsToShow[indexPath.row])
+        
+        cell.callBackOnCommentButton = {
+            self.performSegue(withIdentifier: "showCommentsFromPost", sender: nil)
+        }
         return cell
     }
     
@@ -233,6 +237,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     otherProfileViewController.otherUserName = opName
                 }
         
+        }
+        
+        if segue.identifier == "showCommentsFromPost"
+        {
+            _ = segue.destination as! CommentsViewController
         }
     }
     
