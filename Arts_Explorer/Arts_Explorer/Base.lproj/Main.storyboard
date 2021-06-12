@@ -433,6 +433,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrj-AP-2Vh">
                                         <rect key="frame" x="337" y="0.0" width="21" height="34"/>
                                         <state key="normal" image="paperplane" catalog="system"/>
+                                        <connections>
+                                            <action selector="sendCommentPressed:" destination="ziF-oC-qMn" eventType="touchUpInside" id="cAg-Il-Ipf"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -468,6 +471,7 @@
                     <navigationItem key="navigationItem" title="Comments" id="HBW-ra-KLt"/>
                     <connections>
                         <outlet property="commentListTableView" destination="JHh-z2-Lkv" id="jfN-49-edo"/>
+                        <outlet property="commentTextField" destination="NI9-gt-53Y" id="lsB-ND-phw"/>
                         <outlet property="titleLabel" destination="P49-VV-MEC" id="ExW-vx-ydy"/>
                     </connections>
                 </viewController>

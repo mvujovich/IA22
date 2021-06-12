@@ -5,8 +5,6 @@
 <p>Created for IB CS 2020-22</p>
 
 ### TODOs (ordered, with date):
-- THURS: Send comments from comment view to Firebase
-- THURS: Display all in table view cells in comment view
 - FRI: Add moderation screen with basic approval/rejection
 - FRI: Add ability to save posts from table views
 - FRI: Add view for saved posts (from self profile view)
@@ -31,7 +29,9 @@
 - Allow user to stay signed in with Firebase Authentication
 - Add individual buttons for categories in the upload view
 - Convert "categories" to an array data type accordingly
-- Display table view and place to enter comments
+- Display table view and text field for enter ingcomments
+- Send comments from comment view to Firebase
+- Display all comments in table view cells correctly
 
 ### Dependencies:
 - Firebase Auth

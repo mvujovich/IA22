@@ -66,9 +66,6 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         else {
             let titleText: String = titleTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let descriptionText: String = descriptionTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let commentArray = [String]()
-            
-            //FIX THIS LATER ^
             
             let postUUID = UUID().uuidString
             var mediaID: String = ""
@@ -91,7 +88,6 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
                                     "opID": opID,
                                     "opName": opName,
                                     "approved": true, //MARK: - FIX 'APPROVED'
-                                    "comments": commentArray,
                                     "categories": self.chosenCategories,
                                     "mediaID": mediaID,
                                     "title": titleText,

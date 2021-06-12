@@ -81,9 +81,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let mediaID: String = document.get("mediaID") as! String
                         let postTitle: String = document.get("title") as! String
                         let postDescription: String = document.get("description") as! String
-                        let commentsArray = [""] //Fix this later, obviously
                         let postTime: Timestamp = document.get("time") as! Timestamp
-                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, categories: postCategories, mediaID: mediaID, title: postTitle, description: postDescription, time: postTime)
+                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, categories: postCategories, mediaID: mediaID, title: postTitle, description: postDescription, time: postTime)
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)
@@ -119,9 +118,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let mediaID: String = document.get("mediaID") as! String
                         let postTitle: String = document.get("title") as! String
                         let postDescription: String = document.get("description") as! String
-                        let commentsArray = [""] //Fix this later, obviously
                         let postTime: Timestamp = document.get("time") as! Timestamp
-                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, comments: commentsArray, categories: postCategories, mediaID: mediaID, title: postTitle, description: postDescription, time: postTime)
+                        let post: AEPost = AEPost(id: postID, opID: postOPID, opName: postOPName, approved: true, categories: postCategories, mediaID: mediaID, title: postTitle, description: postDescription, time: postTime)
                         self.postsToShow.append(post)
                         let indexPath = IndexPath(row: self.postsToShow.count-1, section: 0)
                         self.postListTableView.insertRows(at: [indexPath], with: .automatic)

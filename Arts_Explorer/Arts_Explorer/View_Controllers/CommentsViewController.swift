@@ -18,6 +18,8 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var commentTextField: UITextField!
+    
     @IBOutlet weak var commentListTableView: UITableView!
     
     override func viewDidLoad() {
@@ -29,15 +31,6 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         commentListTableView.rowHeight = UITableView.automaticDimension
         commentListTableView.delegate = self
         commentListTableView.dataSource = self
-        
-        let c1: Comment = Comment(message: "message 1 is very long and therefore i will be testing the ability of the table view to show all of the text. if this cut off it would be quite sad.", commenterName: "commenter name 1", commenterID: "commenter id 1", approved: true, postID: "post id 1")
-        commentsToShow.append(c1)
-        
-        let c2: Comment = Comment(message: "message 2", commenterName: "commenter name 2", commenterID: "commenter id 2", approved: true, postID: "post id 2")
-        commentsToShow.append(c2)
-        
-        let c3: Comment = Comment(message: "message 3", commenterName: "commenter name 3", commenterID: "commenter id 3", approved: true, postID: "post id 3")
-        commentsToShow.append(c3)
         
         loadComments()
     }
@@ -58,22 +51,80 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func loadComments()
     {
-        for _ in commentsToShow
-        {
-            let indexPath = IndexPath(row: commentsToShow.count-1, section: 0)
-            self.commentListTableView.insertRows(at: [indexPath], with: .automatic)
+        let firestore = Firestore.firestore()
+        firestore.collection("comments").whereField("postID", isEqualTo: self.postID).order(by: "time", descending: true).limit(to: 20).addSnapshotListener()
+        { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    self.commentsToShow.removeAll()
+                    self.commentListTableView.reloadData()
+                    for document in querySnapshot!.documents
+                    {
+                        let storedCommentID: String = document.get("commentID") as! String
+                        let storedMessage: String = document.get("message") as! String
+                        let storedCommenterName: String = document.get("commenterName") as! String
+                        let storedCommenterID: String = document.get("commenterID") as! String
+                        let storedPostID: String = document.get("postID") as! String
+                        let storedCommentTime: Timestamp = document.get("time") as! Timestamp
+                        let comment: Comment = Comment(commentID: storedCommentID, message: storedMessage, commenterName: storedCommenterName, commenterID: storedCommenterID, approved: true, postID: storedPostID, time: storedCommentTime)
+                        self.commentsToShow.append(comment)
+                        let indexPath = IndexPath(row: self.commentsToShow.count-1, section: 0)
+                        self.commentListTableView.insertRows(at: [indexPath], with: .automatic)
+                    }
+                }
+            }
+    }
+    
+    
+    @IBAction func sendCommentPressed(_ sender: Any)
+    {
+        let message: String = commentTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if message == "" {
+            createAlert(title: "Error", message: Constants.emptyCommentError)
+        }
+        else {
+            let commentID = UUID().uuidString
+            let opID = Auth.auth().currentUser!.uid as String
+            print("op id while trying to post a comment is \(opID)")
+
+            let firestore = Firestore.firestore()
+            var opName: String = ""
+            let docRef = firestore.collection("users").document(opID)
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    opName = document.get("name") as! String
+                    firestore.collection("comments").document(commentID).setData(
+                                [   //Data saved in Dictionary
+                                    "commentID": commentID,
+                                    "message": message,
+                                    "commenterName": opName,
+                                    "commenterID": opID,
+                                    "approved": true, //MARK: - FIX LATER
+                                    "postID": self.postID,
+                                    "time": Timestamp(date: Date())
+                                ])
+                                { (error) in
+                                    if error != nil
+                                    {
+                                        self.createAlert(title: "Error", message: Constants.postingCommentError)
+                                    }
+                                }
+                            self.commentTextField.text = ""
+                        }
+                else
+                {
+                    self.createAlert(title: "Error", message: Constants.unknownUserError)
+                }
+            } //End larger async
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+        self.present(alert, animated: true, completion: nil)
     }
-    */
 
 }

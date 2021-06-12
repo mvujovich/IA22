@@ -56,7 +56,6 @@ class SignUpViewController: UIViewController {
                     else {
                         
                         //Empty String Arrays
-                        let postArray = [String]()
                         let savedPostArray = [String]()
                         
                         //Add document to Firebase
@@ -66,7 +65,6 @@ class SignUpViewController: UIViewController {
                             "id": result!.user.uid,
                             "name": nameText,
                             "mod": false,
-                            "posts": postArray,
                             "savedPosts": savedPostArray,
                             "avatarID": "",
                             "bio": ""

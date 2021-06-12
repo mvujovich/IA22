@@ -41,10 +41,11 @@ class CommentTableViewCell: UITableViewCell, UITextViewDelegate {
 }
 
 struct Comment {
+    var commentID: String
     var message: String
     var commenterName: String //name of commenter
     var commenterID: String
     var approved: Bool
     var postID: String //id of post
-    //var time: Timestamp
+    var time: Timestamp
 }
