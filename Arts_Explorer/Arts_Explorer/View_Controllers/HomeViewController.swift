@@ -141,7 +141,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if (chosen == "moderation")
         {
-            print("moderating") //Fix this later
+            performSegue(withIdentifier: "showModerationFromHome", sender: self)
         }
         else if (chosen == "log out")
         {
