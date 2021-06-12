@@ -11,6 +11,8 @@
 		89BE4F2A84075708A76A6559 /* Pods_Arts_ExplorerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A404F78C53E74E47D3BB802 /* Pods_Arts_ExplorerTests.framework */; };
 		D33963EE2670F8260047CA19 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33963ED2670F8260047CA19 /* SavedViewController.swift */; };
 		D33963F32673AF2F0047CA19 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33963F22673AF2E0047CA19 /* CommentsViewController.swift */; };
+		D33963F92673C3A20047CA19 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33963F72673C3A10047CA19 /* CommentTableViewCell.swift */; };
+		D33963FA2673C3A20047CA19 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33963F82673C3A10047CA19 /* CommentTableViewCell.xib */; };
 		D37ECECC2627423700F9EA90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECECB2627423700F9EA90 /* AppDelegate.swift */; };
 		D37ECECE2627423700F9EA90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECECD2627423700F9EA90 /* SceneDelegate.swift */; };
 		D37ECED02627423700F9EA90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECECF2627423700F9EA90 /* ViewController.swift */; };
@@ -38,15 +40,6 @@
 		D39B280C2666440D003C0974 /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B280B2666440D003C0974 /* OtherProfileViewController.swift */; };
 		D3AD367B265B2EAA006602EC /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AD3679265B2EAA006602EC /* PostTableViewCell.swift */; };
 		D3AD367C265B2EAA006602EC /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3AD367A265B2EAA006602EC /* PostTableViewCell.xib */; };
-		D3F8629D26289BB8000D9286 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8629C26289BB8000D9286 /* Post.swift */; };
-		D3F8629E26289BB9000D9286 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8629C26289BB8000D9286 /* Post.swift */; };
-		D3F8629F26289BB9000D9286 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8629C26289BB8000D9286 /* Post.swift */; };
-		D3F862A726289C8E000D9286 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F862A626289C8E000D9286 /* User.swift */; };
-		D3F862A826289C8E000D9286 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F862A626289C8E000D9286 /* User.swift */; };
-		D3F862A926289C8E000D9286 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F862A626289C8E000D9286 /* User.swift */; };
-		D3F862AE26289D2B000D9286 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F862AD26289D2B000D9286 /* Comment.swift */; };
-		D3F862AF26289D2B000D9286 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F862AD26289D2B000D9286 /* Comment.swift */; };
-		D3F862B026289D2B000D9286 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F862AD26289D2B000D9286 /* Comment.swift */; };
 		D3F862B526289F78000D9286 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F862B426289F78000D9286 /* Constants.swift */; };
 		D3F862B626289F78000D9286 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F862B426289F78000D9286 /* Constants.swift */; };
 		D3F862B726289F78000D9286 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F862B426289F78000D9286 /* Constants.swift */; };
@@ -83,6 +76,8 @@
 		A4EEEF3D8198CAA82397B0A9 /* Pods_Arts_Explorer_Arts_ExplorerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arts_Explorer_Arts_ExplorerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33963ED2670F8260047CA19 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		D33963F22673AF2E0047CA19 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		D33963F72673C3A10047CA19 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		D33963F82673C3A10047CA19 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		D37ECEC82627423700F9EA90 /* Arts_Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arts_Explorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D37ECECB2627423700F9EA90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D37ECECD2627423700F9EA90 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,9 +101,6 @@
 		D39B280B2666440D003C0974 /* OtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
 		D3AD3679265B2EAA006602EC /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		D3AD367A265B2EAA006602EC /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
-		D3F8629C26289BB8000D9286 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		D3F862A626289C8E000D9286 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		D3F862AD26289D2B000D9286 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		D3F862B426289F78000D9286 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D3F862BE26290669000D9286 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		D9A26F3260701A74664C212C /* Pods-Arts_Explorer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arts_Explorer.debug.xcconfig"; path = "Target Support Files/Pods-Arts_Explorer/Pods-Arts_Explorer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -191,7 +183,6 @@
 		D37ECECA2627423700F9EA90 /* Arts_Explorer */ = {
 			isa = PBXGroup;
 			children = (
-				D3F8629B26289BA5000D9286 /* Model */,
 				D37ECECB2627423700F9EA90 /* AppDelegate.swift */,
 				D37ECECD2627423700F9EA90 /* SceneDelegate.swift */,
 				D37ECED12627423700F9EA90 /* Main.storyboard */,
@@ -201,6 +192,8 @@
 				D37ECEFE2628473300F9EA90 /* GoogleService-Info.plist */,
 				D37ECF2626284DFA00F9EA90 /* View_Controllers */,
 				D3F862B426289F78000D9286 /* Constants.swift */,
+				D33963F72673C3A10047CA19 /* CommentTableViewCell.swift */,
+				D33963F82673C3A10047CA19 /* CommentTableViewCell.xib */,
 				D3AD3679265B2EAA006602EC /* PostTableViewCell.swift */,
 				D3AD367A265B2EAA006602EC /* PostTableViewCell.xib */,
 			);
@@ -240,16 +233,6 @@
 				D33963F22673AF2E0047CA19 /* CommentsViewController.swift */,
 			);
 			path = View_Controllers;
-			sourceTree = "<group>";
-		};
-		D3F8629B26289BA5000D9286 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				D3F8629C26289BB8000D9286 /* Post.swift */,
-				D3F862A626289C8E000D9286 /* User.swift */,
-				D3F862AD26289D2B000D9286 /* Comment.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D37ECED82627423B00F9EA90 /* LaunchScreen.storyboard in Resources */,
+				D33963FA2673C3A20047CA19 /* CommentTableViewCell.xib in Resources */,
 				D3AD367C265B2EAA006602EC /* PostTableViewCell.xib in Resources */,
 				D37ECEFF2628473300F9EA90 /* GoogleService-Info.plist in Resources */,
 				D37ECED52627423B00F9EA90 /* Assets.xcassets in Resources */,
@@ -500,15 +484,13 @@
 				D33963F32673AF2F0047CA19 /* CommentsViewController.swift in Sources */,
 				D37ECF3926284E3500F9EA90 /* HomeViewController.swift in Sources */,
 				D37ECECC2627423700F9EA90 /* AppDelegate.swift in Sources */,
-				D3F8629D26289BB8000D9286 /* Post.swift in Sources */,
 				D33963EE2670F8260047CA19 /* SavedViewController.swift in Sources */,
 				D3AD367B265B2EAA006602EC /* PostTableViewCell.swift in Sources */,
 				D3F862BF2629066A000D9286 /* MainTabBarViewController.swift in Sources */,
 				D37ECECE2627423700F9EA90 /* SceneDelegate.swift in Sources */,
 				D39B2807266643FA003C0974 /* UserProfileViewController.swift in Sources */,
 				D39B280C2666440D003C0974 /* OtherProfileViewController.swift in Sources */,
-				D3F862A726289C8E000D9286 /* User.swift in Sources */,
-				D3F862AE26289D2B000D9286 /* Comment.swift in Sources */,
+				D33963F92673C3A20047CA19 /* CommentTableViewCell.swift in Sources */,
 				D37ECF2026284CD700F9EA90 /* SignUpViewController.swift in Sources */,
 				D3F862B526289F78000D9286 /* Constants.swift in Sources */,
 			);
@@ -522,11 +504,8 @@
 				D37ECF2926284E1500F9EA90 /* UploadViewController.swift in Sources */,
 				D3F862C02629066A000D9286 /* MainTabBarViewController.swift in Sources */,
 				D37ECF1A26284CBE00F9EA90 /* LogInViewController.swift in Sources */,
-				D3F862A826289C8E000D9286 /* User.swift in Sources */,
 				D3F862B626289F78000D9286 /* Constants.swift in Sources */,
 				D37ECEE32627423B00F9EA90 /* Arts_ExplorerTests.swift in Sources */,
-				D3F8629E26289BB9000D9286 /* Post.swift in Sources */,
-				D3F862AF26289D2B000D9286 /* Comment.swift in Sources */,
 				D37ECF3A26284E3500F9EA90 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -539,11 +518,8 @@
 				D37ECF2A26284E1500F9EA90 /* UploadViewController.swift in Sources */,
 				D3F862C12629066A000D9286 /* MainTabBarViewController.swift in Sources */,
 				D37ECF1B26284CBE00F9EA90 /* LogInViewController.swift in Sources */,
-				D3F862A926289C8E000D9286 /* User.swift in Sources */,
 				D3F862B726289F78000D9286 /* Constants.swift in Sources */,
 				D37ECEEE2627423B00F9EA90 /* Arts_ExplorerUITests.swift in Sources */,
-				D3F8629F26289BB9000D9286 /* Post.swift in Sources */,
-				D3F862B026289D2B000D9286 /* Comment.swift in Sources */,
 				D37ECF3B26284E3500F9EA90 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

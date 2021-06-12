@@ -436,19 +436,38 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JHh-z2-Lkv">
+                                <rect key="frame" x="0.0" y="128.33333333333331" width="390" height="629.66666666666674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CZb-tx-TjW" customClass="CommentTableViewCell" customModule="Arts_Explorer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CZb-tx-TjW" id="ZO2-jp-pzt">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="a5I-Ws-CDl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="a5I-Ws-CDl" firstAttribute="trailing" secondItem="JHh-z2-Lkv" secondAttribute="trailing" id="47X-Cq-Sad"/>
                             <constraint firstItem="P49-VV-MEC" firstAttribute="top" secondItem="a5I-Ws-CDl" secondAttribute="top" constant="12" id="9Ip-KS-dQP"/>
                             <constraint firstItem="WfL-Jm-NY5" firstAttribute="leading" secondItem="a5I-Ws-CDl" secondAttribute="leading" constant="16" id="Edk-3A-1XE"/>
+                            <constraint firstItem="JHh-z2-Lkv" firstAttribute="leading" secondItem="a5I-Ws-CDl" secondAttribute="leading" id="IUo-Cd-3cj"/>
+                            <constraint firstItem="JHh-z2-Lkv" firstAttribute="top" secondItem="P49-VV-MEC" secondAttribute="bottom" constant="8" id="Ke0-uJ-m4k"/>
                             <constraint firstItem="a5I-Ws-CDl" firstAttribute="trailing" secondItem="WfL-Jm-NY5" secondAttribute="trailing" constant="16" id="ZOo-cv-Obb"/>
+                            <constraint firstItem="WfL-Jm-NY5" firstAttribute="top" secondItem="JHh-z2-Lkv" secondAttribute="bottom" constant="8" id="c5X-tz-J6E"/>
                             <constraint firstItem="a5I-Ws-CDl" firstAttribute="bottom" secondItem="WfL-Jm-NY5" secondAttribute="bottom" constant="10" id="o7X-R6-PFV"/>
                             <constraint firstItem="P49-VV-MEC" firstAttribute="centerX" secondItem="YDP-JD-UnE" secondAttribute="centerX" id="xS8-9r-H9l"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Comments" id="HBW-ra-KLt"/>
                     <connections>
+                        <outlet property="commentListTableView" destination="JHh-z2-Lkv" id="jfN-49-edo"/>
                         <outlet property="titleLabel" destination="P49-VV-MEC" id="ExW-vx-ydy"/>
                     </connections>
                 </viewController>
