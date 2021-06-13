@@ -5,7 +5,6 @@
 <p>Created for IB CS 2020-22</p>
 
 ### TODOs (ordered):
-- Add moderation screen with approval/denial for comments
 - Connect comment view to post tables from non-home views
 - Connect moderation items to other profile views
 - Add ability to save posts from post table views
@@ -33,6 +32,7 @@
 - Send comments from comment view to Firebase
 - Display all comments in table view cells correctly
 - Add moderation screen with approval/denial for posts
+- Add moderation screen with approval/denial for comments
 
 ### Dependencies:
 - Firebase Auth

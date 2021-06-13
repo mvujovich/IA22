@@ -28,6 +28,8 @@ class ModerationPostTableViewCell: UITableViewCell {
     var callBackOnApproveButton: (()->())?
     
     var callBackOnDenyButton: (()->())?
+    
+    var userID: String = ""
 
     static let identifier = "ModerationPostTableViewCell"
     
@@ -77,6 +79,7 @@ class ModerationPostTableViewCell: UITableViewCell {
                 print("Document does not exist")
             }
         }
+        userID = model.opID
         userNameText.text = model.opName
         postTitleText.text = model.title
         postDescriptionText.text = model.description

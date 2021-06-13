@@ -15,9 +15,7 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
     var postsToShow = [AEPost]()
     
     var opID: String = ""
-    
-    var opName: String = ""
-    
+        
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {

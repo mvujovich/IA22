@@ -52,7 +52,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     func loadComments()
     {
         let firestore = Firestore.firestore()
-        firestore.collection("comments").whereField("postID", isEqualTo: self.postID).order(by: "time", descending: true).limit(to: 20).addSnapshotListener()
+        firestore.collection("comments").whereField("postID", isEqualTo: self.postID).whereField("approved", isEqualTo: true).order(by: "time", descending: true).limit(to: 20).addSnapshotListener()
         { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -66,8 +66,8 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
                         let storedCommenterName: String = document.get("commenterName") as! String
                         let storedCommenterID: String = document.get("commenterID") as! String
                         let storedPostID: String = document.get("postID") as! String
-                        let storedCommentTime: Timestamp = document.get("time") as! Timestamp
-                        let comment: Comment = Comment(commentID: storedCommentID, message: storedMessage, commenterName: storedCommenterName, commenterID: storedCommenterID, approved: true, postID: storedPostID, time: storedCommentTime)
+                        let storedTime: Timestamp = document.get("time") as! Timestamp
+                        let comment: Comment = Comment(commentID: storedCommentID, message: storedMessage, commenterName: storedCommenterName, commenterID: storedCommenterID, approved: true, postID: storedPostID, time: storedTime)
                         self.commentsToShow.append(comment)
                         let indexPath = IndexPath(row: self.commentsToShow.count-1, section: 0)
                         self.commentListTableView.insertRows(at: [indexPath], with: .automatic)
@@ -100,7 +100,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
                                     "message": message,
                                     "commenterName": opName,
                                     "commenterID": opID,
-                                    "approved": true, //MARK: - FIX LATER
+                                    "approved": false,
                                     "postID": self.postID,
                                     "time": Timestamp(date: Date())
                                 ])
