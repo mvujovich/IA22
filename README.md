@@ -4,13 +4,12 @@
 <p>Author: Mirjana Vujovich</p>
 <p>Created for IB CS 2020-22</p>
 
-### TODOs (ordered, with date):
-- FRI: Add moderation screen with basic approval/rejection
-- FRI: Add ability to save posts from table views
-- FRI: Add view for saved posts (from self profile view)
-- SAT: Display all errors in popups or text views to the user
-- SAT: Show progress bars/success messages (database calls)
-<p>Note: the day listed is when I aim to finish this task.</p>
+### TODOs (ordered):
+- Add moderation screen with approval/denial for comments
+- Connect comment view to post tables from non-home views
+- Add ability to save posts from post table views
+- Populate view for saved posts (from self profile view)
+- Fix error handling so that errors show in popups
 
 ### Completed TODOs (not really ordered):
 - Integrate Firebase storage (image support; for uploading posts)
@@ -32,6 +31,7 @@
 - Display table view and text field for enter ingcomments
 - Send comments from comment view to Firebase
 - Display all comments in table view cells correctly
+- Add moderation screen with approval/denial for posts
 
 ### Dependencies:
 - Firebase Auth

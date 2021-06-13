@@ -96,7 +96,7 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
     
     func loadPosts() {
         let firestore = Firestore.firestore()
-        firestore.collection("posts").whereField("opID", isEqualTo: otherUserID).order(by: "time", descending: true).limit(to: 15).getDocuments() { (querySnapshot, err) in
+        firestore.collection("posts").whereField("opID", isEqualTo: otherUserID).whereField("approved", isEqualTo: true).order(by: "time", descending: true).limit(to: 15).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {

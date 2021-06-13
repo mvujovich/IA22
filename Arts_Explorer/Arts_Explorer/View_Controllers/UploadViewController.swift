@@ -23,9 +23,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var chooseButton: UIButton!
     
     @IBOutlet weak var uploadButton: UIButton!
-    
-    @IBOutlet weak var errorLabel: UILabel!
-    
+        
     @IBOutlet weak var artButton: UIButton!
     
     @IBOutlet weak var dramaButton: UIButton!
@@ -43,7 +41,6 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     func setUpElements() {
-        errorLabel.alpha = 0
         uploadButton.layer.cornerRadius = 5
         imageHolder.image = UIImage(named: "placeholder-post")
         imageHolder.contentMode = UIView.ContentMode.scaleAspectFill
@@ -59,8 +56,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         
         if error != nil {
             //If there is an error:
-            showError(message: error!)
-            self.errorLabel.textColor = UIColor.systemRed
+            createAlert(title: "Error", message: error!)
             //Exclamation point to force unwrap
         }
         else {
@@ -95,16 +91,15 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
                                     "time": Timestamp(date: Date())
                                 ]) { (error) in
                                     if error != nil { //User object not saved to Firebase
-                                        self.showError(message: "Post could not be added.")
-                                        self.errorLabel.textColor = UIColor.systemRed
+                                        self.createAlert(title: "Error", message: "Post could not be added.")
                                     }
                                     else {
-                                        self.showError(message: "Post added successfully.")
-                                        self.errorLabel.textColor = UIColor.systemGreen
+                                        self.createAlert(title: "Success!", message: "Post added successfully.")
+                                        self.clearFieldsAndInfo()
                                     }
                                 }
                 } else {
-                    self.showError(message: "User does not exist.")
+                    self.createAlert(title: "Error", message: "User does not exist.")
                 }
             } //End larger async
         }
@@ -132,9 +127,23 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         
     }
 
-    func showError(message: String) {
-        errorLabel.text = message
-        errorLabel.alpha = 1 //Make error text visible
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func clearFieldsAndInfo()
+    {
+        titleTextField.text = ""
+        descriptionTextView.text = ""
+        imageHolder.image = UIImage(named: "placeholder-post")
+        chosenCategories.removeAll()
+        turnButtonOffVisually(buttonToTurnOff: artButton)
+        turnButtonOffVisually(buttonToTurnOff: dramaButton)
+        turnButtonOffVisually(buttonToTurnOff: filmButton)
+        turnButtonOffVisually(buttonToTurnOff: musicButton)
     }
     
     //MARK: - Media
@@ -205,23 +214,33 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     {
         button.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         
-        if (button.isSelected)
+        if (button.isSelected) //Going from selected --> not selected
         {
-            button.backgroundColor = UIColor.systemGray5
-            button.setTitleColor(UIColor.link, for: .normal)
-            button.isSelected = false
+            turnButtonOffVisually(buttonToTurnOff: button)
             while let index = chosenCategories.firstIndex(of: (button.currentTitle?.lowercased())!) {
                 chosenCategories.remove(at: index)
             }
         }
-        else
+        else //Going from not selected --> selected
         {
-            button.backgroundColor = UIColor.systemGray2
-            button.setTitleColor(UIColor.white, for: .normal)
-            button.isSelected = true
+            turnButtonOnVisually(buttonToTurnOn: button)
             chosenCategories.append((button.currentTitle?.lowercased())!)
         }
         print(chosenCategories)
+    }
+    
+    func turnButtonOffVisually(buttonToTurnOff: UIButton)
+    {
+        buttonToTurnOff.backgroundColor = UIColor.systemGray5
+        buttonToTurnOff.setTitleColor(UIColor.link, for: .normal)
+        buttonToTurnOff.isSelected = false
+    }
+    
+    func turnButtonOnVisually(buttonToTurnOn: UIButton)
+    {
+        buttonToTurnOn.backgroundColor = UIColor.systemGray2
+        buttonToTurnOn.setTitleColor(UIColor.white, for: .normal)
+        buttonToTurnOn.isSelected = true
     }
 }
 

@@ -278,7 +278,7 @@ protocol MenuControllerDelegate {
 
 class MenuListController: UITableViewController //Class needed for inheritance stuff
 {
-    var menuListItems = ["Home", "Art", "Drama", "Film", "Music", "Log out"]
+    var menuListItems = [String]()
     
     var userIsMod: Bool = false
     let darkColor: UIColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0)
@@ -292,6 +292,8 @@ class MenuListController: UITableViewController //Class needed for inheritance s
         
         let firestore = Firestore.firestore()
         let currentUserID = Auth.auth().currentUser!.uid as String
+        self.tableView.backgroundColor = self.darkColor
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.menuItemIdentifier)
         
         let docRef = firestore.collection("users").document("\(currentUserID)")
         docRef.getDocument { (document, error) in
@@ -299,7 +301,12 @@ class MenuListController: UITableViewController //Class needed for inheritance s
                 self.userIsMod = document.get("mod") as! Bool
                 if (self.userIsMod)
                 {
-                    self.menuListItems.insert("Moderation", at: 4)
+                    self.menuListItems = ["Home", "Art", "Drama", "Film", "Music", "Moderation", "Log out"]
+                    self.tableView.reloadData()
+                }
+                else
+                {
+                    self.menuListItems = ["Home", "Art", "Drama", "Film", "Music", "Log out"]
                     self.tableView.reloadData()
                 }
                 
@@ -307,8 +314,7 @@ class MenuListController: UITableViewController //Class needed for inheritance s
                 print("Document does not exist")
             }
         }
-        self.tableView.backgroundColor = self.darkColor
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.menuItemIdentifier)
+        
     }
     
     //MARK: - Menu table actions

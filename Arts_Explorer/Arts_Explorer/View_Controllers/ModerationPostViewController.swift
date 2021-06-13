@@ -17,9 +17,22 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
     var opID: String = ""
     
     var opName: String = ""
-
+    
+    private let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            pendingPostListTableView.refreshControl = refreshControl
+        } else {
+            pendingPostListTableView.addSubview(refreshControl)
+        }
+        
+        refreshControl.addTarget(self, action: #selector(reloadPendingPosts(_:)), for: .valueChanged)
+
         pendingPostListTableView.register(ModerationPostTableViewCell.nib(), forCellReuseIdentifier: ModerationPostTableViewCell.identifier)
         pendingPostListTableView.rowHeight = UITableView.automaticDimension
         pendingPostListTableView.delegate = self
@@ -105,6 +118,13 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
                     }
                 }
             }
+        self.refreshControl.endRefreshing()
+    }
+    
+    //MARK: - Reload
+    
+    @objc func reloadPendingPosts(_ sender: Any) {
+        self.loadPendingPosts()
     }
     
     //MARK: - Alert
