@@ -302,10 +302,10 @@
             </objects>
             <point key="canvasLocation" x="-363" y="835"/>
         </scene>
-        <!--View Controller-->
+        <!--Moderation Post View Controller-->
         <scene sceneID="bHh-hk-AUh">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="MTz-Eu-qUC" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="MTz-Eu-qUC" customClass="ModerationPostViewController" customModule="Arts_Explorer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rvH-bi-FV6">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -320,7 +320,7 @@
                                 <rect key="frame" x="0.0" y="141" width="390" height="669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9n8-O1-qoj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ModerationPostTableViewCell" id="9n8-O1-qoj">
                                         <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9n8-O1-qoj" id="HUJ-L0-Ysd">
@@ -343,6 +343,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6oU-ed-ZXr"/>
+                    <connections>
+                        <outlet property="pendingPostListTableView" destination="oXl-IY-OvY" id="HRd-4R-G0c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYN-Xq-teD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -430,7 +433,7 @@
                                 <rect key="frame" x="0.0" y="144" width="390" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="GtP-pe-TA9">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ModerationCommentTableViewCell" id="GtP-pe-TA9">
                                         <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GtP-pe-TA9" id="IPc-5V-2De">

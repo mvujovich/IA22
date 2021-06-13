@@ -243,7 +243,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     otherProfileViewController.otherUserID = opID
                     otherProfileViewController.otherUserName = opName
                 }
-        
         }
         
         if segue.identifier == "showCommentsFromPost"

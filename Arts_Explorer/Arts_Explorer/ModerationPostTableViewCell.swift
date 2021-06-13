@@ -1,8 +1,8 @@
 //
-//  PostTableViewCell.swift
+//  ModerationPostTableViewCell.swift
 //  Arts_Explorer
 //
-//  Created by Mirjana Aleksandra Qi Vujovich on 24/5/2021.
+//  Created by Mirjana Aleksandra Qi Vujovich on 13/6/2021.
 //
 
 import UIKit
@@ -11,27 +11,29 @@ import FirebaseStorage
 import FirebaseUI
 import SDWebImage
 
-class PostTableViewCell: UITableViewCell, UITextViewDelegate {
+class ModerationPostTableViewCell: UITableViewCell {
     
-    //MARK: - Declare variables, etc.
+    @IBOutlet weak var userImageView: UIImageView!
     
-    @IBOutlet var userImageView: UIImageView!
+    @IBOutlet weak var userNameText: UILabel!
     
-    @IBOutlet var postImageView: UIImageView!
+    @IBOutlet weak var postTitleText: UILabel!
     
-    @IBOutlet var userTopLabel: UILabel!
+    @IBOutlet weak var postDescriptionText: UILabel!
     
-    @IBOutlet var titleText: UILabel!
+    @IBOutlet weak var postImageView: UIImageView!
     
-    @IBOutlet weak var descriptionText: UILabel!
+    @IBOutlet weak var postCategoriesText: UILabel!
     
-    var callBackOnCommentButton: (()->())?
+    var callBackOnApproveButton: (()->())?
+    
+    var callBackOnDenyButton: (()->())?
 
-    static let identifier = "PostTableViewCell"
+    static let identifier = "ModerationPostTableViewCell"
     
     //Helps register cell with table view
     static func nib() -> UINib {
-        return UINib(nibName: "PostTableViewCell", bundle: nil)
+        return UINib(nibName: "ModerationPostTableViewCell", bundle: nil)
     }
 
     override func awakeFromNib() {
@@ -42,29 +44,14 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated) }
     
-//MARK: - Configure
-     
+    //MARK: - Configure
+    
     func configure(with model: AEPost) {
         if (model.mediaID != "")
         {
             let storageRef = Storage.storage().reference(withPath: "posts/\(model.id)")
-            print(storageRef.name)
             // Load the image using SDWebImage and FirebaseUI stuff
             self.postImageView.sd_setImage(with: storageRef, placeholderImage: nil)
-            
-            /*
-            Backup for plain Firebase Storage code
-            storageRef.getData(maxSize: 1024 * 1024) { [weak self](data, error) in
-                if let error = error {
-                    print("Error fetching data: \(error.localizedDescription)")
-                    return
-                }
-                if let data = data {
-                    let image = UIImage(data: data)
-                    self?.postImageView.image = UIImage(data: data)
-                }
-            }
-            */
         }
         else
         {
@@ -90,29 +77,25 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
                 print("Document does not exist")
             }
         }
-        self.userTopLabel.text = "\(model.opName)"
-        self.titleText.text = "\(model.title)"
-        self.descriptionText.text = "\(model.description)"
+        userNameText.text = model.opName
+        postTitleText.text = model.title
+        postDescriptionText.text = model.description
+        
+        let tempCategoryString = model.categories.joined(separator: ", ")
+        var finalCategoryString = tempCategoryString.first?.uppercased() ?? ""
+        finalCategoryString.append(String(tempCategoryString.dropFirst()))
+        postCategoriesText.text = finalCategoryString
+        
     }
     
-    @IBAction func pressedViewComments(_ sender: Any)
-    {
-        self.callBackOnCommentButton?()
+    //MARK: - Closures
+    
+    @IBAction func pressedApproveButton(_ sender: Any) {
+        self.callBackOnApproveButton?()
     }
     
-
-}
-
-//MARK: - AEPost struct
-
-struct AEPost {
-    var id: String
-    var opID: String //uid of OP
-    var opName: String
-    var approved: Bool
-    var categories: Array<String>
-    var mediaID: String //Media in Firebase Storage
-    var title: String
-    var description: String
-    var time: Timestamp
+    @IBAction func pressedDenyButton(_ sender: Any) {
+        self.callBackOnDenyButton?()
+    }
+    
 }
