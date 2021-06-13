@@ -63,6 +63,7 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
             firestore.collection("posts").document(postID).updateData(["approved": true])
             self.postsToShow.remove(at: indexPath.row)
             self.pendingPostListTableView.deleteRows(at: [indexPath], with: .fade)
+            self.pendingPostListTableView.reloadData()
             //delete from table view
         }
         
@@ -76,6 +77,7 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
                     print("Document successfully removed!")
                     self.postsToShow.remove(at: indexPath.row)
                     self.pendingPostListTableView.deleteRows(at: [indexPath], with: .fade)
+                    self.pendingPostListTableView.reloadData()
                 }
             }
         }

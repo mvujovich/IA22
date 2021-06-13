@@ -5,8 +5,7 @@
 <p>Created for IB CS 2020-22</p>
 
 ### TODOs (ordered):
-- Connect comment view to post tables from non-home views
-- Connect moderation items to other profile views
+- Connect moderation items to other views (post, profile)
 - Add ability to save posts from post table views
 - Populate view for saved posts (from self profile view)
 - Fix error handling so that errors show in popups
@@ -33,6 +32,7 @@
 - Display all comments in table view cells correctly
 - Add moderation screen with approval/denial for posts
 - Add moderation screen with approval/denial for comments
+- Connect comment view to post tables from non-home views
 
 ### Dependencies:
 - Firebase Auth

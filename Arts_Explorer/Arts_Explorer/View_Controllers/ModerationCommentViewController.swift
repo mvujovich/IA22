@@ -61,6 +61,7 @@ class ModerationCommentViewController: UIViewController, UITableViewDelegate, UI
             firestore.collection("comments").document(commentID).updateData(["approved": true])
             self.commentsToShow.remove(at: indexPath.row)
             self.pendingCommentListTableView.deleteRows(at: [indexPath], with: .fade)
+            self.pendingCommentListTableView.reloadData()
             //delete from table view
         }
         
@@ -74,6 +75,7 @@ class ModerationCommentViewController: UIViewController, UITableViewDelegate, UI
                     print("Document successfully removed!")
                     self.commentsToShow.remove(at: indexPath.row)
                     self.pendingCommentListTableView.deleteRows(at: [indexPath], with: .fade)
+                    self.pendingCommentListTableView.reloadData()
                 }
             }
         }

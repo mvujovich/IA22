@@ -29,6 +29,11 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
     
     private let refreshControl = UIRefreshControl()
     
+    //Used for segue to comment view
+    var opID: String = ""
+    var opName: String = ""
+    var postID: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,7 +67,19 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = othProfPostListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
         cell.configure(with: postsToShow[indexPath.row])
+        
+        cell.callBackOnCommentButton = {
+            self.prepareInfo(indexPath: indexPath)
+            self.performSegue(withIdentifier: "showCommentsFromOtherProfile", sender: nil)
+        }
         return cell
+    }
+    
+    func prepareInfo(indexPath: IndexPath)
+    {
+        opID = postsToShow[indexPath.row].opID
+        opName = postsToShow[indexPath.row].opName
+        postID = postsToShow[indexPath.row].id
     }
     
     func loadInfo()
@@ -124,9 +141,15 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         self.loadPosts()
     }
     
-    // MARK: - Instructions
-
-    //  In a storyboard-based application, you will often want to do a little preparation before navigation override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showCommentsFromOtherProfile"
+        {
+            let commentsViewController = segue.destination as! CommentsViewController
+            commentsViewController.postID = postID
+            commentsViewController.opName = opName
+        }
+    }
 }

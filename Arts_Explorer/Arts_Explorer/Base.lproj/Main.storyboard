@@ -130,6 +130,7 @@
                         <outlet property="nameLabel" destination="rnM-JQ-KgU" id="Vqk-3S-otG"/>
                         <outlet property="othProfPostListTableView" destination="csb-d0-eJZ" id="1fs-PI-GtD"/>
                         <outlet property="profilePictureImageView" destination="KV0-wj-htg" id="HR7-Fb-T3a"/>
+                        <segue destination="ziF-oC-qMn" kind="presentation" identifier="showCommentsFromOtherProfile" id="17e-OK-Z7S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jba-5T-hBh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -564,6 +565,7 @@
                         <outlet property="selfPostListTableView" destination="fXX-4D-QFU" id="LIh-qp-8tu"/>
                         <outlet property="selfProfilePicture" destination="GUS-oa-DA9" id="Nfy-Wb-GrA"/>
                         <segue destination="kCH-qa-fUf" kind="show" identifier="showSavedFromProfile" id="h2m-JZ-x6t"/>
+                        <segue destination="ziF-oC-qMn" kind="presentation" identifier="showCommentsFromUserProfile" id="gzR-1J-kHf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FEB-oG-0Dl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1010,7 +1012,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1Xx-bg-GkY"/>
+        <segue reference="17e-OK-Z7S"/>
         <segue reference="jBM-kV-fWJ"/>
     </inferredMetricsTieBreakers>
     <resources>

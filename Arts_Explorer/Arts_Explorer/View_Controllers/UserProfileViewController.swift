@@ -28,12 +28,15 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     var editingMode: Bool = false
     var postsToShow = [AEPost]()
-    
-    var opID = ""
-    
+        
     var originalNameText: String = ""
     var originalBioText: String = ""
     var originalAvatar: UIImage?
+    
+    //Used for segue to comment view
+    var opID: String = ""
+    var opName: String = ""
+    var postID: String = ""
         
     private let refreshControl = UIRefreshControl()
     
@@ -111,7 +114,19 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = selfPostListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
         cell.configure(with: postsToShow[indexPath.row])
+        
+        cell.callBackOnCommentButton = {
+            self.prepareInfo(indexPath: indexPath)
+            self.performSegue(withIdentifier: "showCommentsFromUserProfile", sender: nil)
+        }
         return cell
+    }
+    
+    func prepareInfo(indexPath: IndexPath)
+    {
+        opID = postsToShow[indexPath.row].opID
+        opName = postsToShow[indexPath.row].opName
+        postID = postsToShow[indexPath.row].id
     }
     
     func loadInfo()
@@ -273,6 +288,13 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         if segue.identifier == "showSavedFromProfile"
         {
             _ = segue.destination as! SavedViewController
+        }
+        
+        if segue.identifier == "showCommentsFromUserProfile"
+        {
+            let commentsViewController = segue.destination as! CommentsViewController
+            commentsViewController.postID = postID
+            commentsViewController.opName = opName
         }
     }
     
