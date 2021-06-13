@@ -47,8 +47,12 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
         cell.configure(with: postsToShow[indexPath.row])
         
         cell.callBackOnApproveButton = {
-            //self.prepareInfo(indexPath: indexPath)
-            //self.performSegue(withIdentifier: "showCommentsFromPost", sender: nil)
+            let postID = self.postsToShow[indexPath.row].id
+            let firestore = Firestore.firestore()
+            firestore.collection("posts").document(postID).updateData(["approved": true])
+            self.postsToShow.remove(at: indexPath.row)
+            self.pendingPostListTableView.deleteRows(at: [indexPath], with: .fade)
+            //delete from table view
         }
         return cell
     }
