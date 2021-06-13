@@ -104,7 +104,7 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
                     self.profilePictureImageView.image = UIImage(named: "placeholder-profile")
                 }
             } else {
-                print("Document does not exist")
+                self.createAlert(title: "Error", message: Constants.unknownUserError)
             }
         }
     }
@@ -115,7 +115,7 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         let firestore = Firestore.firestore()
         firestore.collection("posts").whereField("opID", isEqualTo: otherUserID).whereField("approved", isEqualTo: true).order(by: "time", descending: true).limit(to: 15).getDocuments() { (querySnapshot, err) in
                 if let err = err {
-                    print("Error getting documents: \(err)")
+                    self.createAlert(title: "Error", message: "Error getting posts: \(err.localizedDescription)")
                 } else {
                     for document in querySnapshot!.documents {
                         let postID: String = document.get("id") as! String
@@ -139,6 +139,15 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
     
     @objc func reloadPosts(_ sender: Any) {
         self.loadPosts()
+    }
+    
+    //MARK: - Alert
+    
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Navigation

@@ -55,7 +55,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         firestore.collection("comments").whereField("postID", isEqualTo: self.postID).whereField("approved", isEqualTo: true).order(by: "time", descending: true).limit(to: 20).addSnapshotListener()
         { (querySnapshot, err) in
                 if let err = err {
-                    print("Error getting documents: \(err)")
+                    self.createAlert(title: "Error", message: "Error getting documents: \(err.localizedDescription)")
                 } else {
                     self.commentsToShow.removeAll()
                     self.commentListTableView.reloadData()
@@ -86,7 +86,6 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         else {
             let commentID = UUID().uuidString
             let opID = Auth.auth().currentUser!.uid as String
-            print("op id while trying to post a comment is \(opID)")
 
             let firestore = Firestore.firestore()
             var opName: String = ""

@@ -52,7 +52,6 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         if (model.mediaID != "")
         {
             let storageRef = Storage.storage().reference(withPath: "posts/\(model.id)")
-            print(storageRef.name)
             // Load the image using SDWebImage and FirebaseUI stuff
             self.postImageView.sd_setImage(with: storageRef, placeholderImage: nil)
             
@@ -93,7 +92,7 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
             let opID = Auth.auth().currentUser!.uid as String
             self.fillSaveButtons(currentUser: opID)
             } else {
-                print("Document does not exist")
+                self.titleText.text = Constants.postNotFoundError
             }
         }
         
@@ -155,7 +154,7 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
                     self.saveButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
                 }
             } else {
-                print("Document does not exist") //fix
+                //Nothing signficant can be added here...
             }
         }
     }

@@ -76,7 +76,7 @@ class ModerationPostTableViewCell: UITableViewCell {
                     self.userImageView.image = UIImage(named: "placeholder-profile")
                 }
             } else {
-                print("Document does not exist")
+                self.postTitleText.text = Constants.postNotFoundError
             }
         }
         userID = model.opID

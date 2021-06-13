@@ -34,5 +34,6 @@ struct Constants {
     static let noCategoryError = "Please select at least one category."
     static let emptyCommentError = "Cannot post an empty comment."
     static let postingCommentError = "Comment could not be posted."
-    static let unknownUserError = "User could not be found."
+    static let unknownUserError = "User information could not be found."
+    static let postNotFoundError = "[post not found]"
 }

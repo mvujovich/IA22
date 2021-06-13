@@ -65,9 +65,9 @@ class ModerationCommentViewController: UIViewController, UITableViewDelegate, UI
             let firestore = Firestore.firestore()
             firestore.collection("comments").document(commentID).delete() { err in
                 if let err = err {
-                    print("Error removing document: \(err)") //MARK: - Fix
+                    self.createAlert(title: "Error", message: "Error removing comment: \(err.localizedDescription)")
                 } else {
-                    print("Document successfully removed!")
+                    //No need to notify moderator of success
                     self.commentsToShow.remove(at: indexPath.row)
                     self.pendingCommentListTableView.deleteRows(at: [indexPath], with: .fade)
                     self.pendingCommentListTableView.reloadData()
@@ -85,7 +85,7 @@ class ModerationCommentViewController: UIViewController, UITableViewDelegate, UI
         firestore.collection("comments").whereField("approved", isEqualTo: false).order(by: "time", descending: false).limit(to: 20).getDocuments()
         { (querySnapshot, err) in
                 if let err = err {
-                    print("Error getting documents: \(err)")
+                    self.createAlert(title: "Error", message: "Error getting comments: \(err.localizedDescription)")
                 } else {
                     self.commentsToShow.removeAll()
                     self.pendingCommentListTableView.reloadData()
@@ -99,7 +99,6 @@ class ModerationCommentViewController: UIViewController, UITableViewDelegate, UI
                         let storedTime: Timestamp = document.get("time") as! Timestamp
                         let comment: Comment = Comment(commentID: storedCommentID, message: storedMessage, commenterName: storedCommenterName, commenterID: storedCommenterID, approved: false, postID: storedPostID, time: storedTime)
                         self.commentsToShow.append(comment)
-                        print(comment)
                         let indexPath = IndexPath(row: self.commentsToShow.count-1, section: 0)
                         self.pendingCommentListTableView.insertRows(at: [indexPath], with: .automatic)
                     }

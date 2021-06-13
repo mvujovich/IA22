@@ -72,7 +72,6 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
             }
             let firestore = Firestore.firestore()
             let opID = Auth.auth().currentUser!.uid as String
-            print("user id is \(opID)")
             var opName: String = ""
             let docRef = firestore.collection("users").document(opID)
             docRef.getDocument { (document, error) in
@@ -99,7 +98,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
                                     }
                                 }
                 } else {
-                    self.createAlert(title: "Error", message: "User does not exist.")
+                    self.createAlert(title: "Error", message: Constants.unknownUserError)
                 }
             } //End larger async
         }
@@ -182,10 +181,10 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         uploadMetadata.contentType = "image/jpeg"
         uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
             if let error = error {
-                print("Error uploading image: \(error.localizedDescription)")
+                self.createAlert(title: "Error", message: "Error uploading image: \(error.localizedDescription)")
                 return
             }
-            print("Put complete, got: \(String(describing: downloadMetadata))")
+            //No need to notify user of success
         }
     }
     
@@ -226,7 +225,6 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
             turnButtonOnVisually(buttonToTurnOn: button)
             chosenCategories.append((button.currentTitle?.lowercased())!)
         }
-        print(chosenCategories)
     }
     
     func turnButtonOffVisually(buttonToTurnOff: UIButton)

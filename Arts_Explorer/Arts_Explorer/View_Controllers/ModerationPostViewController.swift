@@ -67,9 +67,9 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
             let firestore = Firestore.firestore()
             firestore.collection("posts").document(postID).delete() { err in
                 if let err = err {
-                    print("Error removing document: \(err)") //MARK: - Fix
+                    self.createAlert(title: "Error", message: "Error removing post: \(err.localizedDescription)")
                 } else {
-                    print("Document successfully removed!")
+                    //No need to notify moderator of success
                     self.postsToShow.remove(at: indexPath.row)
                     self.pendingPostListTableView.deleteRows(at: [indexPath], with: .fade)
                     self.pendingPostListTableView.reloadData()
@@ -87,7 +87,7 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
         firestore.collection("posts").whereField("approved", isEqualTo: false).order(by: "time", descending: false).limit(to: 15).getDocuments()
         { (querySnapshot, err) in
                 if let err = err {
-                    print("Error getting documents: \(err)")
+                    self.createAlert(title: "Error", message: "Error getting posts: \(err.localizedDescription)")
                 } else {
                     self.postsToShow.removeAll()
                     self.pendingPostListTableView.reloadData()

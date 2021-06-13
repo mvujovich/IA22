@@ -4,11 +4,10 @@
 <p>Author: Mirjana Vujovich</p>
 <p>Created for IB CS 2020-22</p>
 
-### TODOs (ordered):
-- Populate view for saved posts (from self profile view)
+### TODO/s:
 - Fix error handling so that errors show in popups
 
-### Completed TODOs (not really ordered):
+### Completed TODOs:
 - Integrate Firebase storage (image support; for uploading posts)
 - Fix and update upload interface (relatively okay for now)
 - Replicate home feed for profile view (still basic at the moment)
@@ -32,6 +31,7 @@
 - Add moderation screen with approval/denial for comments
 - Connect comment view to post tables from non-home views
 - Add ability to save posts from all post table views
+- Populate view for saved posts (from self profile view)
 
 ### Dependencies:
 - Firebase Auth

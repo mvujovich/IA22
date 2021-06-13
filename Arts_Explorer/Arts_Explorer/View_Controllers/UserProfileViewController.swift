@@ -74,7 +74,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         let firestore = Firestore.firestore()
         firestore.collection("posts").whereField("opID", isEqualTo: opID).order(by: "time", descending: true).limit(to: 15).getDocuments() { (querySnapshot, err) in
                 if let err = err {
-                    print("Error getting documents: \(err)")
+                    self.createAlert(title: "Error", message: "Error getting posts: \(err.localizedDescription)")
                 } else {
                     for document in querySnapshot!.documents {
                         let postID: String = document.get("id") as! String
@@ -150,7 +150,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                     self.selfProfilePicture.image = UIImage(named: "placeholder-profile")
                 }
             } else {
-                print("Document does not exist")
+                self.createAlert(title: "Error", message: Constants.unknownUserError)
             }
         }
     }
@@ -200,15 +200,14 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 uploadMetadata.contentType = "image/jpeg"
                 uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
                     if let error = error {
-                        print("Error uploading image: \(error.localizedDescription)")
+                        self.createAlert(title: "Error", message: "Error uploading image: \(error.localizedDescription)")
                         return
                     }
-                    print("Put complete, got: \(String(describing: downloadMetadata))")
+                    self.createAlert(title: "Success", message: "New profile picture succcessfully uploaded.")
                 }
                 firestore.collection("users").document(opID).updateData(["avatarID": avatarUUID])
             }
-            //No else condition, as nothing happens if nothing has changed
-            //This might get more complicated if/when I add profile pictures :'(
+            
         }
         else
         {
@@ -278,6 +277,15 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         {
             performSegue(withIdentifier: "showSavedFromProfile", sender: nil)
         }
+    }
+    
+    //MARK: - Alert
+    
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+        self.present(alert, animated: true, completion: nil)
     }
     
     

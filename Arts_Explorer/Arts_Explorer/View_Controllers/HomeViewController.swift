@@ -68,7 +68,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         firestore.collection("posts").whereField("approved", isEqualTo: true).order(by: "time", descending: true).limit(to: 15).getDocuments()
         { (querySnapshot, err) in
                 if let err = err {
-                    print("Error getting documents: \(err)")
+                    self.createAlert(title: "Error", message: "Error getting posts: \(err.localizedDescription)")
                 } else {
                     self.postsToShow.removeAll()
                     self.postListTableView.reloadData()
@@ -106,7 +106,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         firestore.collection("posts").whereField("approved", isEqualTo: true).whereField("categories", arrayContains: categoryChosen).order(by: "time", descending: true).limit(to: 15).getDocuments()
             { (querySnapshot, err) in
                 if let err = err {
-                    print("Error getting documents: \(err)")
+                    self.createAlert(title: "Error", message: "Error getting posts: \(err.localizedDescription)")
                 } else {
                     self.postsToShow.removeAll()
                     self.postListTableView.reloadData()
@@ -152,7 +152,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             catch let signOutError as NSError
             {
-              print ("Error signing out: %@", signOutError)
+                createAlert(title: "Error", message: "Error signing out: \(signOutError.localizedDescription)")
             }
             if let storyboard = self.storyboard
             {
@@ -296,7 +296,7 @@ class MenuListController: UITableViewController //Class needed for inheritance s
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.menuItemIdentifier)
         
         let docRef = firestore.collection("users").document("\(currentUserID)")
-        docRef.getDocument { (document, error) in
+        docRef.getDocument { [self] (document, error) in
             if let document = document, document.exists {
                 self.userIsMod = document.get("mod") as! Bool
                 if (self.userIsMod)
@@ -311,10 +311,19 @@ class MenuListController: UITableViewController //Class needed for inheritance s
                 }
                 
             } else {
-                print("Document does not exist")
+                self.createAlert(title: "Error", message: Constants.unknownUserError)
             }
         }
         
+    }
+    
+    //MARK: - Alert (menu controller)
+    
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+        self.present(alert, animated: true, completion: nil)
     }
     
     //MARK: - Menu table actions
@@ -335,7 +344,6 @@ class MenuListController: UITableViewController //Class needed for inheritance s
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedItem = menuListItems[indexPath.row]
         delegate?.didSelectMenuItem(chosen: selectedItem.lowercased())
-        print(selectedItem)
     }
 
 }
