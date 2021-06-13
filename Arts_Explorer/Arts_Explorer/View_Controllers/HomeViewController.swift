@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var opID: String = ""
     var opName: String = ""
+    var postID: String = ""
     
     var currentCategory: String = ""
     
@@ -221,6 +222,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         opID = postsToShow[indexPath.row].opID
         opName = postsToShow[indexPath.row].opName
+        postID = postsToShow[indexPath.row].id
     }
     
     //MARK: - Segue to profile
@@ -247,7 +249,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if segue.identifier == "showCommentsFromPost"
         {
             let commentsViewController = segue.destination as! CommentsViewController
-            commentsViewController.postID = opID
+            commentsViewController.postID = postID
             commentsViewController.opName = opName
         }
     }
