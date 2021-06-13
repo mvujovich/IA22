@@ -5,7 +5,6 @@
 <p>Created for IB CS 2020-22</p>
 
 ### TODOs (ordered):
-- Connect moderation items to other views (post, profile)
 - Add ability to save posts from post table views
 - Populate view for saved posts (from self profile view)
 - Fix error handling so that errors show in popups

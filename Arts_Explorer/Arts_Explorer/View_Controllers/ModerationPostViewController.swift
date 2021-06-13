@@ -48,11 +48,6 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
         return postsToShow.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //postListTableView.deselectRow(at: indexPath, animated: true)
-        //performSegue(withIdentifier: "showProfileFromModerationPost", sender: indexPath) //fix this
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = pendingPostListTableView.dequeueReusableCell(withIdentifier: ModerationPostTableViewCell.identifier, for: indexPath) as! ModerationPostTableViewCell //fix
         cell.configure(with: postsToShow[indexPath.row])

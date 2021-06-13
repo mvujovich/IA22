@@ -25,8 +25,12 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var descriptionText: UILabel!
     
+    @IBOutlet weak var saveButton: UIButton!
+    
     var callBackOnCommentButton: (()->())?
-
+    
+    var postID: String = ""
+    
     static let identifier = "PostTableViewCell"
     
     //Helps register cell with table view
@@ -93,6 +97,7 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         self.userTopLabel.text = "\(model.opName)"
         self.titleText.text = "\(model.title)"
         self.descriptionText.text = "\(model.description)"
+        self.postID = model.id
     }
     
     @IBAction func pressedViewComments(_ sender: Any)
@@ -100,6 +105,53 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         self.callBackOnCommentButton?()
     }
     
+    @IBAction func pressedSaveButton(_ sender: Any) {
+        
+        let firestore = Firestore.firestore()
+        let opID = Auth.auth().currentUser!.uid as String
+        let userReference = firestore.collection("users").document(opID)
+
+        if (saveButton.isSelected)
+        {
+            saveButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
+            userReference.updateData([
+                "savedPosts": FieldValue.arrayRemove([postID])
+            ])
+            saveButton.isSelected = false
+        }
+        else
+        {
+            saveButton.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+            userReference.updateData([
+                "savedPosts": FieldValue.arrayUnion([postID])
+            ])
+            saveButton.isSelected = true
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        let firestore = Firestore.firestore()
+        let opID = Auth.auth().currentUser!.uid as String
+        let userReference = firestore.collection("users").document(opID)
+        var savedPosts = [String]()
+        userReference.getDocument { (document, error) in
+            if let document = document, document.exists {
+                savedPosts = document.get("savedPosts") as! Array<String>
+                if (savedPosts.contains(self.postID))
+                {
+                    self.saveButton.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+                }
+                else
+                {
+                    self.saveButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
+                }
+            } else {
+                print("Document does not exist") //fix
+            }
+        }
+        
+    }
 
 }
 

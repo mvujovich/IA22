@@ -202,7 +202,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 //  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let cell = postListTableView.dequeueReusableCell(withIdentifier:               PostTableViewCell.identifier) as! PostTableViewCell
+//        let cell = postListTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as! PostTableViewCell
 //        cell.configure(with: postsToShow[indexPath.row])
 //        let textViewHeight = cell.descriptionText.frame.size.height
 //        return textViewHeight+129+view.frame.size.width }
