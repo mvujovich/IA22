@@ -87,7 +87,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
                                     "id": postUUID,
                                     "opID": opID,
                                     "opName": opName,
-                                    "approved": true, //MARK: - FIX 'APPROVED'
+                                    "approved": false,
                                     "categories": self.chosenCategories,
                                     "mediaID": mediaID,
                                     "title": titleText,

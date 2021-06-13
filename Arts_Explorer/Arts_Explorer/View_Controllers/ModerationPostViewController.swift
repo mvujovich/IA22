@@ -54,6 +54,21 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
             self.pendingPostListTableView.deleteRows(at: [indexPath], with: .fade)
             //delete from table view
         }
+        
+        cell.callBackOnDenyButton = {
+            let postID = self.postsToShow[indexPath.row].id
+            let firestore = Firestore.firestore()
+            firestore.collection("posts").document(postID).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)") //MARK: - Fix
+                } else {
+                    print("Document successfully removed!")
+                    self.postsToShow.remove(at: indexPath.row)
+                    self.pendingPostListTableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+        }
+        
         return cell
     }
     
