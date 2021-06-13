@@ -90,10 +90,13 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
                 {
                     self.userImageView.image = UIImage(named: "placeholder-profile")
                 }
+            let opID = Auth.auth().currentUser!.uid as String
+            self.fillSaveButtons(currentUser: opID)
             } else {
                 print("Document does not exist")
             }
         }
+        
         self.userTopLabel.text = "\(model.opName)"
         self.titleText.text = "\(model.title)"
         self.descriptionText.text = "\(model.description)"
@@ -131,9 +134,14 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        let firestore = Firestore.firestore()
         let opID = Auth.auth().currentUser!.uid as String
-        let userReference = firestore.collection("users").document(opID)
+        fillSaveButtons(currentUser: opID)
+    }
+    
+    func fillSaveButtons(currentUser: String)
+    {
+        let firestore = Firestore.firestore()
+        let userReference = firestore.collection("users").document(currentUser)
         var savedPosts = [String]()
         userReference.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -150,7 +158,6 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
                 print("Document does not exist") //fix
             }
         }
-        
     }
 
 }
