@@ -7,6 +7,7 @@
 ### TODOs (ordered):
 - Add moderation screen with approval/denial for comments
 - Connect comment view to post tables from non-home views
+- Connect moderation items to other profile views
 - Add ability to save posts from post table views
 - Populate view for saved posts (from self profile view)
 - Fix error handling so that errors show in popups
@@ -38,7 +39,9 @@
 - Firebase Firestore
 - Firebase Storage
 - FirebaseUI
+- SD Web Image
 - SideMenuSwift
 
 ### How to run:
-- Project created in XCode 12.4 using Storyboards and the AppDelegate lifecycle
+- Project created in XCode 12.4
+- Used Storyboards, AppDelegate lifecycle

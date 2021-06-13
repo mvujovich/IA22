@@ -16,6 +16,7 @@
 		D339640A2675D3E30047CA19 /* ModerationPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33964082675D3E20047CA19 /* ModerationPostTableViewCell.swift */; };
 		D339640B2675D3E30047CA19 /* ModerationPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33964092675D3E20047CA19 /* ModerationPostTableViewCell.xib */; };
 		D33964102675F4020047CA19 /* ModerationPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D339640F2675F4010047CA19 /* ModerationPostViewController.swift */; };
+		D339641526760B600047CA19 /* ModerationCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D339641426760B600047CA19 /* ModerationCommentTableViewCell.swift */; };
 		D37ECECC2627423700F9EA90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECECB2627423700F9EA90 /* AppDelegate.swift */; };
 		D37ECECE2627423700F9EA90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECECD2627423700F9EA90 /* SceneDelegate.swift */; };
 		D37ECED02627423700F9EA90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ECECF2627423700F9EA90 /* ViewController.swift */; };
@@ -84,6 +85,7 @@
 		D33964082675D3E20047CA19 /* ModerationPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModerationPostTableViewCell.swift; sourceTree = "<group>"; };
 		D33964092675D3E20047CA19 /* ModerationPostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModerationPostTableViewCell.xib; sourceTree = "<group>"; };
 		D339640F2675F4010047CA19 /* ModerationPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModerationPostViewController.swift; sourceTree = "<group>"; };
+		D339641426760B600047CA19 /* ModerationCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModerationCommentTableViewCell.swift; sourceTree = "<group>"; };
 		D37ECEC82627423700F9EA90 /* Arts_Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arts_Explorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D37ECECB2627423700F9EA90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D37ECECD2627423700F9EA90 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				D3AD367A265B2EAA006602EC /* PostTableViewCell.xib */,
 				D33964082675D3E20047CA19 /* ModerationPostTableViewCell.swift */,
 				D33964092675D3E20047CA19 /* ModerationPostTableViewCell.xib */,
+				D339641426760B600047CA19 /* ModerationCommentTableViewCell.swift */,
 			);
 			path = Arts_Explorer;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D37ECF1926284CBE00F9EA90 /* LogInViewController.swift in Sources */,
+				D339641526760B600047CA19 /* ModerationCommentTableViewCell.swift in Sources */,
 				D37ECF2826284E1500F9EA90 /* UploadViewController.swift in Sources */,
 				D37ECED02627423700F9EA90 /* ViewController.swift in Sources */,
 				D33963F32673AF2F0047CA19 /* CommentsViewController.swift in Sources */,
