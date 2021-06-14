@@ -21,7 +21,7 @@
 - Allow user to stay signed in with Firebase Authentication
 - Add individual buttons for categories in the upload view
 - Convert "categories" to an array data type accordingly
-- Display table view and text field for enter ingcomments
+- Display table view and text field for entering comments
 - Send comments from comment view to Firebase
 - Display all comments in table view cells correctly
 - Add moderation screen with approval/denial for posts

@@ -115,7 +115,22 @@ class SignUpViewController: UIViewController {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         //≥8 characters, incl. 1+ special characters, letters, and numbers
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        return emailTest.evaluate(with: input)
+        if (validateSchoolEmail(inputString: input) == true)
+        {
+            return emailTest.evaluate(with: input)
+        }
+        return false
+    }
+    
+    func validateSchoolEmail(inputString: String) -> Bool {
+        let emailParts = inputString.components(separatedBy: "@")
+        let emailSuffix = emailParts[1]
+        let validSuffixes = ["cis.edu.hk", "alumni.cis.edu.hk", "student.cis.edu.hk"]
+        if (validSuffixes.contains(emailSuffix))
+        {
+            return true
+        }
+        return false
     }
     
     func goToHome() {

@@ -32,12 +32,4 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         // get screen size object.
     }
-    
-    @IBAction func signUpPressed(_ sender: Any?) {
-        
-    }
-    
-    @IBAction func logInPressed(_ sender: Any?) {
-        
-    }
 }
