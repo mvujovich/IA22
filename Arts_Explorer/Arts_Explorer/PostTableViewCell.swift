@@ -49,25 +49,11 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
 //MARK: - Configure
      
     func configure(with model: AEPost) {
-        if (model.mediaID != "")
+        if (model.mediaID != "") //Post has image
         {
             let storageRef = Storage.storage().reference(withPath: "posts/\(model.id)")
-            // Load the image using SDWebImage and FirebaseUI stuff
+            // Load the image using SDWebImage and FirebaseUI
             self.postImageView.sd_setImage(with: storageRef, placeholderImage: nil)
-            
-            /*
-            Backup for plain Firebase Storage code
-            storageRef.getData(maxSize: 1024 * 1024) { [weak self](data, error) in
-                if let error = error {
-                    print("Error fetching data: \(error.localizedDescription)")
-                    return
-                }
-                if let data = data {
-                    let image = UIImage(data: data)
-                    self?.postImageView.image = UIImage(data: data)
-                }
-            }
-            */
         }
         else
         {
@@ -83,6 +69,7 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
                 if (avatarID != "")
                 {
                     let storageRef = Storage.storage().reference(withPath: "avatars/\(avatarID)")
+                    //Load image using SDWebImage and FirebaseUI
                     self.userImageView.sd_setImage(with: storageRef, placeholderImage: UIImage(named: "placeholder-profile"))
                 }
                 else
@@ -90,12 +77,13 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
                     self.userImageView.image = UIImage(named: "placeholder-profile")
                 }
             let opID = Auth.auth().currentUser!.uid as String
+            //Call to Firestore: if post has been saved by current user, fill save button
             self.fillSaveButtons(currentUser: opID)
             } else {
                 self.titleText.text = Constants.postNotFoundError
             }
         }
-        
+        //Fills other fields using model
         self.userTopLabel.text = "\(model.opName)"
         self.titleText.text = "\(model.title)"
         self.descriptionText.text = "\(model.description)"
@@ -154,7 +142,7 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
                     self.saveButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
                 }
             } else {
-                //Nothing signficant can be added here...
+                //No need for any action
             }
         }
     }
@@ -174,3 +162,17 @@ struct AEPost {
     var description: String
     var time: Timestamp
 }
+
+/*
+Backup for plain Firebase Storage code -- not used at the moment
+storageRef.getData(maxSize: 1024 * 1024) { [weak self](data, error) in
+    if let error = error {
+        print("Error fetching data: \(error.localizedDescription)")
+        return
+    }
+    if let data = data {
+        let image = UIImage(data: data)
+        self?.postImageView.image = UIImage(data: data)
+    }
+}
+*/

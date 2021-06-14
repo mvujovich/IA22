@@ -36,4 +36,5 @@ struct Constants {
     static let postingCommentError = "Comment could not be posted."
     static let unknownUserError = "User information could not be found."
     static let postNotFoundError = "[post not found]"
+    static let noPostsHereError = "There are no posts here. Try somewhere else! :("
 }

@@ -33,6 +33,7 @@ class SignUpViewController: UIViewController {
         //More to come (when I work on the UI)
     }
 
+    ///This function uses Firebase to create a new user using the entered data.
     @IBAction func signUpPressed(_ sender: Any) {
         
         //Validate fields
@@ -81,6 +82,8 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    ///This function checks all fields to see if the user has entered text correctly.
+    ///It returns a String describing the error if there is one, and nil if there is no error.
     func validateFields() -> String? { //Method returns optional String
         
         let passwordText: String = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
@@ -104,6 +107,7 @@ class SignUpViewController: UIViewController {
         return nil
     }
     
+    ///This function checks to see if the password is secure enough by using regular expressions.
     func validatePassword(input: String) -> Bool {
         let passRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$"
         //≥8 characters, incl. 1+ special characters, letters, and numbers
@@ -111,6 +115,7 @@ class SignUpViewController: UIViewController {
         return passwordTest.evaluate(with: input)
     }
     
+    ///This function checks to see if the email is valid by using regular expressions.
     func validateEmail(input: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         //≥8 characters, incl. 1+ special characters, letters, and numbers
@@ -122,6 +127,7 @@ class SignUpViewController: UIViewController {
         return false
     }
     
+    ///This function checks to see if the validated email is a CIS email.
     func validateSchoolEmail(inputString: String) -> Bool {
         let emailParts = inputString.components(separatedBy: "@")
         let emailSuffix = emailParts[1]
@@ -133,6 +139,7 @@ class SignUpViewController: UIViewController {
         return false
     }
     
+    ///This function handles the initial segue to the HomeViewController.
     func goToHome() {
         let tabViewController =
         storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeBarController) as? UITabBarController
@@ -141,19 +148,10 @@ class SignUpViewController: UIViewController {
         view.window?.makeKeyAndVisible()
     }
     
+    ///This function displays errors to the user where necessary.
     func showError(message: String) {
         errorLabel.text = message
         errorLabel.alpha = 1 //Make error text visible
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

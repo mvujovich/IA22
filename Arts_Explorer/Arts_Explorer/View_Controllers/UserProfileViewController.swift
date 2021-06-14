@@ -158,6 +158,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     //MARK: - Editing profile info
     
     //Mr. Lagos is this an algorithm :( my brain hurts a bit so I hope so
+    
     @IBAction func editTapped(_ sender: Any)
     {
         if (editingMode)
@@ -176,20 +177,15 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             let newBioText: String = selfBio.text!
             let newAvatar: UIImage = selfProfilePicture.image!
             
-            let firestore = Firestore.firestore()
-            if (newBioText != originalBioText) && (newNameText != originalNameText) //Both have changed
+            var changesDict = [String:String]()
+            if (newBioText != originalBioText)
             {
-                firestore.collection("users").document(opID).updateData(["name": newNameText, "bio": newBioText])
+                changesDict.updateValue(newBioText, forKey: "bio")
             }
-            else if (newNameText != originalNameText) //Only one has changed --> name changed
+            if (newNameText != originalNameText)
             {
-                firestore.collection("users").document(opID).updateData(["name": newNameText])
+                changesDict.updateValue(newNameText, forKey: "name")
             }
-            else if (newBioText != originalBioText) //Only one has changed --> bio changed
-            {
-                firestore.collection("users").document(opID).updateData(["bio": newBioText])
-            }
-            
             if (newAvatar != originalAvatar) //Image upload
             {
                 let avatarUUID = UUID().uuidString
@@ -205,9 +201,13 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                     self.createAlert(title: "Success", message: "New profile picture succcessfully uploaded.")
                 }
-                firestore.collection("users").document(opID).updateData(["avatarID": avatarUUID])
+                changesDict.updateValue(avatarUUID, forKey: "avatarID")
             }
-            
+            if (!changesDict.isEmpty)
+            {
+                let firestore = Firestore.firestore()
+                firestore.collection("users").document(opID).updateData(changesDict)
+            }
         }
         else
         {
