@@ -42,6 +42,8 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     //MARK: - Load saved posts
+    
+    ///This function loads all posts saved by the current user (from Firestore) into the table view.
     func loadSavedPosts() {
         let firestore = Firestore.firestore()
         let opID = Auth.auth().currentUser!.uid as String
@@ -85,6 +87,12 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.refreshControl.endRefreshing()
     }
     
+    ///This function uses the refresh controller to reload posts.
+    @objc func reloadSavedPosts(_ sender: Any) {
+        self.loadSavedPosts()
+    }
+    
+    ///This function creates popup alerts for errors and success messages.
     func createAlert(title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
@@ -117,6 +125,7 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    ///This function prepares the user for segues (to comment view, etc).
     func prepareInfo(indexPath: IndexPath)
     {
         opID = postsToShow[indexPath.row].opID
@@ -125,6 +134,8 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     //MARK: - Segue prep
+    
+    ///This function prepares for segues to the comment view of posts and profiles of other posters.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "showProfileFromSaved" {
@@ -143,10 +154,4 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
             commentsViewController.opName = opName
         }
     }
-    
-    //MARK: - Reload
-    @objc func reloadSavedPosts(_ sender: Any) {
-        self.loadSavedPosts()
-    }
-
 }

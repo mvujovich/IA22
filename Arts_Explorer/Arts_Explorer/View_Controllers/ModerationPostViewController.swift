@@ -14,8 +14,6 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
     
     var postsToShow = [AEPost]()
     
-    var opID: String = ""
-        
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -48,7 +46,9 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
         return postsToShow.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    ///This function handles callbacks to approve and deny posts.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
         let cell = pendingPostListTableView.dequeueReusableCell(withIdentifier: ModerationPostTableViewCell.identifier, for: indexPath) as! ModerationPostTableViewCell //fix
         cell.configure(with: postsToShow[indexPath.row])
         
@@ -82,6 +82,7 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
     
     //MARK: - Load posts
     
+    ///This function loads posts that have not been approved yet from Firestore.
     func loadPendingPosts() {
         let firestore = Firestore.firestore()
         firestore.collection("posts").whereField("approved", isEqualTo: false).order(by: "time", descending: false).limit(to: 15).getDocuments()
@@ -96,7 +97,6 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
                         let postID: String = document.get("id") as! String
                         let postOPID: String = document.get("opID") as! String
                         let postOPName: String = document.get("opName") as! String
-                        //Do comments later
                         let postCategories: Array<String> = document.get("categories") as! Array<String>
                         let mediaID: String = document.get("mediaID") as! String
                         let postTitle: String = document.get("title") as! String
@@ -118,12 +118,14 @@ class ModerationPostViewController: UIViewController, UITableViewDelegate, UITab
     
     //MARK: - Reload
     
+    ///This function uses the refresh controller to reload pending posts.
     @objc func reloadPendingPosts(_ sender: Any) {
         self.loadPendingPosts()
     }
     
     //MARK: - Alert
     
+    ///This function creates popup alerts for errors and success messages.
     func createAlert(title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)

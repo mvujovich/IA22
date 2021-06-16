@@ -75,6 +75,7 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
+    ///This function prepares the user for segues (to comment view).
     func prepareInfo(indexPath: IndexPath)
     {
         opID = postsToShow[indexPath.row].opID
@@ -82,6 +83,7 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         postID = postsToShow[indexPath.row].id
     }
     
+    ///This function sets up profile information about the given user.
     func loadInfo()
     {
         let firestore = Firestore.firestore()
@@ -110,7 +112,8 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     //MARK: - Loading posts
-    
+
+    ///This function loads all approved posts made by the given user (from Firestore) into the table view.
     func loadPosts() {
         let firestore = Firestore.firestore()
         firestore.collection("posts").whereField("opID", isEqualTo: otherUserID).whereField("approved", isEqualTo: true).order(by: "time", descending: true).limit(to: 15).getDocuments() { (querySnapshot, err) in
@@ -137,12 +140,14 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         self.refreshControl.endRefreshing()
     }
     
+    ///This function uses the refresh controller to reload posts.
     @objc func reloadPosts(_ sender: Any) {
         self.loadPosts()
     }
     
     //MARK: - Alert
     
+    ///This function creates popup alerts for errors and success messages.
     func createAlert(title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
@@ -152,6 +157,7 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: - Navigation
     
+    ///This function prepares for segues to the comment view of posts.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "showCommentsFromOtherProfile"

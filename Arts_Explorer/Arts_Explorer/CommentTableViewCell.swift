@@ -32,7 +32,8 @@ class CommentTableViewCell: UITableViewCell, UITextViewDelegate {
 
         // Configure the view for the selected state
     }
-    
+
+    ///This function allows the table view cell to display the contents of a Comment.
     func configure(with model: Comment) {
         self.message.text = model.message
         self.commenterName.text = model.commenterName

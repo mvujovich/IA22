@@ -13,9 +13,7 @@ class ModerationCommentViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet weak var pendingCommentListTableView: UITableView!
 
     var commentsToShow = [Comment]()
-    
-    var opID: String = ""
-        
+            
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -46,6 +44,7 @@ class ModerationCommentViewController: UIViewController, UITableViewDelegate, UI
         return commentsToShow.count
     }
     
+    ///This function handles callbacks to approve and deny comments.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = pendingCommentListTableView.dequeueReusableCell(withIdentifier: ModerationCommentTableViewCell.identifier, for: indexPath) as! ModerationCommentTableViewCell //fix
         cell.configure(with: commentsToShow[indexPath.row])
@@ -78,8 +77,9 @@ class ModerationCommentViewController: UIViewController, UITableViewDelegate, UI
         return cell
     }
     
-    //MARK: - Load posts
+    //MARK: - Load comments
     
+    ///This function loads comments that have not been approved yet from Firestore.
     func loadPendingComments() {
         let firestore = Firestore.firestore()
         firestore.collection("comments").whereField("approved", isEqualTo: false).order(by: "time", descending: false).limit(to: 20).getDocuments()
@@ -113,28 +113,19 @@ class ModerationCommentViewController: UIViewController, UITableViewDelegate, UI
     
     //MARK: - Reload
     
+    ///This function uses the refresh controller to reload pending posts.
     @objc func reloadPendingComments(_ sender: Any) {
         self.loadPendingComments()
     }
     
     //MARK: - Alert
     
+    ///This function creates popup alerts for errors and success messages.
     func createAlert(title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
         self.present(alert, animated: true, completion: nil)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

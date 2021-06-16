@@ -300,7 +300,8 @@ class MenuListController: UITableViewController //Class needed for inheritance s
         let currentUserID = Auth.auth().currentUser!.uid as String
         self.tableView.backgroundColor = self.darkColor
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.menuItemIdentifier)
-        
+         
+        //Set categories based on whether user is mod or nmot
         let docRef = firestore.collection("users").document("\(currentUserID)")
         docRef.getDocument { [self] (document, error) in
             if let document = document, document.exists {
@@ -346,6 +347,7 @@ class MenuListController: UITableViewController //Class needed for inheritance s
         return cell
     }
     
+    ///This function sets the selected item to the menu item clicked and lets the delegate handle navigation.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedItem = menuListItems[indexPath.row]

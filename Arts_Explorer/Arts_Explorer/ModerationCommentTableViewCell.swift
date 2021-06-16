@@ -17,8 +17,6 @@ class ModerationCommentTableViewCell: UITableViewCell {
     
     var callBackOnDenyButton: (()->())?
     
-    var commenterUserID: String = ""
-
     static let identifier = "ModerationCommentTableViewCell"
     
     //Helps register cell with table view
@@ -38,7 +36,6 @@ class ModerationCommentTableViewCell: UITableViewCell {
     func configure(with model: Comment) {
         userNameText.text = model.commenterName
         commentText.text = model.message
-        commenterUserID = model.commenterID
     }
     
     //MARK: - Closures

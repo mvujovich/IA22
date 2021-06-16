@@ -40,6 +40,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         // Do any additional setup after loading the view.
     }
     
+    ///This function sets up visual elements on the screen.
     func setUpElements() {
         uploadButton.layer.cornerRadius = 5
         imageHolder.image = UIImage(named: "placeholder-post")
@@ -49,7 +50,9 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     
     //MARK: - Upload post
     
-    @IBAction func uploadPressed(_ sender: Any) {
+    ///This function sends post to Firebase using data entered on the screen.
+    @IBAction func uploadPressed(_ sender: Any)
+    {
         
         //Validate fields
         let error = validateFields()
@@ -106,7 +109,9 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     
     //MARK: - Validation
     
-    func validateFields() -> String? { //Method returns optional String
+    ///This function makes sure that at least one of title, description, and media contains data.
+    func validateFields() -> String?
+    { //Method returns optional String
         
         let titleText: String = titleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let descriptionText: String = descriptionTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
@@ -126,6 +131,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         
     }
 
+    ///This function allows for error alerts to be created.
     func createAlert(title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
@@ -133,6 +139,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         self.present(alert, animated: true, completion: nil)
     }
     
+    ///This function clears on-screen data after a post is sent.
     func clearFieldsAndInfo()
     {
         titleTextField.text = ""
@@ -147,18 +154,23 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
     
     //MARK: - Media
     
-    @IBAction func pressedClearMedia(_ sender: Any) {
+    ///This function clears any photo from image view.
+    @IBAction func pressedClearMedia(_ sender: Any)
+    {
         imageHolder.image = UIImage(named: "placeholder-post")
         imageHolder.contentMode = UIView.ContentMode.scaleAspectFill
     }
     
-    @IBAction func pressedChooseMedia(_ sender: Any) {
+    ///This function brings the image picker up for users to choose images from their device.
+    @IBAction func pressedChooseMedia(_ sender: Any)
+    {
         imagePickerType.sourceType = .photoLibrary
         imagePickerType.delegate = self
         imagePickerType.allowsEditing = true
         present(imagePickerType, animated: true)
     }
     
+    ///This function handles the picking of images from device.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let imageValue = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")]as? UIImage
         {
@@ -172,6 +184,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         picker.dismiss(animated: true, completion: nil)
     }
     
+    ///This function sends image in image view to Firebase Storage.
     func uploadImage(id: String)
     {
         let uploadRef = Storage.storage().reference(withPath: "posts/\(id)")
@@ -188,6 +201,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         }
     }
     
+    ///The following four functions handle the category buttons being pressed.
     @IBAction func artPressed(_ sender: Any)
     {
         changeButton(button: artButton)
@@ -209,9 +223,10 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         changeButton(button: musicButton)
     }
     
+    ///This function changes the appearance of a category button based on its current state.
     func changeButton(button: UIButton)
     {
-        button.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        button.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0) //Removes highlight on selected buttons
         
         if (button.isSelected) //Going from selected --> not selected
         {
@@ -227,6 +242,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate, UI
         }
     }
     
+    ///The following two functions specify the "on" and "off" visual states for category buttons.
     func turnButtonOffVisually(buttonToTurnOff: UIButton)
     {
         buttonToTurnOff.backgroundColor = UIColor.systemGray5

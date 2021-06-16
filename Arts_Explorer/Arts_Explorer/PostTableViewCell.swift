@@ -48,6 +48,7 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
     
 //MARK: - Configure
      
+    ///This function allows the table view cell to display the contents of an AEPost.
     func configure(with model: AEPost) {
         if (model.mediaID != "") //Post has image
         {
@@ -90,13 +91,15 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         self.postID = model.id
     }
     
+    ///This function triggers a closure which opens the comment view of a Post.
     @IBAction func pressedViewComments(_ sender: Any)
     {
         self.callBackOnCommentButton?()
     }
     
-    @IBAction func pressedSaveButton(_ sender: Any) {
-        
+    ///This function edits Firestore and changes the appearance of the save button when it is pressed.
+    @IBAction func pressedSaveButton(_ sender: Any)
+    {
         let firestore = Firestore.firestore()
         let opID = Auth.auth().currentUser!.uid as String
         let userReference = firestore.collection("users").document(opID)
@@ -119,12 +122,14 @@ class PostTableViewCell: UITableViewCell, UITextViewDelegate {
         }
     }
     
+    ///This function allows for the table view cells to be displayed smoothly.
     override func prepareForReuse() {
         super.prepareForReuse()
         let opID = Auth.auth().currentUser!.uid as String
         fillSaveButtons(currentUser: opID)
     }
     
+    ///This function loads in the appearance of all save buttons in cells by checking with Firebaseu.
     func fillSaveButtons(currentUser: String)
     {
         let firestore = Firestore.firestore()

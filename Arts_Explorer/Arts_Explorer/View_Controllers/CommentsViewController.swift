@@ -49,6 +49,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    ///This function loads all comments from the given post (from Firebase) into the table view.
     func loadComments()
     {
         let firestore = Firestore.firestore()
@@ -76,7 +77,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             }
     }
     
-    
+    ///This function sends a comment to Firebase with the text entered by the user.
     @IBAction func sendCommentPressed(_ sender: Any)
     {
         let message: String = commentTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -119,6 +120,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    ///This function creates popup alerts for errors and success messages.
     func createAlert(title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)

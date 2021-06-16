@@ -29,8 +29,6 @@ class ModerationPostTableViewCell: UITableViewCell {
     
     var callBackOnDenyButton: (()->())?
     
-    var userID: String = ""
-
     static let identifier = "ModerationPostTableViewCell"
     
     //Helps register cell with table view
@@ -48,7 +46,9 @@ class ModerationPostTableViewCell: UITableViewCell {
     
     //MARK: - Configure
     
-    func configure(with model: AEPost) {
+    ///This function allows the table view cell to display the contents of a Post for moderation.
+    func configure(with model: AEPost)
+    {
         if (model.mediaID != "")
         {
             let storageRef = Storage.storage().reference(withPath: "posts/\(model.id)")
@@ -79,7 +79,6 @@ class ModerationPostTableViewCell: UITableViewCell {
                 self.postTitleText.text = Constants.postNotFoundError
             }
         }
-        userID = model.opID
         userNameText.text = model.opName
         postTitleText.text = model.title
         postDescriptionText.text = model.description
@@ -93,11 +92,15 @@ class ModerationPostTableViewCell: UITableViewCell {
     
     //MARK: - Closures
     
-    @IBAction func pressedApproveButton(_ sender: Any) {
+    ///This function is connected to a closure that approves the post through Firestore.
+    @IBAction func pressedApproveButton(_ sender: Any)
+    {
         self.callBackOnApproveButton?()
     }
     
-    @IBAction func pressedDenyButton(_ sender: Any) {
+    ///This function is connected to a closure that removes the post through Firestore.
+    @IBAction func pressedDenyButton(_ sender: Any)
+    {
         self.callBackOnDenyButton?()
     }
     

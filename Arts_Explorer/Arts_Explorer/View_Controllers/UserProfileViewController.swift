@@ -70,6 +70,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     //MARK: - Loading posts
     
+    ///This function loads posts made by the current user into the table view.
     func loadPosts() {
         let firestore = Firestore.firestore()
         firestore.collection("posts").whereField("opID", isEqualTo: opID).order(by: "time", descending: true).limit(to: 15).getDocuments() { (querySnapshot, err) in
@@ -97,6 +98,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.refreshControl.endRefreshing()
     }
     
+    ///This function uses the refresh controller to reload posts.
     @objc func reloadPosts(_ sender: Any) {
         self.loadPosts()
     }
@@ -122,6 +124,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    ///This function prepares the user for segues (to comment view).
     func prepareInfo(indexPath: IndexPath)
     {
         opID = postsToShow[indexPath.row].opID
@@ -129,6 +132,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         postID = postsToShow[indexPath.row].id
     }
     
+    ///This function sets up the profile view with the necessary information from Firebase.
     func loadInfo()
     {
         let firestore = Firestore.firestore()
@@ -159,6 +163,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     //Mr. Lagos is this an algorithm :( my brain hurts a bit so I hope so
     
+    ///This function allows users to change their profile information.
     @IBAction func editTapped(_ sender: Any)
     {
         if (editingMode)
@@ -258,6 +263,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         picker.dismiss(animated: true, completion: nil)
     }
     
+    ///This function handles the top left navigation bar button.
     @IBAction func saveAndCancelTapped(_ sender: Any)
     {
         if (editingMode)
@@ -281,6 +287,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     //MARK: - Alert
     
+    ///This function creates popup alerts for errors and success messages.
     func createAlert(title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
@@ -291,6 +298,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     //MARK: - Navigation
     
+    ///This function prepares for segues to the saved view and comment view of posts.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "showSavedFromProfile"
