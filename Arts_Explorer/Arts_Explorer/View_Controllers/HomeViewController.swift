@@ -298,6 +298,7 @@ class MenuListController: UITableViewController //Class needed for inheritance s
         
         let firestore = Firestore.firestore()
         let currentUserID = Auth.auth().currentUser!.uid as String
+        
         self.tableView.backgroundColor = self.darkColor
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.menuItemIdentifier)
          

@@ -129,12 +129,15 @@ class SignUpViewController: UIViewController {
     
     ///This function checks to see if the validated email is a CIS email.
     func validateSchoolEmail(inputString: String) -> Bool {
-        let emailParts = inputString.components(separatedBy: "@")
-        let emailSuffix = emailParts[1]
-        let validSuffixes = ["cis.edu.hk", "alumni.cis.edu.hk", "student.cis.edu.hk"]
-        if (validSuffixes.contains(emailSuffix))
+        if (inputString.contains("@"))
         {
-            return true
+            let emailParts = inputString.components(separatedBy: "@")
+            let emailSuffix = emailParts[1]
+            let validSuffixes = ["cis.edu.hk", "alumni.cis.edu.hk", "student.cis.edu.hk"]
+            if (validSuffixes.contains(emailSuffix))
+            {
+                return true
+            }
         }
         return false
     }
