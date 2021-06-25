@@ -64,5 +64,9 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please allow access to your photo library to add photos to your post.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Kenzo_Regular.otf</string>
+	</array>
 </dict>
 </plist>

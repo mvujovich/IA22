@@ -56,7 +56,7 @@ class SignUpViewController: UIViewController {
                     }
                     else {
                         
-                        //Empty String Arrays
+                        //Empty Array of Strings
                         let savedPostArray = [String]()
                         
                         //Add document to Firebase
