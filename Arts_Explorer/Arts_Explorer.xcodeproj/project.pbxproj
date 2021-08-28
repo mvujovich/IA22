@@ -114,6 +114,7 @@
 		D39B280B2666440D003C0974 /* OtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
 		D3AD3679265B2EAA006602EC /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		D3AD367A265B2EAA006602EC /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		D3D7302826AD6CBA002CE8B8 /* Arts_Explorer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Arts_Explorer.entitlements; sourceTree = "<group>"; };
 		D3DEDAAF26861C23002C87FA /* Kenzo_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Kenzo_Regular.otf; sourceTree = "<group>"; };
 		D3F862B426289F78000D9286 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D3F862BE26290669000D9286 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +198,7 @@
 		D37ECECA2627423700F9EA90 /* Arts_Explorer */ = {
 			isa = PBXGroup;
 			children = (
+				D3D7302826AD6CBA002CE8B8 /* Arts_Explorer.entitlements */,
 				D3DEDAAF26861C23002C87FA /* Kenzo_Regular.otf */,
 				D37ECECB2627423700F9EA90 /* AppDelegate.swift */,
 				D37ECECD2627423700F9EA90 /* SceneDelegate.swift */,
@@ -709,15 +711,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Arts_Explorer/Arts_Explorer.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R4QR3KRWU7;
+				DEVELOPMENT_TEAM = Z4ZXRVN5DT;
 				INFOPLIST_FILE = Arts_Explorer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mirjanav.Arts-Explorer";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mirjanav.ArtsExplorer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -729,15 +734,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Arts_Explorer/Arts_Explorer.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R4QR3KRWU7;
+				DEVELOPMENT_TEAM = Z4ZXRVN5DT;
 				INFOPLIST_FILE = Arts_Explorer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mirjanav.Arts-Explorer";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mirjanav.ArtsExplorer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

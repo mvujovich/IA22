@@ -20,6 +20,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please allow access to your photo library to add photos to your post.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Kenzo_Regular.otf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -61,12 +67,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Please allow access to your photo library to add photos to your post.</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Kenzo_Regular.otf</string>
 	</array>
 </dict>
 </plist>
